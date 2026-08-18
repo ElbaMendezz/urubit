@@ -14,7 +14,7 @@ interface Props {
 const { href, image, width, height, label, caption } = Astro.props;
 ---
 
-<a href={href} target="_blank" rel="noopener" class="reel">
+<a href={href} target="_blank" rel="noopener" class="reel" data-rv="1">
   <Image src={image} alt="" width={width} height={height} loading="lazy" class="reel-bg" />
   <div class="reel-veil"></div>
   <span class="reel-label">{label}</span>

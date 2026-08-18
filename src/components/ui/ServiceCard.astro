@@ -15,7 +15,7 @@ interface Props {
 const { number, title, description, variant, image, width, height } = Astro.props;
 ---
 
-<div class:list={['svc', `svc--${variant}`]}>
+<div class:list={['svc', `svc--${variant}`]} data-rv="1">
   <Image src={image} alt="" width={width} height={height} loading="lazy" class="svc-bg" />
   <div class="svc-veil"></div>
   <span class="svc-number">{number}</span>

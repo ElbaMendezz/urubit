@@ -54,10 +54,16 @@ import difCollage from '../../assets/dif-collage.png';
   }
 
   .dif-bg {
+    /* top/bottom se extienden 46px más allá de la tarjeta: es el margen
+       que necesita el parallax de scroll (scroll-effects.ts) para poder
+       desplazar la imagen ±45px sin dejar huecos en los bordes. */
     position: absolute;
-    inset: 0;
+    top: -46px;
+    left: 0;
+    right: 0;
+    bottom: -46px;
     width: 100%;
-    height: 100%;
+    height: calc(100% + 92px);
     object-fit: cover;
     object-position: center bottom;
   }

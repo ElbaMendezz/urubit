@@ -12,7 +12,7 @@ const { value, label, background, color = 'var(--color-ink-900)' } = Astro.props
 <div class="stat-card">
   <div class="stat-top">
     <slot name="icon" />
-    <span class="stat-value">{value}</span>
+    <span class="stat-value" data-count={value}>{value}</span>
   </div>
   <span class="stat-label">{label}</span>
 </div>
