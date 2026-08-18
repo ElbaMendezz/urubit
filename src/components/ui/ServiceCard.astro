@@ -1,0 +1,152 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+  variant: 'lime' | 'dark';
+  image: ImageMetadata;
+  width: number;
+  height: number;
+}
+
+const { number, title, description, variant, image, width, height } = Astro.props;
+---
+
+<div class:list={['svc', `svc--${variant}`]}>
+  <Image src={image} alt="" width={width} height={height} loading="lazy" class="svc-bg" />
+  <div class="svc-veil"></div>
+  <span class="svc-number">{number}</span>
+  <div class="svc-copy">
+    <h3 class="svc-title">{title}</h3>
+    <p class="svc-desc">{description}</p>
+  </div>
+</div>
+
+<style>
+  .svc {
+    position: relative;
+    color: var(--color-ink-900);
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+    min-height: 226px;
+    overflow: hidden;
+    transition: color 300ms ease;
+  }
+
+  .svc--lime {
+    background-color: var(--color-accent);
+  }
+
+  .svc--dark {
+    background-color: var(--color-ink-800);
+    color: var(--color-bg);
+  }
+
+  .svc:hover {
+    color: var(--color-white);
+  }
+
+  .svc-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
+  }
+
+  .svc-veil {
+    position: absolute;
+    inset: 0;
+    transition: background 420ms ease;
+  }
+
+  .svc--lime .svc-veil {
+    background: linear-gradient(
+      180deg,
+      rgba(220, 232, 74, 0.56) 0%,
+      rgba(220, 232, 74, 0.56) 55%,
+      rgba(220, 232, 74, 0.5) 100%
+    );
+  }
+
+  .svc--dark .svc-veil {
+    background: linear-gradient(
+      180deg,
+      rgba(30, 42, 35, 0.7) 0%,
+      rgba(30, 42, 35, 0.68) 55%,
+      rgba(30, 42, 35, 0.66) 100%
+    );
+  }
+
+  .svc:hover .svc-veil {
+    background: linear-gradient(
+      180deg,
+      rgba(12, 20, 15, 0) 0%,
+      rgba(12, 20, 15, 0) 40%,
+      rgba(12, 20, 15, 0.58) 68%,
+      rgba(12, 20, 15, 0.86) 100%
+    );
+  }
+
+  .svc-number {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-full);
+    display: grid;
+    place-items: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    border: 1px solid transparent;
+    transition:
+      background 300ms ease,
+      border-color 300ms ease,
+      color 300ms ease;
+  }
+
+  .svc--lime .svc-number {
+    background: rgba(22, 34, 27, 0.12);
+  }
+
+  .svc--dark .svc-number {
+    background: rgba(237, 239, 233, 0.16);
+  }
+
+  .svc:hover .svc-number {
+    background: rgba(12, 20, 15, 0.55);
+    border-color: rgba(255, 255, 255, 0.35);
+    color: var(--color-white);
+  }
+
+  .svc-copy {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: auto;
+  }
+
+  .svc-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: inherit;
+  }
+
+  .svc-desc {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: inherit;
+    opacity: 0.82;
+  }
+</style>

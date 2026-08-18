@@ -250,8 +250,11 @@ const links = [
 
 <style is:global>
   @media (max-width: 1024px) {
+    /* !important: le gana a .cta[data-astro-cid] (que fija display:inline-flex
+       en su regla base), que tiene más especificidad al venir de otro
+       componente. */
     .nav-cta {
-      display: none;
+      display: none !important;
     }
   }
 </style>

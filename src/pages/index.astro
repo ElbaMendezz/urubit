@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/sections/Nav.astro';
 import Hero from '../components/sections/Hero.astro';
 import Lab from '../components/sections/Lab.astro';
+import Servicios from '../components/sections/Servicios.astro';
 ---
 
 <BaseLayout title="Úrbit Lab">
@@ -11,8 +12,9 @@ import Lab from '../components/sections/Lab.astro';
     <Hero />
     <Lab />
   </div>
-  <!-- Secciones (Servicios, Diferencia, Metodología, Acompañamiento,
-       Contacto): fases siguientes — ver /CLAUDE.md -->
+  <Servicios />
+  <!-- Secciones (Diferencia, Metodología, Acompañamiento, Contacto):
+       fases siguientes — ver /CLAUDE.md -->
 </BaseLayout>
 
 <style>

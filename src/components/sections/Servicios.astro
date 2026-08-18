@@ -1,0 +1,306 @@
+---
+import svc01 from '../../assets/svc-01.png';
+import svc02 from '../../assets/svc-02.png';
+import svc03 from '../../assets/svc-03.png';
+import svc04 from '../../assets/svc-04.png';
+import svc05 from '../../assets/svc-05.png';
+import svc06 from '../../assets/svc-06.png';
+import svc07 from '../../assets/svc-07.png';
+import svc08 from '../../assets/svc-08.png';
+import Cta from '../ui/Cta.astro';
+import ServiceCard from '../ui/ServiceCard.astro';
+import { CONTACT } from '../../data/site';
+
+const services = [
+  {
+    number: '01',
+    title: 'Arquitectura y diseño urbano',
+    description: 'Del edificio a la escala de barrio, con el espacio público como hilo conductor.',
+    variant: 'lime' as const,
+    image: svc01,
+    width: 465,
+    height: 379,
+  },
+  {
+    number: '02',
+    title: 'Ingeniería e infraestructura',
+    description: 'Viabilidad estructural, vial y de redes desde el primer trazo.',
+    variant: 'dark' as const,
+    image: svc02,
+    width: 464,
+    height: 379,
+  },
+  {
+    number: '03',
+    title: 'Vivienda de interés social',
+    description: 'Dignidad, densidad y habitabilidad con presupuestos reales.',
+    variant: 'lime' as const,
+    image: svc03,
+    width: 463,
+    height: 379,
+  },
+  {
+    number: '04',
+    title: 'Ordenamiento y planificación territorial',
+    description: 'Instrumentos, POT y escenarios de crecimiento a largo plazo.',
+    variant: 'dark' as const,
+    image: svc04,
+    width: 464,
+    height: 379,
+  },
+  {
+    number: '05',
+    title: 'Gestión del riesgo de desastres',
+    description: 'Territorios que se anticipan en lugar de reaccionar.',
+    variant: 'lime' as const,
+    image: svc05,
+    width: 465,
+    height: 378,
+  },
+  {
+    number: '06',
+    title: 'Soluciones ambientales e infraestructura verde',
+    description: 'Agua, arbolado y suelo como infraestructura.',
+    variant: 'dark' as const,
+    image: svc06,
+    width: 464,
+    height: 378,
+  },
+  {
+    number: '07',
+    title: 'Supervisión e interventoría',
+    description: 'Control técnico para que lo diseñado sea lo construido.',
+    variant: 'lime' as const,
+    image: svc07,
+    width: 463,
+    height: 378,
+  },
+  {
+    number: '08',
+    title: 'Participación ciudadana y fortalecimiento comunitario',
+    description: 'La comunidad como fuente de datos y de legitimidad.',
+    variant: 'dark' as const,
+    image: svc08,
+    width: 464,
+    height: 378,
+  },
+];
+---
+
+<section id="c-hacemos" class="services">
+  <div class="head">
+    <div class="head-title">
+      <span class="eyebrow">02 · QUÉ HACEMOS</span>
+      <h2 class="head-heading">Servicios con soluciones integrales<br class="head-break" />para transformar territorios</h2>
+    </div>
+    <div class="head-aside">
+      <p class="head-copy">
+        Combinamos conocimiento técnico, innovación y visión territorial para responder a ciudades, municipios y comunidades.
+      </p>
+      <Cta
+        href={CONTACT.whatsappUrl}
+        target="_blank"
+        rel="noopener"
+        background="var(--color-ink-800)"
+        color="var(--color-bg)"
+        hoverBackground="var(--color-accent)"
+        hoverColor="var(--color-ink-900)"
+        fontSize="15px"
+        padding="15px 26px"
+        class="head-cta"
+      >
+        Iniciar su proyecto <span class="cta-arrow">→</span>
+      </Cta>
+    </div>
+  </div>
+
+  <div class="grid">
+    {services.map((service) => (
+      <ServiceCard
+        number={service.number}
+        title={service.title}
+        description={service.description}
+        variant={service.variant}
+        image={service.image}
+        width={service.width}
+        height={service.height}
+      />
+    ))}
+  </div>
+
+  <Cta
+    href={CONTACT.whatsappUrl}
+    target="_blank"
+    rel="noopener"
+    background="var(--color-ink-800)"
+    color="var(--color-bg)"
+    hoverBackground="var(--color-accent)"
+    hoverColor="var(--color-ink-900)"
+    fontSize="16px"
+    padding="17px 26px"
+    fullWidth
+    class="cta-mobile"
+  >
+    Iniciar su proyecto <span class="cta-arrow">→</span>
+  </Cta>
+</section>
+
+<style>
+  .services {
+    padding: 86px 60px;
+  }
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .head-title {
+    flex: 1.6 1 520px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--color-eyebrow);
+  }
+
+  .head-heading {
+    margin: 0;
+    font-size: clamp(22px, 2.9vw, 52px);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+    font-weight: 500;
+    max-width: 34ch;
+  }
+
+  .head-aside {
+    flex: 0 1 340px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 22px;
+  }
+
+  .head-copy {
+    flex: 1 1 260px;
+    min-width: 240px;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-muted);
+    max-width: 34ch;
+    text-wrap: pretty;
+  }
+
+  .cta-arrow {
+    font-size: 17px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  :global(.cta-mobile) {
+    /* !important: le gana a .cta--full[data-astro-cid] (fullWidth), que
+       también fija display y tiene más especificidad al venir de otro
+       componente — necesitamos ese mismo display:flex a 640px, así que
+       no se puede resolver quitándolo de Cta.astro como con .nav-cta. */
+    display: none !important;
+    margin-top: 16px;
+    min-height: 48px;
+  }
+
+  @media (max-width: 1024px) {
+    .services {
+      padding: 60px 26px;
+    }
+
+    .head {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 22px 30px;
+    }
+
+    .head-aside {
+      display: contents;
+    }
+
+    .head-copy {
+      order: 3;
+      flex: 0 0 100%;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      text-align: left;
+    }
+
+    :global(.head-cta) {
+      order: 2;
+      margin-left: auto;
+      align-self: flex-end;
+    }
+
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .services {
+      padding: 46px 16px;
+    }
+
+    .head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .head-title {
+      flex: 0 0 auto;
+    }
+
+    .head-aside {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .head-copy {
+      order: 0;
+      max-width: none;
+    }
+
+    :global(.head-cta) {
+      /* !important: le gana a .cta[data-astro-cid] (display:inline-flex
+         en su base), más específica al venir de otro componente. */
+      display: none !important;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    :global(.cta-mobile) {
+      display: flex !important;
+    }
+
+    .head-break {
+      display: none;
+    }
+  }
+</style>
