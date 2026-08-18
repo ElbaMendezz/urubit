@@ -88,9 +88,15 @@ ningún punto. Mismo resultado visual, sin el hack.
 src/
   layouts/
     BaseLayout.astro        <- <head> mínimo, meta viewport, Google Fonts (link
-                                preconnect + stylesheet), wrapper global, botón
-                                "volver arriba". <head> completo (favicon, OG,
-                                Twitter, JSON-LD) es una fase propia al final.
+                                preconnect + stylesheet), title, y el wrapper
+                                de página (#top, antes `<div id="top">` en el
+                                original — el resto de divs sin estilo que lo
+                                rodeaban eran ruido del canvas, se colapsaron).
+                                El botón "volver arriba" NO vive aquí: es 100%
+                                comportamiento de scroll, se construye completo
+                                en la fase de JS junto con scroll-effects.ts.
+                                <head> completo (favicon, OG, Twitter, JSON-LD)
+                                es una fase propia al final.
   components/
     sections/
       Nav.astro              <- líneas 92-118 del original (nav sticky + menú móvil)
@@ -120,8 +126,11 @@ src/
                                   (fase propia, al final — ver "JS" abajo)
   styles/
     global.css                <- reset, variables :root, tipografía base
-  assets/                      <- solo imágenes referenciadas por v2.dc.html
-public/                        <- lo que no procesa astro:assets
+  assets/                      <- las 17 imágenes de v2.dc.html (copiadas de
+                                  design-source/assets/, ya en kebab-case). NO
+                                  incluye logo-dark.png ni mark-light.png (sin
+                                  uso en v2 — quedan solo en design-source/).
+public/                        <- vacío por ahora; favicon/OG es fase propia
 design-source/                 <- copia de trabajo del diseño, sin uploads/
 ```
 
