@@ -1,0 +1,248 @@
+---
+import { Image } from 'astro:assets';
+import markDark from '../../assets/mark-dark.png';
+import Cta from '../ui/Cta.astro';
+import { CONTACT } from '../../data/site';
+
+const links = [
+  { href: '#top', label: 'Inicio' },
+  { href: '#c-hacemos', label: 'Qué hacemos' },
+  { href: '#c-dif', label: 'Diferencia' },
+  { href: '#c-metodo', label: 'Metodología' },
+  { href: '#c-aliado', label: 'Acompañamiento' },
+  { href: '#c-lab', label: 'Lab' },
+];
+---
+
+<header class="nav">
+  <div class="nav-bar">
+    <a href="#top" class="brand">
+      <Image src={markDark} alt="Úrbit Lab" width={85} height={123} class="brand-mark" />
+      <span class="brand-name">Úrbit Lab</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Principal">
+      {links.map((link) => (
+        <a class="nav-link" href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+
+    <Cta
+      href={CONTACT.whatsappUrl}
+      target="_blank"
+      rel="noopener"
+      size="sm"
+      class="nav-cta"
+    >
+      Agendar reunión
+    </Cta>
+
+    <button
+      id="nav-burger"
+      type="button"
+      class="nav-burger"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="nav-mobile-menu"
+    >
+      <span class="burger-bar"></span>
+      <span class="burger-bar"></span>
+    </button>
+  </div>
+
+  <nav id="nav-mobile-menu" class="nav-mobile" aria-label="Menú móvil" aria-hidden="true">
+    {links.map((link, i) => (
+      <a
+        class:list={['nav-link', { 'nav-link--last': i === links.length - 1 }]}
+        href={link.href}
+      >
+        {link.label}
+      </a>
+    ))}
+    <Cta
+      href={CONTACT.whatsappUrl}
+      target="_blank"
+      rel="noopener"
+      size="md"
+      fullWidth
+      hoverColor="var(--color-ink-900)"
+    >
+      Agendar reunión
+    </Cta>
+  </nav>
+</header>
+
+<script>
+  import '../../scripts/nav';
+</script>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 22px;
+    background: transparent;
+  }
+
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: rgba(237, 239, 233, 0.86);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(30, 42, 35, 0.14);
+    border-radius: var(--radius-full);
+    padding: 12px 14px 12px 22px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand-mark {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+
+  .brand-name {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 26px;
+    font-size: 14px;
+  }
+
+  .nav-link:hover {
+    color: var(--color-ink-800);
+    opacity: 0.7;
+  }
+
+  .nav-burger {
+    display: none;
+    width: 46px;
+    height: 46px;
+    flex: 0 0 auto;
+    border: 1px solid rgba(30, 42, 35, 0.2);
+    border-radius: var(--radius-full);
+    background: transparent;
+    cursor: pointer;
+    place-items: center;
+    place-content: center;
+    gap: 5px;
+    grid-auto-rows: max-content;
+    grid-auto-columns: 18px;
+    padding: 0;
+    line-height: 0;
+    transition: background 260ms ease;
+  }
+
+  .nav-burger[aria-expanded='true'] {
+    background: var(--color-ink-800);
+  }
+
+  .burger-bar {
+    display: block;
+    width: 18px;
+    height: 1.6px;
+    border-radius: 2px;
+    background: var(--color-ink-800);
+    transform: none;
+    transition:
+      transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+      background 260ms ease;
+  }
+
+  .nav-burger[aria-expanded='true'] .burger-bar:first-child {
+    background: var(--color-accent);
+    transform: translateY(3px) rotate(45deg);
+  }
+
+  .nav-burger[aria-expanded='true'] .burger-bar:last-child {
+    background: var(--color-accent);
+    transform: translateY(-3.2px) rotate(-45deg);
+  }
+
+  .nav-mobile {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    top: calc(100% - 6px);
+    display: flex;
+    flex-direction: column;
+    background: rgba(237, 239, 233, 0.97);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(30, 42, 35, 0.14);
+    border-radius: 26px;
+    padding: 14px 20px 20px;
+    z-index: 50;
+    opacity: 0;
+    transform: translateY(-12px);
+    pointer-events: none;
+    visibility: hidden;
+    box-shadow: 0 24px 48px rgba(22, 34, 27, 0.16);
+    transition:
+      opacity 260ms ease,
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0s linear 260ms;
+  }
+
+  .nav-mobile.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    visibility: visible;
+    transition:
+      opacity 260ms ease,
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0s linear 0s;
+  }
+
+  .nav-mobile .nav-link {
+    padding: 14px 4px;
+    border-bottom: 1px solid rgba(30, 42, 35, 0.1);
+    font-size: 17px;
+  }
+
+  .nav-mobile .nav-link--last {
+    margin-bottom: 10px;
+  }
+
+  /* Por encima de 1024px el burger nunca es alcanzable (display:none más abajo),
+     así que el panel tampoco puede abrirse: se saca del flujo de foco por
+     completo en vez de dejarlo enlaces invisibles mas tabulables. */
+  @media (min-width: 1025px) {
+    .nav-mobile {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .nav-links {
+      display: none;
+    }
+
+    .nav-burger {
+      display: grid;
+    }
+  }
+</style>
+
+<style is:global>
+  @media (max-width: 1024px) {
+    .nav-cta {
+      display: none;
+    }
+  }
+</style>

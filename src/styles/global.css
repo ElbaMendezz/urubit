@@ -75,3 +75,29 @@ img,
 svg {
   max-width: 100%;
 }
+
+/*
+  Añadidos intencionales, no presentes en el original — autorizados
+  explícitamente porque no alteran el render por defecto (ver /CLAUDE.md,
+  "Añadido intencional"): foco visible por teclado en cualquier enlace o
+  botón, y respeto a la preferencia de movimiento reducido del sistema para
+  cualquier transición/animación que se añada en fases posteriores (menú
+  móvil, scroll-reveal, etc.). Es una única regla global en vez de repetirla
+  componente por componente.
+*/
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-ink-800);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

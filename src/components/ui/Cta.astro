@@ -1,0 +1,58 @@
+---
+interface Props {
+  href: string;
+  target?: '_blank';
+  rel?: string;
+  hoverColor?: string;
+  size?: 'sm' | 'md';
+  fullWidth?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  target,
+  rel,
+  hoverColor = 'var(--color-ink-800)',
+  size = 'md',
+  fullWidth = false,
+  class: className,
+} = Astro.props;
+---
+
+<a
+  href={href}
+  target={target}
+  rel={rel}
+  class:list={['cta', `cta--${size}`, { 'cta--full': fullWidth }, className]}
+>
+  <slot />
+</a>
+
+<style define:vars={{ ctaHoverColor: hoverColor }}>
+  .cta {
+    background: var(--color-ink-800);
+    color: var(--color-bg);
+    border-radius: var(--radius-full);
+  }
+
+  .cta:hover {
+    background: var(--color-accent);
+    color: var(--ctaHoverColor);
+  }
+
+  .cta--sm {
+    font-size: 14px;
+    padding: 11px 22px;
+  }
+
+  .cta--md {
+    font-size: 16px;
+    padding: 16px 22px;
+  }
+
+  .cta--full {
+    display: block;
+    text-align: center;
+  }
+</style>
