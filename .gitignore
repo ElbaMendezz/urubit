@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# prompt de trabajo, no es parte del proyecto
+prompt.md

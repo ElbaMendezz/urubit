@@ -31,17 +31,29 @@ el avance de la migración — se listan para no perderlas de vista antes de pub
   esto anotado por si el cliente esperaba lo contrario según el brief original.
   Pendiente: confirmar que esos 4 posts de Instagram siguen publicados/vigentes.
 
-## Técnico, para la fase de verificación final
+## JS de scroll/animación
 
-- El HTML original (`.dc.html`) no renderiza standalone sin red: `support.js` carga
-  React, ReactDOM y Babel Standalone desde `unpkg.com` en tiempo de ejecución. Para
-  el diff de Playwright de la fase final, congelamos capturas de referencia (por
-  sección, animaciones en estado final, a 1440/834/390px) mientras haya una sesión
-  con red disponible, en vez de depender de `unpkg.com` en cada corrida. Acordado,
-  no bloqueante — se ejecuta en su momento.
-- 9 features de JS de scroll/animación pendientes de decisión costo/beneficio
-  (mantenimiento + impacto en CLS) antes de portarlas — se deciden en la fase de
-  JS dedicada, no antes.
+- Implementadas 8 de las 9 features identificadas (ver `CLAUDE.md`). **Descartada
+  a propósito:** el texto cinético original (palabra por palabra) — se reemplazó
+  por un revelado a nivel de bloque (`clip-path` + `transform`) que logra el mismo
+  efecto visual sin partir los `<h2>` en múltiples `<span>`, protegiendo
+  accesibilidad y mantenibilidad del copy.
+- Dos comportamientos no obvios del original, replicados literal: el CTA de
+  Contacto nunca se anima (su selector original apunta a un `href` que no existe)
+  y el color de texto de las tarjetas de Metodología se normaliza por herencia
+  cuando la tarjeta se activa — ambos documentados con detalle en `CLAUDE.md`.
+
+## Verificación final — sin ejecutar el diff automatizado con Playwright
+
+El plan original (ver `CLAUDE.md`, "Verificación final") preveía instalar
+Playwright y comparar capturas del original congelado contra el build, por
+sección, en 1440/834/390px, con un % de píxeles distintos por sección. **Esto no
+se llegó a implementar** — la verificación de cada fase se hizo manualmente
+sección por sección y ancho por ancho (capturas + estado computado real en
+Chrome), no con un diff automatizado y reproducible. Si se quiere el diff
+automatizado como entregable, sigue pendiente instalar Playwright, congelar las
+capturas de referencia del original (recordar: `support.js` depende de
+`unpkg.com`, no renderiza standalone sin red) y escribir el script de comparación.
 
 ## Assets sin uso actual
 
@@ -52,6 +64,9 @@ el avance de la migración — se listan para no perderlas de vista antes de pub
 
 ## Head / metadatos
 
-- Favicon, `og:image`, Twitter Card y JSON-LD: el diseño no trae ninguno de estos
-  en su `<head>`. Se dejan fuera del layout hasta la fase dedicada a `<head>`
-  (última fase del plan, antes de la verificación final) — no se inventan ahora.
+- **Favicon: resuelto** (Fase 11) — generado a partir de `mark-dark.png`,
+  referenciado en `BaseLayout.astro`.
+- **Pendiente:** `og:image`, Twitter Card y JSON-LD. El diseño original no trae
+  ninguno de estos en su `<head>`, así que no se inventaron. Si el cliente los
+  quiere para compartir en redes/buscadores, es una fase nueva a definir con
+  contenido real (imagen de OG, descripción, etc.), no derivable del diseño.

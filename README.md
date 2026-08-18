@@ -1,46 +1,54 @@
-# Astro Starter Kit: Basics
+# Úrbit Lab — sitio home
 
-```sh
-npm create astro@latest -- --template basics
-```
+Migración a Astro del home de Úrbit Lab, a partir del diseño en
+`design-source/Home ÚRBIT LAB v2.dc.html`. Fidelidad de render con el diseño
+original; código Astro idiomático. El proceso completo de la migración —
+despiece, convenciones, decisiones y deuda técnica documentada — está en
+[`CLAUDE.md`](./CLAUDE.md). Dudas de contenido pendientes de confirmar con el
+cliente están en [`PENDIENTES.md`](./PENDIENTES.md).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Estructura del proyecto
 
 ```text
 /
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
+├── design-source/          copia de trabajo del diseño original (sin uploads/)
+├── public/                 favicon y assets sin procesar
+├── src/
+│   ├── assets/              imágenes procesadas por astro:assets
+│   ├── components/
+│   │   ├── sections/         una sección del home por archivo (Nav, Hero, Lab...)
+│   │   ├── ui/                piezas reutilizadas (Cta, StatCard, ServiceCard...)
+│   │   └── icons/              SVG inline como componentes
+│   ├── data/                 constantes tipadas (contacto, métricas del hero)
+│   ├── layouts/               BaseLayout.astro (<head>, fuentes, wrapper de página)
+│   ├── pages/                 index.astro
+│   ├── scripts/                JS vanilla (menú móvil, efectos de scroll)
+│   └── styles/                 global.css (reset, paleta, tipografía base)
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Comandos
 
-## 🧞 Commands
+Todos se ejecutan desde la raíz del proyecto:
 
-All commands are run from the root of the project, from a terminal:
+| Comando | Acción |
+| :--- | :--- |
+| `npm install` | Instala las dependencias |
+| `npm run dev` | Levanta el servidor de desarrollo en `localhost:4321` |
+| `npm run build` | Genera el sitio de producción en `./dist/` |
+| `npm run preview` | Sirve el build de producción localmente, antes de desplegar |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Para producción, primero construye y luego sirve el resultado:
 
-## 👀 Want to learn more?
+```sh
+npm run build && npm run preview
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Verificación
+
+Antes de dar por cerrada cualquier fase de este proyecto:
+
+```sh
+grep -rn 'style="' src/ | wc -l   # debe dar 0 — cero inline styles
+npm run build                      # debe compilar sin warnings
+```

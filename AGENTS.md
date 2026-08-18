@@ -130,7 +130,9 @@ src/
                                   design-source/assets/, ya en kebab-case). NO
                                   incluye logo-dark.png ni mark-light.png (sin
                                   uso en v2 — quedan solo en design-source/).
-public/                        <- vacío por ahora; favicon/OG es fase propia
+public/                        <- favicon.ico/.png, apple-touch-icon.png
+                                  (derivados de mark-dark.png, Fase 11). Sin
+                                  og:image/Twitter Card/JSON-LD — ver PENDIENTES.md
 design-source/                 <- copia de trabajo del diseño, sin uploads/
 ```
 
@@ -143,7 +145,10 @@ Los `id` de sección (`#top`, `#c-lab`, `#c-hacemos`, `#c-dif`, `#c-metodo`,
 - Componentes `.astro` con estilos **scoped**, cero `style="..."` inline en el
   markup. Verificación obligatoria antes de cerrar cada fase de sección:
   `grep -rn 'style="' src/ | wc -l` debe dar `0`.
-- Tope de 200–300 líneas por componente; si se pasa, se subdivide.
+- Tope de 200–300 líneas por componente; si se pasa, se subdivide. Deuda técnica
+  aceptada: `Servicios.astro` cierra en 306 líneas (el `row-head` responsive de
+  esa sección es el más complejo del sitio — reordena con `display:contents` en
+  tablet). 6 líneas sobre el tope, no se subdividió para esto.
 - Colores/tipografías extraídos a variables CSS en `:root` (`src/styles/global.css`)
   con los valores exactos del diseño (grep de todo `#hex` y `rgba()` del
   original, 21 hex + 2 tonos que solo aparecen dentro de `rgba()`). Espaciados y
@@ -154,26 +159,41 @@ Los `id` de sección (`#top`, `#c-lab`, `#c-hacemos`, `#c-dif`, `#c-metodo`,
   repite idéntico en decenas de píldoras/badges/CTAs — ese sí es un token real.
 - Imágenes locales con `astro:assets`. Los dos `<img>` reales del original
   (`mark-dark.png` en el nav, `logo-light.png` en el footer) usan `<Image />`
-  con width/height reales y alt descriptivo en español. Los fondos grandes
-  (`hero-render`, `dif-collage`, `contacto-collage`) y los 12 PNG de tarjetas
-  (8 `svc-*`, 4 `reel-*`) van por CSS — **propuesta de implementación pendiente
-  de presentar antes de construir Hero/Diferencia/Contacto**: `<Image>` con
-  `object-fit: cover` posicionado absoluto para los 3 fondos grandes (afecta
-  cómo se porta el parallax de scroll, que hoy mueve `background-position`) vs.
-  `background-image` con `define:vars` inyectando la URL del asset importado
-  para las 12 tarjetas. No implementar hasta presentar esa propuesta.
+  con width/height reales y alt descriptivo en español. **Decisión final**
+  (instrucción directa en las Fases 4-7, reemplaza la propuesta pendiente que
+  había aquí): los 3 fondos grandes (`hero-render`, `dif-collage`,
+  `contacto-collage`) y los 12 PNG de tarjetas (8 `svc-*`, 4 `reel-*`) usan
+  todos el mismo patrón — `<Image loading="lazy|eager" />` posicionada absoluta
+  + un `<div>` de velo/gradiente encima — en vez de `background-image`. Esto
+  obligó a rehacer el parallax de Diferencia: en vez de mover
+  `background-position`, la `<Image>` tiene un margen extra de 46px arriba/abajo
+  (`top:-46px; height:calc(100% + 92px)`) y el scroll mueve un `transform:
+  translateY()` dentro de ese margen — verificado que no deja huecos en los
+  bordes en ningún punto del rango (±45px, con 1px de margen de sobra).
 - `logo-dark.png` y `mark-light.png` no se importan (sin uso en v2.dc.html,
   quedan solo en `design-source/assets/`).
 - Iconos SVG inline como componentes `.astro`, sin librerías de iconos.
 - JS vanilla en `src/scripts/`, `<script>` normal cargado desde el componente
-  que lo usa. **Las secciones se construyen primero en su estado final visible**
-  (sin `opacity:0`/`transform` inicial de las animaciones de scroll) — todo el
-  JS de scroll/reveal/parallax va en una fase propia, al final, no repartido
-  fase a fase. Antes de escribir esa fase: listar las 9 features identificadas
-  (menú móvil, back-to-top, hero intro, contadores, scroll-reveal genérico,
-  texto cinético, foco de fase activa en metodología, parallax en Diferencia,
-  parallax+animación en Contacto) con costo de mantenimiento e impacto en CLS
-  estimado para cada una, y esperar decisión sobre cuáles se implementan.
+  que lo usa. **Las secciones se construyeron primero en su estado final visible**
+  (sin `opacity:0`/`transform` inicial de las animaciones de scroll); el JS de
+  scroll/reveal/parallax se hizo en una fase propia al final (`scroll-effects.ts`
+  + botón "volver arriba" en `BaseLayout.astro`), no repartido fase a fase.
+  **Estado final: 8 de las 9 features originales implementadas.** Se descartó el
+  texto cinético (palabra por palabra) por costo de mantenimiento y porque
+  degradaba la accesibilidad del `<h2>` al partirlo en ~20 `<span>`; se reemplazó
+  por `initTitleReveal()`, un revelado a nivel de bloque (`clip-path` +
+  `transform` en el título, `letter-spacing`+`opacity` en el eyebrow) que
+  reproduce el mismo movimiento/velocidad sin tocar el DOM del texto — aplica a
+  Lab, Servicios y Metodología, las 3 únicas secciones que lo tenían en el
+  original. El resto (back-to-top, intro del hero, contadores, scroll-reveal
+  genérico, foco de fase activa, parallax+reveal en Diferencia/Acompañamiento/
+  Contacto) está portado 1:1, incluyendo dos comportamientos no obvios del
+  original que se replicaron literales en vez de "corregirlos": el CTA de
+  Contacto nunca se anima (su selector original — `a[href="#c-contacto"]` — no
+  coincide con el botón real, que apunta a WhatsApp) y el color de texto de las
+  tarjetas de Metodología se normaliza a `inherit` cuando el JS corre, así que
+  las descripciones pierden su color distintivo por tarjeta una vez la tarjeta
+  se activa (documentado a fondo en el historial de la Fase 11).
 - Añadido intencional (no estaba en el original, no altera el render): `@media
   (prefers-reduced-motion: reduce)` envolviendo toda animación; `:focus-visible`
   en enlaces/botones/CTA; `aria-expanded`/`aria-controls`/`aria-label` y manejo
@@ -195,21 +215,28 @@ grep -rn 'style="' src/ | wc -l   # debe ser 0
 npm run build                      # debe pasar sin warnings
 ```
 
-## Verificación final (reemplaza la del prompt original)
+## Verificación final (reemplaza la del prompt original) — no ejecutada como diff automatizado
 
-El diff por screenshot solo vale con animaciones **congeladas en ambos lados**.
-Playwright: inyectar CSS que fuerce el estado final y anule transiciones/
-animaciones tanto en el original como en el build; esperar `document.fonts.ready`;
-hacer scroll al final y de vuelta arriba para disparar todos los reveals antes de
-congelar; capturar y comparar **por sección** (`#top`, `#c-lab`, `#c-hacemos`,
-`#c-dif`, `#c-metodo`, `#c-aliado`, `#c-contacto`), no full-page; reportar % de
-píxeles distintos por sección. Anchos: **1440 / 834 / 390px** (los mismos que usa
-`design-source/Vista Responsive.dc.html`).
-
+El plan era: Playwright, animaciones **congeladas en ambos lados**, inyectando CSS
+que fuerce el estado final y anule transiciones tanto en el original como en el
+build; esperar `document.fonts.ready`; hacer scroll al final y de vuelta arriba
+para disparar todos los reveals antes de congelar; capturar y comparar **por
+sección** (`#top`, `#c-lab`, `#c-hacemos`, `#c-dif`, `#c-metodo`, `#c-aliado`,
+`#c-contacto`), no full-page; reportar % de píxeles distintos por sección. Anchos:
+**1440 / 834 / 390px** (los mismos que usa `design-source/Vista Responsive.dc.html`).
 El original no renderiza headless sin red (depende de React/ReactDOM/Babel vía
-`unpkg.com`). Acordado: congelar capturas de referencia del original una vez,
-mientras haya red disponible, y usar esas imágenes como ground truth del diff en
-vez de depender de `unpkg.com` en cada corrida.
+`unpkg.com`), así que la idea era congelar capturas de referencia una vez, con red
+disponible, y usarlas como ground truth sin depender de `unpkg.com` en cada corrida.
+
+**Este diff automatizado no se implementó.** En su lugar, cada fase de sección se
+verificó manualmente contra el original en Chrome real: captura visual + estado
+computado (`getComputedStyle`, `getBoundingClientRect`) en los 3 anchos, disparando
+a mano los triggers de scroll/hover/foco relevantes a cada sección. Es el método
+que encontró y confirmó cada bug real de esta migración (la especificidad de
+`.nav-cta`, el esquema de color invertido del CTA del Hero, el `flex-basis` sin
+resetear en Servicios, el gap de animación en los títulos). Si se quiere el diff
+automatizado con métrica de % de píxeles como entregable aparte, sigue pendiente
+— ver `PENDIENTES.md`.
 
 ## Commits
 
