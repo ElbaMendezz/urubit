@@ -1,0 +1,177 @@
+---
+import reel01 from '../../assets/reel-01.png';
+import reel02 from '../../assets/reel-02.png';
+import reel03 from '../../assets/reel-03.png';
+import reel04 from '../../assets/reel-04.png';
+import Cta from '../ui/Cta.astro';
+import ReelCard from '../ui/ReelCard.astro';
+
+const reels = [
+  {
+    image: reel01,
+    width: 233,
+    height: 315,
+    href: 'https://www.instagram.com/p/Daardg4x0Vh/',
+    label: 'REEL 01 · 0:42',
+    caption: '¿Qué hacemos en Úrbit Lab?',
+  },
+  {
+    image: reel02,
+    width: 228,
+    height: 321,
+    href: 'https://www.instagram.com/p/DaobQRFRHIm/',
+    label: 'REEL 02 · 0:58',
+    caption: '¿Quién diseña el futuro del territorio?',
+  },
+  {
+    image: reel03,
+    width: 235,
+    height: 313,
+    href: 'https://www.instagram.com/p/Da-o1jBB8qb/',
+    label: 'REEL 03 · 1:12',
+    caption: 'Entender el territorio es el primer paso',
+  },
+  {
+    image: reel04,
+    width: 232,
+    height: 310,
+    href: 'https://www.instagram.com/p/DbQqY94Bvol/',
+    label: 'REEL 04 · 0:36',
+    caption: 'El pico y placa en Colombia',
+  },
+];
+---
+
+<section id="c-lab" class="lab">
+  <div class="lab-head">
+    <div class="lab-heading">
+      <span class="lab-eyebrow">01 · LAB EN MOVIMIENTO</span>
+      <h2 class="lab-title">Lo que estamos pensando, en video.</h2>
+    </div>
+    <Cta
+      href="https://www.instagram.com/urbitlab/"
+      background="var(--color-ink-900)"
+      color="var(--color-accent)"
+      hoverBackground="var(--color-accent)"
+      hoverColor="var(--color-ink-900)"
+      fontSize="14px"
+      padding="14px 24px"
+      class="lab-cta"
+    >
+      @urbitlab en Instagram ↗
+    </Cta>
+  </div>
+
+  <div class="lab-reels">
+    {reels.map((reel) => (
+      <ReelCard
+        href={reel.href}
+        image={reel.image}
+        width={reel.width}
+        height={reel.height}
+        label={reel.label}
+        caption={reel.caption}
+      />
+    ))}
+  </div>
+</section>
+
+<style>
+  .lab {
+    margin-top: 14px;
+    background: var(--color-white);
+    border-radius: 34px;
+    padding: 60px 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+  }
+
+  .lab-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .lab-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .lab-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--color-eyebrow);
+  }
+
+  .lab-title {
+    margin: 0;
+    font-size: clamp(28px, 3.9vw, 50px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+    color: var(--color-ink-900);
+  }
+
+  .lab-reels {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  @media (max-width: 1024px) {
+    .lab {
+      padding: 44px 30px;
+    }
+
+    .lab-head {
+      align-items: flex-end;
+      gap: 20px 26px;
+    }
+
+    .lab-reels {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .lab {
+      padding: 32px 20px;
+      border-radius: 24px;
+    }
+
+    .lab-head {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .lab-reels {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+  }
+</style>
+
+<style is:global>
+  @media (max-width: 1024px) {
+    .lab-cta {
+      margin-left: auto;
+      align-self: flex-end;
+      white-space: nowrap;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .lab-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 48px;
+      margin-left: 0;
+      align-self: stretch;
+    }
+  }
+</style>
