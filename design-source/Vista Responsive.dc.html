@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #16221B; font-family: "Archivo", Helvetica, sans-serif; }
+  * { box-sizing: border-box; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #DCE84A; }
+</style>
+</helmet>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#16221B"></rect><rect x="22" y="28" width="34" height="44" rx="4" fill="#DCE84A"></rect><rect x="60" y="40" width="18" height="32" rx="3" fill="#85A093"></rect></svg></template>
+
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: #16221B; color: #EDEFE9;">
+
+  <div style="position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; padding: 16px 22px; background: rgba(22, 34, 27, 0.94); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(237, 239, 233, 0.14);">
+    <div style="display: flex; align-items: baseline; gap: 14px;">
+      <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.02em;">Vista Responsive</span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #8FA396;">ÚRBIT LAB · HOME V2</span>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 8px; background: rgba(237, 239, 233, 0.08); border: 1px solid rgba(237, 239, 233, 0.14); border-radius: 999px; padding: 4px;">
+      <button type="button" onClick="{{ showAll }}" style="{{ tabAll }}">Todos</button>
+      <button type="button" onClick="{{ showDesktop }}" style="{{ tabDesktop }}">Escritorio</button>
+      <button type="button" onClick="{{ showTablet }}" style="{{ tabTablet }}">Tablet</button>
+      <button type="button" onClick="{{ showMobile }}" style="{{ tabMobile }}">Móvil</button>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: #8FA396;">ESCALA <span data-zoom="">100%</span></span>
+      <button type="button" onClick="{{ reload }}" style="display: flex; align-items: center; gap: 8px; background: transparent; color: #EDEFE9; border: 1px solid rgba(237, 239, 233, 0.3); border-radius: 999px; padding: 9px 18px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em; cursor: pointer;" style-hover="background: #DCE84A; color: #16221B; border-color: #DCE84A;">↻ RECARGAR</button>
+      <a href="Home%20%C3%9ARBIT%20LAB%20v2.dc.html" target="_blank" style="background: #DCE84A; color: #16221B; border-radius: 999px; padding: 10px 18px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em;" style-hover="background: #EDEFE9;">ABRIR SUELTO ↗</a>
+    </div>
+  </div>
+
+  <div data-stage="" style="flex: 1; display: flex; flex-wrap: nowrap; align-items: flex-start; justify-content: flex-start; gap: 34px; padding: 34px 22px 60px; overflow-x: auto;">
+
+    <div data-dev="desktop" data-w="1440" data-h="900" style="display: flex; flex-direction: column; gap: 12px; flex: 0 0 auto;">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #8FA396;">
+        <span style="color: #EDEFE9;">ESCRITORIO</span>
+        <span>1440 × 900</span>
+      </div>
+      <div data-shell="" style="position: relative; border: 1px solid rgba(237, 239, 233, 0.22); border-radius: 14px; overflow: hidden; background: #EDEFE9;">
+        <div data-bar="" style="display: flex; align-items: center; gap: 7px; height: 30px; padding: 0 12px; background: #223028; border-bottom: 1px solid rgba(237, 239, 233, 0.12);">
+          <span style="width: 9px; height: 9px; border-radius: 999px; background: #4B5A50;"></span>
+          <span style="width: 9px; height: 9px; border-radius: 999px; background: #4B5A50;"></span>
+          <span style="width: 9px; height: 9px; border-radius: 999px; background: #4B5A50;"></span>
+          <span style="margin-left: 12px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: #8FA396;">urbitlab.co</span>
+        </div>
+        <div data-viewport="" style="position: relative; overflow: hidden;">
+          <iframe data-frame="" src="Home%20%C3%9ARBIT%20LAB%20v2.dc.html" title="Escritorio" style="border: 0; display: block; transform-origin: top left; background: #EDEFE9;"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div data-dev="tablet" data-w="834" data-h="1112" style="display: flex; flex-direction: column; gap: 12px; flex: 0 0 auto;">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #8FA396;">
+        <span style="color: #EDEFE9;">TABLET</span>
+        <span>834 × 1112</span>
+      </div>
+      <div data-shell="" style="position: relative; border: 10px solid #223028; border-radius: 26px; overflow: hidden; background: #EDEFE9; box-shadow: 0 20px 44px rgba(0, 0, 0, 0.3);">
+        <div data-viewport="" style="position: relative; overflow: hidden;">
+          <iframe data-frame="" src="Home%20%C3%9ARBIT%20LAB%20v2.dc.html" title="Tablet" style="border: 0; display: block; transform-origin: top left; background: #EDEFE9;"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div data-dev="mobile" data-w="390" data-h="844" style="display: flex; flex-direction: column; gap: 12px; flex: 0 0 auto;">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #8FA396;">
+        <span style="color: #EDEFE9;">MÓVIL</span>
+        <span>390 × 844</span>
+      </div>
+      <div data-shell="" style="position: relative; border: 9px solid #223028; border-radius: 34px; overflow: hidden; background: #EDEFE9; box-shadow: 0 20px 44px rgba(0, 0, 0, 0.3);">
+        <div data-viewport="" style="position: relative; overflow: hidden;">
+          <iframe data-frame="" src="Home%20%C3%9ARBIT%20LAB%20v2.dc.html" title="Móvil" style="border: 0; display: block; transform-origin: top left; background: #EDEFE9;"></iframe>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 10px 26px; padding: 14px 22px 22px; border-top: 1px solid rgba(237, 239, 233, 0.12); font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #7E8E83;">
+    <span>BREAKPOINTS: ≥1025 ESCRITORIO · 641–1024 TABLET · ≤640 MÓVIL</span>
+    <span>CADA MARCO ES LA PÁGINA REAL — SE PUEDE SCROLLEAR Y HACER CLIC DENTRO</span>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { view: 'all' };
+
+  componentDidMount() {
+    this._onResize = () => this.layout();
+    window.addEventListener('resize', this._onResize);
+    this.layout();
+    setTimeout(() => this.layout(), 400);
+  }
+  componentDidUpdate() { this.layout(); }
+  componentWillUnmount() { if (this._onResize) window.removeEventListener('resize', this._onResize); }
+
+  layout() {
+    const stage = document.querySelector('[data-stage]');
+    if (!stage) return;
+    const view = this.state.view;
+    const devs = Array.from(document.querySelectorAll('[data-dev]'));
+    const visible = devs.filter((d) => view === 'all' || d.getAttribute('data-dev') === view);
+    devs.forEach((d) => { d.style.display = visible.includes(d) ? 'flex' : 'none'; });
+
+    const gap = 34;
+    const chromeOf = (d) => {
+      const sh = d.querySelector('[data-shell]');
+      if (!sh) return 0;
+      const cs = getComputedStyle(sh);
+      return parseFloat(cs.borderLeftWidth || 0) + parseFloat(cs.borderRightWidth || 0);
+    };
+    const chromeTotal = visible.reduce((sum, d) => sum + chromeOf(d), 0);
+    const avail = stage.clientWidth - 44 - gap * (visible.length - 1) - chromeTotal - 8;
+    const totalW = visible.reduce((sum, d) => sum + parseInt(d.getAttribute('data-w'), 10), 0);
+    let scale = Math.min(1, avail / totalW);
+    if (view !== 'all') {
+      const d = visible[0];
+      if (d) {
+        const hAvail = window.innerHeight - 240;
+        scale = Math.min(1, avail / parseInt(d.getAttribute('data-w'), 10), hAvail / parseInt(d.getAttribute('data-h'), 10));
+      }
+    }
+    scale = Math.max(0.18, scale);
+
+    visible.forEach((d) => {
+      const w = parseInt(d.getAttribute('data-w'), 10);
+      const h = parseInt(d.getAttribute('data-h'), 10);
+      const vp = d.querySelector('[data-viewport]');
+      const frame = d.querySelector('[data-frame]');
+      if (!vp || !frame) return;
+      frame.style.width = w + 'px';
+      frame.style.height = h + 'px';
+      frame.style.transform = 'scale(' + scale + ')';
+      vp.style.width = Math.round(w * scale) + 'px';
+      vp.style.height = Math.round(h * scale) + 'px';
+    });
+
+    const first = visible[0];
+    if (first) {
+      const used = visible.reduce((sum, d) => {
+        const sh = d.querySelector('[data-shell]');
+        return sum + (sh ? sh.getBoundingClientRect().width : 0);
+      }, 0) + gap * (visible.length - 1);
+      const slack = Math.max(0, stage.clientWidth - 44 - used);
+      devs.forEach((d) => { d.style.marginLeft = ''; });
+      first.style.marginLeft = Math.round(slack / 2) + 'px';
+    }
+
+    const label = document.querySelector('[data-zoom]');
+    if (label) label.textContent = Math.round(scale * 100) + '%';
+  }
+
+  set(view) { this.setState({ view: view }); }
+  showAll = () => this.set('all');
+  showDesktop = () => this.set('desktop');
+  showTablet = () => this.set('tablet');
+  showMobile = () => this.set('mobile');
+  reload = () => {
+    document.querySelectorAll('[data-frame]').forEach((f) => {
+      const src = f.getAttribute('src');
+      f.setAttribute('src', src);
+    });
+  };
+
+  tab(name) {
+    const on = this.state.view === name;
+    return {
+      background: on ? '#DCE84A' : 'transparent',
+      color: on ? '#16221B' : '#C4D0C7',
+      border: 'none', borderRadius: '999px', cursor: 'pointer',
+      padding: '9px 18px', fontFamily: '"Space Mono", monospace',
+      fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase',
+      transition: 'background 240ms ease, color 240ms ease'
+    };
+  }
+
+  renderVals() {
+    return {
+      showAll: this.showAll,
+      showDesktop: this.showDesktop,
+      showTablet: this.showTablet,
+      showMobile: this.showMobile,
+      reload: this.reload,
+      tabAll: this.tab('all'),
+      tabDesktop: this.tab('desktop'),
+      tabTablet: this.tab('tablet'),
+      tabMobile: this.tab('mobile')
+    };
+  }
+}
+</script>
+</body>
+</html>

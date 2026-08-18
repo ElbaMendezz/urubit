@@ -1,0 +1,77 @@
+/*
+  Extraído literal de design-source/Home ÚRBIT LAB v2.dc.html (bloque <style> del <helmet>).
+  Los valores son los del diseño, no una escala redondeada — ver /CLAUDE.md.
+
+  Excluido a propósito: los @keyframes (um-marquee, um-blink, um-float) del original
+  están definidos pero ningún elemento los referencia (grep confirmado, cero usos de
+  `animation:` en todo el archivo) — son CSS muerto del canvas, no se portan.
+
+  Excluido a propósito: las reglas @media [data-r~="..."] del original van SIN
+  !important y con clases scoped, sección por sección, en la Fase de cada componente
+  (no aquí) — ver /CLAUDE.md, "Responsive".
+*/
+
+:root {
+  /* Paleta — cada valor aparece tal cual en el HTML original (grep de #hex y rgba) */
+  --color-bg: #EDEFE9;
+  --color-ink-900: #16221B;
+  --color-ink-800: #1E2A23;
+  --color-ink-700: #223028;
+  --color-ink-600: #3A4A3E;
+  --color-ink-hero-body: #1B2720;
+  --color-accent: #DCE84A;
+  --color-overlay-dark: #0C140F;
+  --color-hero-fallback: #E4EADC;
+  --color-hero-veil: #E8EEE2;
+  --color-muted: #46564C;
+  --color-eyebrow: #5F776C;
+  --color-border: #DEE3DC;
+  --color-numeral-muted: #8C9A90;
+  --color-ondark-muted: #B7C4BA;
+  --color-ondark-faint: #7E8E83;
+  --color-stat-mint: #E7EFD5;
+  --color-stat-grey: #D5DED6;
+  --color-phase-sage: #85A093;
+  --color-phase-olive: #D2DBBF;
+  --color-reel-fallback: #6E8A7D;
+  --color-reel-caption: #F4F3EE;
+  --color-reel-label: #E7EDE8;
+  --color-white: #FFFFFF;
+
+  /* Tipografía — familias tal cual las carga Google Fonts en el diseño original.
+     El <link> de carga (preconnect + stylesheet) vive en BaseLayout.astro (Fase 2),
+     no aquí: este archivo es CSS puro y no puede declarar <link> de documento. */
+  --font-sans: "Archivo", Helvetica, sans-serif;
+  --font-mono: "Space Mono", monospace;
+
+  /* Radio compartido — 999px se repite igual (píldoras, badges, CTAs) en decenas
+     de elementos; el resto de radios son específicos por componente y se quedan
+     literales en cada <style> scoped. */
+  --radius-full: 999px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  font-family: var(--font-sans);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-ink-800);
+}
+
+img,
+svg {
+  max-width: 100%;
+}

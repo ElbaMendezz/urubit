@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #EDEFE9; font-family: "Archivo", Helvetica, sans-serif; }
+  * { box-sizing: border-box; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #1E2A23; }
+  @keyframes um-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes um-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
+  @keyframes um-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  img, svg { max-width: 100%; }
+  @media (max-width: 1024px) {
+    [data-r~="nav-links"] { display: none !important; }
+    [data-r~="nav-burger"] { display: grid !important; }
+    [data-r~="nav-cta"] { display: none !important; }
+    [data-r~="grid4"] { grid-template-columns: repeat(2, 1fr) !important; }
+    [data-r~="grid2"] { grid-template-columns: 1fr !important; }
+    [data-r~="row-head"] { flex-direction: column !important; align-items: flex-start !important; gap: 24px !important; }
+    [data-r~="row-head"] > *:last-child { align-self: flex-end !important; justify-content: flex-end !important; }
+    [data-r~="row-head"] > p:last-child { align-self: flex-start !important; text-align: left !important; }
+    [data-r~="row-head"] [data-r~="cta"] { margin-left: auto !important; }
+    #c-lab [data-r~="row-head"] { flex-direction: row !important; align-items: flex-end !important; gap: 20px 26px !important; }
+    #c-lab [data-r~="row-head"] > a:last-child { margin-left: auto !important; align-self: flex-end !important; white-space: nowrap !important; }
+    #c-hacemos [data-r~="row-head"] { flex-direction: row !important; flex-wrap: wrap !important; align-items: flex-end !important; gap: 22px 30px !important; }
+    #c-hacemos [data-r~="row-head"] > *:last-child { display: contents !important; }
+    #c-hacemos [data-r~="row-head"] > *:last-child > p { order: 3 !important; flex: 0 0 100% !important; width: 100% !important; min-width: 0 !important; max-width: none !important; text-align: left !important; }
+    #c-hacemos [data-r~="row-head"] > *:last-child > a { order: 2 !important; margin-left: auto !important; align-self: flex-end !important; }
+    [data-r~="pad-sec"] { padding: 60px 26px !important; }
+    [data-r~="pad-card"] { padding: 44px 30px !important; }
+    [data-r~="pad-x"] { padding-left: 16px !important; padding-right: 16px !important; }
+    [data-r~="pad-hero-wrap"] { padding: 30px 16px 0 !important; }
+    [data-r~="hero"] { padding: 52px 30px 42px !important; border-radius: 110px 110px 26px 26px !important; background-position: center bottom !important; }
+    [data-r~="hero-veil"] { background-image: linear-gradient(170deg, rgba(232, 238, 226, 0.95) 0%, rgba(232, 238, 226, 0.86) 46%, rgba(232, 238, 226, 0.42) 78%, rgba(232, 238, 226, 0.16) 100%) !important; }
+    [data-r~="hero-foot"] { flex-direction: column !important; align-items: stretch !important; margin-top: 0 !important; gap: 26px !important; }
+    [data-r~="hero-tags"] { width: 100% !important; }
+    [data-r~="footer-row"] { flex-direction: column !important; align-items: flex-start !important; gap: 26px !important; }
+    [data-r~="footer-cols"] { flex-wrap: wrap !important; gap: 22px 34px !important; }
+    [data-r~="tap"] { min-height: 48px !important; align-items: center !important; }
+  }
+  @media (max-width: 640px) {
+    [data-r~="grid4"] { grid-template-columns: 1fr !important; }
+    [data-r~="grid-stats"] { grid-template-columns: repeat(2, 1fr) !important; }
+    [data-r~="grid-reels"] { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+    [data-r~="pad-sec"] { padding: 46px 16px !important; }
+    [data-r~="pad-card"] { padding: 32px 20px !important; border-radius: 24px !important; }
+    [data-r~="pad-x"] { padding-left: 12px !important; padding-right: 12px !important; }
+    [data-r~="pad-hero-wrap"] { padding: 22px 12px 0 !important; }
+    [data-r~="hero"] { padding: 40px 20px 34px !important; border-radius: 70px 70px 22px 22px !important; }
+    [data-r~="fase"] { border-radius: 120px 120px 18px 18px !important; min-height: 0 !important; padding: 30px 20px 24px !important; }
+    [data-r~="reel"] { border-radius: 120px 120px 14px 14px !important; padding: 18px 12px 14px !important; }
+    [data-r~="svc"] { min-height: 190px !important; }
+    [data-r~="cta"] { width: 100% !important; justify-content: center !important; text-align: center !important; }
+    [data-r~="nolinebreak"] br { display: none !important; }
+    [data-r~="row-head"] > *:last-child:not(a) { align-self: stretch !important; justify-content: flex-start !important; text-align: left !important; }
+    #c-hacemos [data-r~="row-head"] { flex-direction: column !important; align-items: flex-start !important; gap: 24px !important; }
+    [data-r~="row-head"] > *:first-child { flex: 0 0 auto !important; }
+    #c-lab [data-r~="row-head"] { flex-direction: column !important; align-items: flex-start !important; }
+    #c-hacemos [data-r~="row-head"] a { display: none !important; }
+    #c-aliado > div > div:first-child [data-r~="cta"] { display: none !important; }
+    [data-r~="cta-mobile"] { display: flex !important; }
+    #c-lab [data-r~="row-head"] > a:last-child { margin-left: 0 !important; align-self: stretch !important; }
+    #c-hacemos [data-r~="row-head"] > *:last-child { display: flex !important; flex: 1 1 auto !important; flex-direction: column !important; align-items: stretch !important; }
+    #c-hacemos [data-r~="row-head"] > *:last-child > p { order: 0 !important; max-width: none !important; }
+    #c-hacemos [data-r~="row-head"] > *:last-child > a { order: 0 !important; margin-left: 0 !important; align-self: stretch !important; }
+    [data-r~="row-head"] > a:last-child { display: flex !important; align-items: center !important; justify-content: center !important; text-align: center !important; min-height: 48px !important; }
+  }
+</style>
+</helmet>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#85A093"></rect><rect x="30" y="30" width="40" height="40" rx="20" fill="#DCE84A"></rect><text x="50" y="57" font-family="Helvetica, sans-serif" font-size="18" font-weight="700" fill="#16221B" text-anchor="middle">ÚL</text></svg></template>
+
+<section style="display: flex; flex-direction: column; gap: 0; padding: 0; background: #EDEFE9;">
+
+  <div style="display: block;">
+
+    <div id="top" style="display: block;">
+      <div style="width: 100%; background: #EDEFE9; color: #1E2A23; overflow: hidden; position: relative;">
+
+        <button type="button" aria-label="Volver arriba" onClick="{{ toTop }}" style="{{ topBtnStyle }}" style-hover="background: #DCE84A; color: #16221B;">↑</button>
+
+        <div style="position: sticky; top: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; background: transparent;">
+          <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; background: rgba(237, 239, 233, 0.86); backdrop-filter: blur(12px); border: 1px solid rgba(30, 42, 35, 0.14); border-radius: 999px; padding: 12px 14px 12px 22px;">
+            <a href="#top" style="display: flex; align-items: center; gap: 10px;">
+              <img src="assets/mark-dark.png" alt="Úrbit Lab" style="height: 22px; width: auto; display: block;">
+              <span style="font-size: 18px; font-weight: 600; letter-spacing: -0.02em;">Úrbit Lab</span>
+            </a>
+            <nav data-r="nav-links" style="display: flex; gap: 26px; font-size: 14px;">
+              <a href="#top" style-hover="color: #1E2A23; opacity: 0.7;">Inicio</a>
+              <a href="#c-hacemos" style-hover="color: #1E2A23; opacity: 0.7;">Qué hacemos</a>
+              <a href="#c-dif" style-hover="color: #1E2A23; opacity: 0.7;">Diferencia</a>
+              <a href="#c-metodo" style-hover="color: #1E2A23; opacity: 0.7;">Metodología</a>
+              <a href="#c-aliado" style-hover="color: #1E2A23; opacity: 0.7;">Acompañamiento</a>
+              <a href="#c-lab" style-hover="color: #1E2A23; opacity: 0.7;">Lab</a>
+            </nav>
+            <a data-r="nav-cta" href="https://api.whatsapp.com/send/?phone=3114481160&amp;text&amp;type=phone_number&amp;app_absent=0&amp;utm_source=ig" target="_blank" rel="noopener" style="background: #1E2A23; color: #EDEFE9; font-size: 14px; padding: 11px 22px; border-radius: 999px;" style-hover="background: #DCE84A; color: #1E2A23;">Agendar reunión</a>
+            <button data-r="nav-burger" type="button" aria-label="Abrir menú" onClick="{{ toggleMenu }}" style="{{ burgerStyle }}"><span style="{{ burgerBar1 }}"></span><span style="{{ burgerBar2 }}"></span></button>
+          </div>
+          <nav style="{{ menuPanelStyle }}">
+            <a href="#top" onClick="{{ closeMenu }}" style="padding: 14px 4px; border-bottom: 1px solid rgba(30, 42, 35, 0.1); font-size: 17px;" style-hover="color: #1E2A23; opacity: 0.7;">Inicio</a>
+            <a href="#c-hacemos" onClick="{{ closeMenu }}" style="padding: 14px 4px; border-bottom: 1px solid rgba(30, 42, 35, 0.1); font-size: 17px;" style-hover="color: #1E2A23; opacity: 0.7;">Qué hacemos</a>
+            <a href="#c-dif" onClick="{{ closeMenu }}" style="padding: 14px 4px; border-bottom: 1px solid rgba(30, 42, 35, 0.1); font-size: 17px;" style-hover="color: #1E2A23; opacity: 0.7;">Diferencia</a>
+            <a href="#c-metodo" onClick="{{ closeMenu }}" style="padding: 14px 4px; border-bottom: 1px solid rgba(30, 42, 35, 0.1); font-size: 17px;" style-hover="color: #1E2A23; opacity: 0.7;">Metodología</a>
+            <a href="#c-aliado" onClick="{{ closeMenu }}" style="padding: 14px 4px; border-bottom: 1px solid rgba(30, 42, 35, 0.1); font-size: 17px;" style-hover="color: #1E2A23; opacity: 0.7;">Acompañamiento</a>
+            <a href="#c-lab" onClick="{{ closeMenu }}" style="padding: 14px 4px; border-bottom: 1px solid rgba(30, 42, 35, 0.1); font-size: 17px;" style-hover="color: #1E2A23; opacity: 0.7;">Lab</a>
+            <a href="https://api.whatsapp.com/send/?phone=3114481160&amp;text&amp;type=phone_number&amp;app_absent=0&amp;utm_source=ig" target="_blank" rel="noopener" onClick="{{ closeMenu }}" style="margin-top: 10px; background: #1E2A23; color: #EDEFE9; font-size: 16px; padding: 16px 22px; border-radius: 999px; text-align: center;" style-hover="background: #DCE84A; color: #16221B;">Agendar reunión</a>
+          </nav>
+        </div>
+
+        <div data-r="pad-hero-wrap" style="position: relative; padding: 44px 22px 0;">
+          <div data-r="hero" style="position: relative; border-radius: 160px 160px 34px 34px; overflow: hidden; background: #E4EADC url(assets/hero-render.png) right bottom / cover no-repeat; padding: 76px 68px 64px; display: flex; flex-direction: column; gap: 52px;">
+            <div data-r="hero-veil" style="position: absolute; inset: 0; background-image: linear-gradient(100deg, rgba(232, 238, 226, 0.94) 0%, rgba(232, 238, 226, 0.78) 42%, rgba(232, 238, 226, 0.18) 68%, rgba(232, 238, 226, 0) 100%);"></div>
+            <div data-hero="1" style="position: relative; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px 30px; margin: 0 clamp(0px, 3vw, 40px); font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #46564C;">
+              <span>4°42′N 74°04′W · COLOMBIA</span>
+              <span>ÚRBIT LAB (CLAP) · EST. 2026</span>
+            </div>
+            <h2 data-hero="2" style="position: relative; margin: 0; font-size: clamp(34px, 8.4vw, 124px); line-height: 0.9; letter-spacing: -0.05em; font-weight: 500; color: #16221B; max-width: 24ch; text-wrap: balance;">Diseñamos territorios que mejoran la vida de las <span style="font-style: italic; font-weight: 300;">personas.</span></h2>
+            <p data-hero="3" data-r="nolinebreak" style="position: relative; margin: 0; font-size: clamp(14px, 1.35vw, 19px); line-height: 1.45; color: #1B2720; max-width: 104ch; text-wrap: pretty;">Transformamos ideas en proyectos que conectan arquitectura, urbanismo, ingeniería y<br>sostenibilidad para construir ciudades y territorios más inteligentes, resilientes y humanos.</p>
+            <div data-hero="4" data-r="hero-foot" style="position: relative; margin-top: -46px; display: flex; align-items: flex-end; justify-content: space-between; gap: 56px;">
+              <div style="display: flex; flex-direction: column; gap: 26px;">
+                <a data-r="cta" href="https://api.whatsapp.com/send/?phone=3114481160&amp;text&amp;type=phone_number&amp;app_absent=0&amp;utm_source=ig" target="_blank" rel="noopener" style="align-self: flex-start; display: flex; align-items: center; gap: 12px; background: #DCE84A; color: #16221B; font-size: 16px; font-weight: 500; padding: 19px 30px; border-radius: 999px;" style-hover="background: #16221B; color: #DCE84A;">Conversemos de tu proyecto →</a>
+              </div>
+              <div data-r="hero-tags" style="display: flex; flex-direction: column; gap: 12px; width: 360px; background: rgba(22, 34, 27, 0.3); backdrop-filter: blur(3px); border-radius: 22px; padding: 18px 20px;">
+                <div style="height: 1px; background: rgba(255, 255, 255, 0.55);"></div>
+                <div style="display: flex; justify-content: space-between; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: #FFFFFF;"><span>DISCIPLINAS INTEGRADAS</span></div>
+                <div style="display: flex; flex-wrap: wrap; gap: 7px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: #FFFFFF;">
+                  <span style="border: 1px solid rgba(255, 255, 255, 0.7); border-radius: 999px; padding: 6px 11px;">ARQUITECTURA</span>
+                  <span style="border: 1px solid rgba(255, 255, 255, 0.7); border-radius: 999px; padding: 6px 11px;">INGENIERÍA</span>
+                  <span style="border: 1px solid rgba(255, 255, 255, 0.7); border-radius: 999px; padding: 6px 11px;">URBANISMO</span>
+                  <span style="border: 1px solid rgba(255, 255, 255, 0.7); border-radius: 999px; padding: 6px 11px;">SOSTENIBILIDAD</span>
+                  <span style="background: #DCE84A; border: 1px solid #DCE84A; border-radius: 999px; padding: 6px 11px; color: #16221B;">INNOVACIÓN SOCIAL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-r="grid4 grid-stats" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 14px 0;">
+            <div style="border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 8px; background-color: #DCE84A"><div style="display: flex; align-items: center; gap: 12px;"><svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="5" y="5" width="15" height="15"></rect><rect x="28" y="5" width="15" height="15"></rect><rect x="5" y="28" width="15" height="15"></rect><rect x="28" y="28" width="15" height="15"></rect><path d="M20 12.5h8M12.5 20v8M35.5 20v8M20 35.5h8"></path></svg><span data-count="08" style="font-size: 52px; font-weight: 600; letter-spacing: -0.04em; line-height: 0.9;">08</span></div><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em;">LÍNEAS DE SERVICIO</span></div>
+            <div style="border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 8px; background-color: #E7EFD5"><div style="display: flex; align-items: center; gap: 12px;"><svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="18" cy="18" r="12"></circle><circle cx="30" cy="30" r="12"></circle><circle cx="24" cy="24" r="3" fill="currentColor" stroke="none"></circle></svg><span data-count="05" style="font-size: 52px; font-weight: 600; letter-spacing: -0.04em; line-height: 0.9;">05</span></div><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em;">DISCIPLINAS INTEGRADAS</span></div>
+            <div style="background: #D5DED6; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 8px;"><div style="display: flex; align-items: center; gap: 12px;"><svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 40h40"></path><rect x="7" y="26" width="9" height="14"></rect><rect x="19" y="18" width="9" height="22"></rect><rect x="31" y="8" width="9" height="32"></rect><path d="M7 20l9-8 9 4 9-8"></path></svg><span data-count="06" style="font-size: 52px; font-weight: 600; letter-spacing: -0.04em; line-height: 0.9;">06</span></div><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em;">SECTORES DE IMPACTO</span></div>
+            <div style="color: #EDEFE9; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 8px; background-color: #1E2A23"><div style="display: flex; align-items: center; gap: 12px;"><svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="4" y="34" width="40" height="10"></rect><rect x="10" y="24" width="28" height="10"></rect><rect x="16" y="14" width="16" height="10"></rect><rect x="21" y="5" width="6" height="9"></rect></svg><span data-count="04" style="font-size: 52px; font-weight: 600; letter-spacing: -0.04em; line-height: 0.9;">04</span></div><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em;">ESCALAS DE INTERVENCIÓN</span></div>
+          </div>
+          <div id="c-lab" data-r="pad-card" style="margin-top: 14px; background: #FFFFFF; border-radius: 34px; padding: 60px 56px; display: flex; flex-direction: column; gap: 34px;">
+            <div data-r="row-head" style="display: flex; justify-content: space-between; align-items: flex-end;">
+              <div data-rv="1" style="display: flex; flex-direction: column; gap: 14px;">
+                <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #5F776C;">01 · LAB EN MOVIMIENTO</span>
+                <h3 style="margin: 0; font-size: clamp(28px, 3.9vw, 50px); line-height: 1; letter-spacing: -0.035em; font-weight: 500; color: #16221B;">Lo que estamos pensando, en video.</h3>
+              </div>
+              <a href="https://www.instagram.com/urbitlab/" style="background: #16221B; color: #DCE84A; font-size: 14px; padding: 14px 24px; border-radius: 999px;" style-hover="background: #DCE84A; color: #16221B;">@urbitlab en Instagram ↗</a>
+            </div>
+            <div data-r="grid4 grid-reels" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+              <a data-rv="1" data-r="reel" href="https://www.instagram.com/p/Daardg4x0Vh/" target="_blank" rel="noopener" style="position: relative; aspect-ratio: 9 / 16; background: linear-gradient(180deg, rgba(22, 34, 27, 0.55) 0%, rgba(22, 34, 27, 0.1) 38%, rgba(22, 34, 27, 0.78) 100%), #6E8A7D url(assets/reel-01.png) center / cover no-repeat; border-radius: 200px 200px 18px 18px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 26px 18px 18px; text-align: center;" style-hover="background: linear-gradient(180deg, rgba(22, 34, 27, 0.35) 0%, rgba(22, 34, 27, 0.05) 38%, rgba(22, 34, 27, 0.7) 100%), #6E8A7D url(assets/reel-01.png) center / cover no-repeat;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #E7EDE8;">REEL 01 · 0:42</span><div style="width: 50px; height: 50px; background: #DCE84A; color: #16221B; border-radius: 999px; display: grid; place-items: center; font-size: 13px;">▶</div><span style="font-size: 15px; line-height: 1.3; color: #F4F3EE;">¿Qué hacemos en Úrbit Lab?</span></a>
+              <a data-rv="1" data-r="reel" href="https://www.instagram.com/p/DaobQRFRHIm/" target="_blank" rel="noopener" style="position: relative; aspect-ratio: 9 / 16; background: linear-gradient(180deg, rgba(22, 34, 27, 0.55) 0%, rgba(22, 34, 27, 0.1) 38%, rgba(22, 34, 27, 0.78) 100%), #6E8A7D url(assets/reel-02.png) center / cover no-repeat; border-radius: 200px 200px 18px 18px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 26px 18px 18px; text-align: center;" style-hover="background: linear-gradient(180deg, rgba(22, 34, 27, 0.35) 0%, rgba(22, 34, 27, 0.05) 38%, rgba(22, 34, 27, 0.7) 100%), #6E8A7D url(assets/reel-02.png) center / cover no-repeat;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #E7EDE8;">REEL 02 · 0:58</span><div style="width: 50px; height: 50px; background: #DCE84A; color: #16221B; border-radius: 999px; display: grid; place-items: center; font-size: 13px;">▶</div><span style="font-size: 15px; line-height: 1.3; color: #F4F3EE;">¿Quién diseña el futuro del territorio?</span></a>
+              <a data-rv="1" data-r="reel" href="https://www.instagram.com/p/Da-o1jBB8qb/" target="_blank" rel="noopener" style="position: relative; aspect-ratio: 9 / 16; border-radius: 200px 200px 18px 18px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 26px 18px 18px; text-align: center; background: linear-gradient(180deg, rgba(22, 34, 27, 0.55) 0%, rgba(22, 34, 27, 0.1) 38%, rgba(22, 34, 27, 0.78) 100%), #6E8A7D url(assets/reel-03.png) center / cover no-repeat;" style-hover="background: linear-gradient(180deg, rgba(22, 34, 27, 0.35) 0%, rgba(22, 34, 27, 0.05) 38%, rgba(22, 34, 27, 0.7) 100%), #6E8A7D url(assets/reel-03.png) center / cover no-repeat;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #E7EDE8;">REEL 03 · 1:12</span><div style="width: 50px; height: 50px; background: #DCE84A; color: #16221B; border-radius: 999px; display: grid; place-items: center; font-size: 13px;">▶</div><span style="font-size: 15px; line-height: 1.3; color: #F4F3EE;">Entender el territorio es el primer paso</span></a>
+              <a data-rv="1" data-r="reel" href="https://www.instagram.com/p/DbQqY94Bvol/" target="_blank" rel="noopener" style="position: relative; aspect-ratio: 9 / 16; background: linear-gradient(180deg, rgba(22, 34, 27, 0.55) 0%, rgba(22, 34, 27, 0.1) 38%, rgba(22, 34, 27, 0.78) 100%), #6E8A7D url(assets/reel-04.png) center / cover no-repeat; border-radius: 200px 200px 18px 18px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 26px 18px 18px; text-align: center;" style-hover="background: linear-gradient(180deg, rgba(22, 34, 27, 0.35) 0%, rgba(22, 34, 27, 0.05) 38%, rgba(22, 34, 27, 0.7) 100%), #6E8A7D url(assets/reel-04.png) center / cover no-repeat;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #E7EDE8;">REEL 04 · 0:36</span><div style="width: 50px; height: 50px; background: #DCE84A; color: #16221B; border-radius: 999px; display: grid; place-items: center; font-size: 13px;">▶</div><span style="font-size: 15px; line-height: 1.3; color: #F4F3EE;">El pico y placa en Colombia</span></a>
+            </div>
+          </div>
+                  </div>
+
+        <div id="c-hacemos" data-r="pad-sec" style="padding: 86px 60px;">
+          <div data-r="row-head" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 40px;">
+            <div style="flex: 1.6 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #5F776C;">02 · QUÉ HACEMOS</span>
+              <h3 data-r="nolinebreak" style="margin: 0; font-size: clamp(22px, 2.9vw, 52px); line-height: 1.04; letter-spacing: -0.04em; font-weight: 500; max-width: 34ch;">Servicios con soluciones integrales<br>para transformar territorios</h3>
+            </div>
+            <div style="flex: 0 1 340px; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: flex-end; gap: 22px;">
+              <p style="flex: 1 1 260px; min-width: 240px; margin: 0; font-size: 16px; line-height: 1.6; color: #46564C; max-width: 34ch; text-wrap: pretty;">Combinamos conocimiento técnico, innovación y visión territorial para responder a ciudades, municipios y comunidades.</p>
+              <a data-r="cta" href="https://api.whatsapp.com/send/?phone=3114481160&amp;text&amp;type=phone_number&amp;app_absent=0&amp;utm_source=ig" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 12px; background: #1E2A23; color: #EDEFE9; font-size: 15px; padding: 15px 26px; border-radius: 999px; white-space: nowrap;" style-hover="background: #DCE84A; color: #16221B;">Iniciar su proyecto <span style="font-size: 17px;">→</span></a>
+            </div>
+          </div>
+          <div data-r="grid4" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+            <div style="background: linear-gradient(180deg, rgba(220, 232, 74, 0.56) 0%, rgba(220, 232, 74, 0.56) 55%, rgba(220, 232, 74, 0.5) 100%), #DCE84A url(assets/svc-01.png) center bottom / cover no-repeat; color: #16221B; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 34px; min-height: 226px; transition: background 420ms ease, color 300ms ease;" data-r="svc" style-hover="background: linear-gradient(180deg, rgba(12, 20, 15, 0) 0%, rgba(12, 20, 15, 0) 40%, rgba(12, 20, 15, 0.58) 68%, rgba(12, 20, 15, 0.86) 100%), #1E2A23 url(assets/svc-01.png) center bottom / cover no-repeat; color: #FFFFFF;" data-rv="1"><span style="width: 34px; height: 34px; border-radius: 999px; background: rgba(22, 34, 27, 0.12); display: grid; place-items: center; font-family: 'Space Mono', monospace; font-size: 11px; border: 1px solid transparent; transition: background 300ms ease, border-color 300ms ease, color 300ms ease;" style-hover="background: rgba(12, 20, 15, 0.55); border-color: rgba(255, 255, 255, 0.35); color: #FFFFFF;">01</span><div style="display: flex; flex-direction: column; gap: 9px; margin-top: auto;"><h4 style="margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; color: inherit;">Arquitectura y diseño urbano</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: inherit; opacity: 0.82;">Del edificio a la escala de barrio, con el espacio público como hilo conductor.</p></div></div>
+            <div style="background: linear-gradient(180deg, rgba(30, 42, 35, 0.7) 0%, rgba(30, 42, 35, 0.68) 55%, rgba(30, 42, 35, 0.66) 100%), #1E2A23 url(assets/svc-02.png) center bottom / cover no-repeat; color: #EDEFE9; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 34px; min-height: 226px; transition: background 420ms ease, color 300ms ease;" data-r="svc" style-hover="background: linear-gradient(180deg, rgba(12, 20, 15, 0) 0%, rgba(12, 20, 15, 0) 40%, rgba(12, 20, 15, 0.58) 68%, rgba(12, 20, 15, 0.86) 100%), #1E2A23 url(assets/svc-02.png) center bottom / cover no-repeat; color: #FFFFFF;" data-rv="1"><span style="width: 34px; height: 34px; border-radius: 999px; background: rgba(237, 239, 233, 0.16); display: grid; place-items: center; font-family: 'Space Mono', monospace; font-size: 11px; border: 1px solid transparent; transition: background 300ms ease, border-color 300ms ease, color 300ms ease;" style-hover="background: rgba(12, 20, 15, 0.55); border-color: rgba(255, 255, 255, 0.35); color: #FFFFFF;">02</span><div style="display: flex; flex-direction: column; gap: 9px; margin-top: auto;"><h4 style="margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; color: inherit;">Ingeniería e infraestructura</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: inherit; opacity: 0.82;">Viabilidad estructural, vial y de redes desde el primer trazo.</p></div></div>
+            <div style="background: linear-gradient(180deg, rgba(220, 232, 74, 0.56) 0%, rgba(220, 232, 74, 0.56) 55%, rgba(220, 232, 74, 0.5) 100%), #DCE84A url(assets/svc-03.png) center bottom / cover no-repeat; color: #16221B; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 34px; min-height: 226px; transition: background 420ms ease, color 300ms ease;" data-r="svc" style-hover="background: linear-gradient(180deg, rgba(12, 20, 15, 0) 0%, rgba(12, 20, 15, 0) 40%, rgba(12, 20, 15, 0.58) 68%, rgba(12, 20, 15, 0.86) 100%), #1E2A23 url(assets/svc-03.png) center bottom / cover no-repeat; color: #FFFFFF;" data-rv="1"><span style="width: 34px; height: 34px; border-radius: 999px; background: rgba(22, 34, 27, 0.12); display: grid; place-items: center; font-family: 'Space Mono', monospace; font-size: 11px; border: 1px solid transparent; transition: background 300ms ease, border-color 300ms ease, color 300ms ease;" style-hover="background: rgba(12, 20, 15, 0.55); border-color: rgba(255, 255, 255, 0.35); color: #FFFFFF;">03</span><div style="display: flex; flex-direction: column; gap: 9px; margin-top: auto;"><h4 style="margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; color: inherit;">Vivienda de interés social</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: inherit; opacity: 0.82;">Dignidad, densidad y habitabilidad con presupuestos reales.</p></div></div>
+            <div style="background: linear-gradient(180deg, rgba(30, 42, 35, 0.7) 0%, rgba(30, 42, 35, 0.68) 55%, rgba(30, 42, 35, 0.66) 100%), #1E2A23 url(assets/svc-04.png) center bottom / cover no-repeat; color: #EDEFE9; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 34px; min-height: 226px; transition: background 420ms ease, color 300ms ease;" data-r="svc" style-hover="background: linear-gradient(180deg, rgba(12, 20, 15, 0) 0%, rgba(12, 20, 15, 0) 40%, rgba(12, 20, 15, 0.58) 68%, rgba(12, 20, 15, 0.86) 100%), #1E2A23 url(assets/svc-04.png) center bottom / cover no-repeat; color: #FFFFFF;" data-rv="1"><span style="width: 34px; height: 34px; border-radius: 999px; background: rgba(237, 239, 233, 0.16); display: grid; place-items: center; font-family: 'Space Mono', monospace; font-size: 11px; border: 1px solid transparent; transition: background 300ms ease, border-color 300ms ease, color 300ms ease;" style-hover="background: rgba(12, 20, 15, 0.55); border-color: rgba(255, 255, 255, 0.35); color: #FFFFFF;">04</span><div style="display: flex; flex-direction: column; gap: 9px; margin-top: auto;"><h4 style="margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; color: inherit;">Ordenamiento y planificación territorial</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: inherit; opacity: 0.82;">Instrumentos, POT y escenarios de crecimiento a largo plazo.</p></div></div>
+            <div style="background: linear-gradient(180deg, rgba(220, 232, 74, 0.56) 0%, rgba(220, 232, 74, 0.56) 55%, rgba(220, 232, 74, 0.5) 100%), #DCE84A url(assets/svc-05.png) center bottom / cover no-repeat; color: #16221B; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 34px; min-height: 226px; transition: background 420ms ease, color 300ms ease;" data-r="svc" style-hover="background: linear-gradient(180deg, rgba(12, 20, 15, 0) 0%, rgba(12, 20, 15, 0) 40%, rgba(12, 20, 15, 0.58) 68%, rgba(12, 20, 15, 0.86) 100%), #1E2A23 url(assets/svc-05.png) center bottom / cover no-repeat; color: #FFFFFF;" data-rv="1"><span style="width: 34px; height: 34px; border-radius: 999px; background: rgba(22, 34, 27, 0.12); display: grid; place-items: center; font-family: 'Space Mono', monospace; font-size: 11px; border: 1px solid transparent; transition: background 300ms ease, border-color 300ms ease, color 300ms ease;" style-hover="background: rgba(12, 20, 15, 0.55); border-color: rgba(255, 255, 255, 0.35); color: #FFFFFF;">05</span><div style="display: flex; flex-direction: column; gap: 9px; margin-top: auto;"><h4 style="margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; color: inherit;">Gestión del riesgo de desastres</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: inherit; opacity: 0.82;">Territorios que se anticipan en lugar de reaccionar.</p></div></div>
+            <div style="background: linear-gradient(180deg, rgba(30, 42, 35, 0.7) 0%, rgba(30, 42, 35, 0.68) 55%, rgba(30, 42, 35, 0.66) 100%), #1E2A23 url(assets/svc-06.png) center bottom / cover no-repeat; color: #EDEFE9; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 34px; min-height: 226px; transition: background 420ms ease, color 300ms ease;" data-r="svc" style-hover="background: linear-gradient(180deg, rgba(12, 20, 15, 0) 0%, rgba(12, 20, 15, 0) 40%, rgba(12, 20, 15, 0.58) 68%, rgba(12, 20, 15, 0.86) 100%), #1E2A23 url(assets/svc-06.png) center bottom / cover no-repeat; color: #FFFFFF;" data-rv="1"><span style="width: 34px; height: 34px; border-radius: 999px; background: rgba(237, 239, 233, 0.16); display: grid; place-items: center; font-family: 'Space Mono', monospace; font-size: 11px; border: 1px solid transparent; transition: background 300ms ease, border-color 300ms ease, color 300ms ease;" style-hover="background: rgba(12, 20, 15, 0.55); border-color: rgba(255, 255, 255, 0.35); color: #FFFFFF;">06</span><div style="display: flex; flex-direction: column; gap: 9px; margin-top: auto;"><h4 style="margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; color: inherit;">Soluciones ambientales e infraestructura verde</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: inherit; opacity: 0.82;">Agua, arbolado y suelo como infraestructura.</p></div></div>
+            <div style="background: linear-gradient(180deg, rgba(220, 232, 74, 0.56) 0%, rgba(220, 232, 74, 0.56) 55%, rgba(220, 232, 74, 0.5) 100%), #DCE84A url(assets/svc-07.png) center bottom / cover no-repeat; color: #16221B; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 34px; min-height: 226px; transition: background 420ms ease, color 300ms ease;" data-r="svc" style-hover="background: linear-gradient(180deg, rgba(12, 20, 15, 0) 0%, rgba(12, 20, 15, 0) 40%, rgba(12, 20, 15, 0.58) 68%, rgba(12, 20, 15, 0.86) 100%), #1E2A23 url(assets/svc-07.png) center bottom / cover no-repeat; color: #FFFFFF;" data-rv="1"><span style="width: 34px; height: 34px; border-radius: 999px; background: rgba(22, 34, 27, 0.12); display: grid; place-items: center; font-family: 'Space Mono', monospace; font-size: 11px; border: 1px solid transparent; transition: background 300ms ease, border-color 300ms ease, color 300ms ease;" style-hover="background: rgba(12, 20, 15, 0.55); border-color: rgba(255, 255, 255, 0.35); color: #FFFFFF;">07</span><div style="display: flex; flex-direction: column; gap: 9px; margin-top: auto;"><h4 style="margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; color: inherit;">Supervisión e interventoría</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: inherit; opacity: 0.82;">Control técnico para que lo diseñado sea lo construido.</p></div></div>
+            <div style="background: linear-gradient(180deg, rgba(30, 42, 35, 0.7) 0%, rgba(30, 42, 35, 0.68) 55%, rgba(30, 42, 35, 0.66) 100%), #1E2A23 url(assets/svc-08.png) center bottom / cover no-repeat; color: #EDEFE9; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 34px; min-height: 226px; transition: background 420ms ease, color 300ms ease;" data-r="svc" style-hover="background: linear-gradient(180deg, rgba(12, 20, 15, 0) 0%, rgba(12, 20, 15, 0) 40%, rgba(12, 20, 15, 0.58) 68%, rgba(12, 20, 15, 0.86) 100%), #1E2A23 url(assets/svc-08.png) center bottom / cover no-repeat; color: #FFFFFF;" data-rv="1"><span style="width: 34px; height: 34px; border-radius: 999px; background: rgba(237, 239, 233, 0.16); display: grid; place-items: center; font-family: 'Space Mono', monospace; font-size: 11px; border: 1px solid transparent; transition: background 300ms ease, border-color 300ms ease, color 300ms ease;" style-hover="background: rgba(12, 20, 15, 0.55); border-color: rgba(255, 255, 255, 0.35); color: #FFFFFF;">08</span><div style="display: flex; flex-direction: column; gap: 9px; margin-top: auto;"><h4 style="margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; color: inherit;">Participación ciudadana y fortalecimiento comunitario</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: inherit; opacity: 0.82;">La comunidad como fuente de datos y de legitimidad.</p></div></div>
+          </div>
+          <a data-r="cta-mobile" href="https://api.whatsapp.com/send/?phone=3114481160&amp;text&amp;type=phone_number&amp;app_absent=0&amp;utm_source=ig" target="_blank" rel="noopener" style="display: none; align-items: center; justify-content: center; gap: 12px; margin-top: 16px; background: #1E2A23; color: #EDEFE9; font-size: 16px; padding: 17px 26px; border-radius: 999px; min-height: 48px;" style-hover="background: #DCE84A; color: #16221B;">Iniciar su proyecto <span style="font-size: 17px;">→</span></a>
+        </div>
+
+        <div id="c-dif" data-r="pad-x" style="padding: 0 22px;">
+          <div data-r="grid2 pad-card" style="background: #1E2A23 url(assets/dif-collage.png) center bottom / cover no-repeat; color: #EDEFE9; border-radius: 34px; padding: 80px 60px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; position: relative; overflow: hidden;">
+            <div style="position: absolute; inset: 0; background-image: linear-gradient(95deg, rgba(22, 34, 27, 0.93) 0%, rgba(22, 34, 27, 0.82) 46%, rgba(22, 34, 27, 0.52) 72%, rgba(22, 34, 27, 0.35) 100%);"></div>
+            <div style="position: absolute; right: -140px; bottom: -180px; width: 520px; height: 520px; border-radius: 999px; border: 1px solid rgba(237,239,233,0.16);"></div>
+            <div style="position: absolute; right: -60px; bottom: -120px; width: 380px; height: 380px; border-radius: 999px; border: 1px solid rgba(220,232,74,0.4);"></div>
+            <div style="position: relative; display: flex; flex-direction: column; gap: 24px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #DCE84A;">03 · QUÉ NOS HACE DIFERENTES</span>
+              <h3 style="margin: 0; font-size: clamp(30px, 4.6vw, 62px); line-height: 0.98; letter-spacing: -0.04em; font-weight: 500; max-width: 20ch;">El territorio no se entiende desde una sola disciplina.</h3>
+              <p style="margin: 0; font-size: 18px; line-height: 1.55; color: #B7C4BA; max-width: 46ch; text-wrap: pretty;">Por eso integramos arquitectura, ingeniería, urbanismo, sostenibilidad e innovación social para desarrollar soluciones completas, sostenibles y con impacto medible.</p>
+            </div>
+            <div style="position: relative; display: flex; flex-direction: column; gap: 18px; justify-content: center;">
+              <div style="background: rgba(237,239,233,0.07); border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 12px;">
+                <span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #DCE84A;">LA PREGUNTA QUE GUÍA CADA DECISIÓN</span>
+                <p style="margin: 0; font-size: clamp(20px, 2vw, 26px); line-height: 1.22; letter-spacing: -0.02em; text-wrap: pretty;">¿Cómo mejorar la calidad de vida mientras construimos territorios preparados para el futuro?</p>
+              </div>
+              <div style="background: #DCE84A; color: #16221B; border-radius: 22px; padding: 28px;">
+                <p style="margin: 0; font-size: 17px; line-height: 1.4;">El desarrollo no se mide por las obras construidas, sino por el bienestar que generan para las personas.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="c-metodo" data-r="pad-sec" style="padding: 86px 60px;">
+          <div data-r="row-head" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 44px;">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #5F776C;">04 · METODOLOGÍA</span>
+              <h3 style="margin: 0; font-size: clamp(30px, 4.6vw, 62px); line-height: 0.98; letter-spacing: -0.04em; font-weight: 500; max-width: 20ch;">Cuatro fases, una sola trayectoria.</h3>
+            </div>
+            <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #46564C; max-width: 34ch;">Podemos entrar en cualquier punto: desde una idea inicial hasta una obra en ejecución.</p>
+          </div>
+          <div data-r="grid4 grid-fases" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+            <div data-r="fase" style="background: #85A093; color: #16221B; border-radius: 200px 200px 20px 20px; padding: 40px 26px 28px; min-height: 340px; display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em;">ENTENDER</span><svg viewBox="0 0 64 64" width="60" height="60" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 46c8-14 20-22 28-22s20 8 28 22"></path><path d="M12 52c6-10 14-16 20-16s14 6 20 16"></path><path d="M32 24V6"></path><rect x="26" y="14" width="12" height="12"></rect><circle cx="32" cy="42" r="3" fill="currentColor" stroke="none"></circle></svg><span style="font-size: 64px; font-weight: 600; letter-spacing: -0.05em; line-height: 0.9;">01</span><h4 style="margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -0.02em;">Diagnóstico</h4><p style="margin: 0; font-size: 14px; line-height: 1.5; color: #223028;">Lectura del territorio, datos, escucha comunitaria y factibilidad.</p></div>
+            <div data-r="fase" style="background: #D5DED6; border-radius: 200px 200px 20px 20px; padding: 40px 26px 28px; min-height: 340px; display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #5F776C;">PROYECTAR</span><svg viewBox="0 0 64 64" width="60" height="60" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M10 54V26a22 22 0 0 1 44 0v28"></path><path d="M10 40h44M32 26v28"></path><rect x="4" y="54" width="56" height="6"></rect><circle cx="21" cy="33" r="2.4" fill="currentColor" stroke="none"></circle></svg><span style="font-size: 64px; font-weight: 600; letter-spacing: -0.05em; line-height: 0.9;">02</span><h4 style="margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -0.02em;">Diseño</h4><p style="margin: 0; font-size: 14px; line-height: 1.5; color: #46564C;">Arquitectura, urbanismo e ingeniería como una sola pieza.</p></div>
+            <div data-r="fase" style="border-radius: 200px 200px 20px 20px; padding: 40px 26px 28px; min-height: 340px; display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center; background-color: #D2DBBF;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #5F776C;">HACER VIABLE</span><svg viewBox="0 0 64 64" width="60" height="60" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="6" y="8" width="24" height="24"></rect><rect x="34" y="32" width="24" height="24"></rect><path d="M30 20h16a6 6 0 0 1 6 6v6"></path><path d="M34 44H18a6 6 0 0 1-6-6v-6"></path><path d="M46 26l6 6-6 6M18 38l-6-6 6-6"></path></svg><span style="font-size: 64px; font-weight: 600; letter-spacing: -0.05em; line-height: 0.9;">03</span><h4 style="margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -0.02em;">Gestión</h4><p style="margin: 0; font-size: 14px; line-height: 1.5; color: #46564C;">Recursos, predial, ambiental y social: que el plan ocurra.</p></div>
+            <div data-r="fase" style="background: #DCE84A; border-radius: 200px 200px 20px 20px; padding: 40px 26px 28px; min-height: 340px; display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em;">MEDIR</span><svg viewBox="0 0 64 64" width="60" height="60" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="32" cy="32" r="26"></circle><circle cx="32" cy="32" r="16"></circle><circle cx="32" cy="32" r="3" fill="currentColor" stroke="none"></circle><path d="M32 32l18-18M44 14h6v6"></path></svg><span style="font-size: 64px; font-weight: 600; letter-spacing: -0.05em; line-height: 0.9;">04</span><h4 style="margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -0.02em;">Impacto</h4><p style="margin: 0; font-size: 14px; line-height: 1.5; color: #3A4A3E;">Supervisión, monitoreo y evaluación del bienestar generado.</p></div>
+          </div>
+        </div>
+
+        <div id="c-aliado" data-r="pad-x" style="padding: 0 22px 86px;">
+          <div data-r="grid2 pad-card" style="background: #FFFFFF; border-radius: 34px; padding: 66px 60px; display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 60px;">
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #5F776C;">05 · ACOMPAÑAMIENTO</span>
+              <h3 style="margin: 0; font-size: clamp(28px, 3.6vw, 48px); line-height: 1; letter-spacing: -0.035em; font-weight: 500;">Podemos ser su aliado en cualquier etapa.</h3>
+              <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #46564C; max-width: 38ch; text-wrap: pretty;">Trabajamos junto a gobiernos, empresas, organizaciones y comunidades para convertir los retos del territorio en oportunidades de desarrollo sostenible.</p>
+              <a data-r="cta" href="https://api.whatsapp.com/send/?phone=3114481160&amp;text&amp;type=phone_number&amp;app_absent=0&amp;utm_source=ig" target="_blank" rel="noopener" style="align-self: flex-start; margin-top: 8px; background: #1E2A23; color: #EDEFE9; font-size: 15px; padding: 15px 26px; border-radius: 999px;" style-hover="background: #DCE84A; color: #16221B;">Quiero el acompañamiento →</a>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+              <div data-r="tap" style="display: flex; align-items: center; gap: 18px; padding: 17px 0; border-bottom: 1px solid #DEE3DC;" style-hover="padding-left: 8px;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #8C9A90; width: 30px;">01</span><span style="font-size: clamp(17px, 1.7vw, 22px); font-weight: 400; letter-spacing: -0.02em; flex: 1;">Diagnóstico y formulación de proyectos</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#5F776C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"></path></svg></div>
+              <div data-r="tap" style="display: flex; align-items: center; gap: 18px; padding: 17px 0; border-bottom: 1px solid #DEE3DC;" style-hover="padding-left: 8px;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #8C9A90; width: 30px;">02</span><span style="font-size: clamp(17px, 1.7vw, 22px); font-weight: 400; letter-spacing: -0.02em; flex: 1;">Estudios técnicos y de factibilidad</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#5F776C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"></path></svg></div>
+              <div data-r="tap" style="display: flex; align-items: center; gap: 18px; padding: 17px 0; border-bottom: 1px solid #DEE3DC;" style-hover="padding-left: 8px;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #8C9A90; width: 30px;">03</span><span style="font-size: clamp(17px, 1.7vw, 22px); font-weight: 400; letter-spacing: -0.02em; flex: 1;">Diseño arquitectónico, urbano e ingenieril</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#5F776C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"></path></svg></div>
+              <div data-r="tap" style="display: flex; align-items: center; gap: 18px; padding: 17px 0; border-bottom: 1px solid #DEE3DC;" style-hover="padding-left: 8px;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #8C9A90; width: 30px;">04</span><span style="font-size: clamp(17px, 1.7vw, 22px); font-weight: 400; letter-spacing: -0.02em; flex: 1;">Gestión predial, ambiental y social</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#5F776C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"></path></svg></div>
+              <div data-r="tap" style="display: flex; align-items: center; gap: 18px; padding: 17px 0; border-bottom: 1px solid #DEE3DC;" style-hover="padding-left: 8px;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #8C9A90; width: 30px;">05</span><span style="font-size: clamp(17px, 1.7vw, 22px); font-weight: 400; letter-spacing: -0.02em; flex: 1;">Planeación territorial e instrumentos de ordenamiento</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#5F776C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"></path></svg></div>
+              <div data-r="tap" style="display: flex; align-items: center; gap: 18px; padding: 17px 0; border-bottom: 1px solid #DEE3DC;" style-hover="padding-left: 8px;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #8C9A90; width: 30px;">06</span><span style="font-size: clamp(17px, 1.7vw, 22px); font-weight: 400; letter-spacing: -0.02em; flex: 1;">Gestión de recursos y estructuración de proyectos</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#5F776C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"></path></svg></div>
+              <div data-r="tap" style="display: flex; align-items: center; gap: 18px; padding: 17px 0; border-bottom: 1px solid #DEE3DC;" style-hover="padding-left: 8px;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #8C9A90; width: 30px;">07</span><span style="font-size: clamp(17px, 1.7vw, 22px); font-weight: 400; letter-spacing: -0.02em; flex: 1;">Ejecución, supervisión e interventoría</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#5F776C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"></path></svg></div>
+              <div style="display: flex; align-items: center; gap: 18px; padding: 17px 0;" style-hover="padding-left: 8px;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #8C9A90; width: 30px;">08</span><span style="font-size: clamp(17px, 1.7vw, 22px); font-weight: 400; letter-spacing: -0.02em; flex: 1;">Monitoreo, evaluación e impacto</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#5F776C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"></path></svg></div>
+              <a data-r="cta-mobile" href="https://api.whatsapp.com/send/?phone=3114481160&amp;text&amp;type=phone_number&amp;app_absent=0&amp;utm_source=ig" target="_blank" rel="noopener" style="display: none; align-items: center; justify-content: center; gap: 12px; margin-top: 22px; background: #1E2A23; color: #EDEFE9; font-size: 16px; padding: 17px 26px; border-radius: 999px; min-height: 48px;" style-hover="background: #DCE84A; color: #16221B;">Quiero el acompañamiento <span style="font-size: 17px;">→</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div id="c-contacto" data-r="pad-x" style="padding: 0 22px 22px;">
+          <div data-r="pad-card" style="background: #1E2A23 url(assets/contacto-collage.png) center bottom / cover no-repeat; color: #EDEFE9; border-radius: 34px; padding: 80px 60px 34px; display: flex; flex-direction: column; gap: 50px; position: relative; overflow: hidden;">
+            <div style="position: absolute; inset: 0; background-image: linear-gradient(180deg, rgba(22, 34, 27, 0.42) 0%, rgba(22, 34, 27, 0.6) 22%, rgba(22, 34, 27, 0.78) 48%, rgba(22, 34, 27, 0.9) 72%, rgba(22, 34, 27, 0.95) 100%);"></div>
+            <div style="position: absolute; top: -160px; left: 50%; transform: translateX(-50%); width: 620px; height: 620px; border-radius: 999px; background: radial-gradient(circle, rgba(133,160,147,0.32) 0%, transparent 66%);"></div>
+            <div data-r="row-head" style="position: relative; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px;">
+              <h3 style="margin: 0; font-size: clamp(34px, 5.4vw, 76px); line-height: 0.94; letter-spacing: -0.045em; font-weight: 500; max-width: 20ch;">¿Tiene un territorio por transformar?</h3>
+              <a data-r="cta" href="https://api.whatsapp.com/send/?phone=3114481160&amp;text&amp;type=phone_number&amp;app_absent=0&amp;utm_source=ig" target="_blank" rel="noopener" style="background: #DCE84A; color: #16221B; font-size: 17px; font-weight: 500; padding: 22px 34px; border-radius: 999px; white-space: nowrap;" style-hover="background: #EDEFE9;">Conversemos de tu proyecto →</a>
+            </div>
+            <div data-r="footer-row" style="position: relative; display: flex; justify-content: space-between; align-items: flex-end; padding-top: 28px; border-top: 1px solid rgba(237,239,233,0.2);">
+              <img src="assets/logo-light.png" alt="Úrbit Lab (CLAP)" style="height: 44px; width: auto;">
+              <div data-r="footer-cols" style="display: flex; gap: 52px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #B7C4BA;">
+                <div style="display: flex; flex-direction: column; gap: 7px;"><span style="color: #7E8E83;">CONTACTO</span><a href="mailto:comunidad@clapedu.org">comunidad@clapedu.org</a><a href="tel:+573114481160">311 448 1160</a></div>
+                <div style="display: flex; flex-direction: column; gap: 7px;"><span style="color: #7E8E83;">REDES</span><a href="https://www.instagram.com/urbitlab/">INSTAGRAM ↗</a></div>
+                <div style="display: flex; flex-direction: column; gap: 7px;"><span style="color: #7E8E83;">SEDE</span><span>COLOMBIA</span><span>2026</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;reveal&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Movimiento&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    if (this.props.reveal !== false) { this.initReveal(); this.initKinetic(); this.initDif(); this.initAliado(); this.initContacto(); }
+    this._onScroll = () => {
+      const show = window.scrollY > 700;
+      if (show !== this.state.showTop) this.setState({ showTop: show });
+      if (this._paintPhases) this._paintPhases();
+      if (this._paintReveal) this._paintReveal();
+      if (this._paintKinetic) this._paintKinetic();
+      if (this._paintDif) this._paintDif();
+      if (this._paintAliado) this._paintAliado();
+      if (this._paintContacto) this._paintContacto();
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onResize = () => {
+      document.querySelectorAll('#c-lab h3 > span, #c-hacemos h3 > span, #c-metodo h3 > span').forEach((el) => {
+        if (el.style.whiteSpace) el.style.whiteSpace = window.innerWidth <= 900 ? 'normal' : 'nowrap';
+      });
+      this._onScroll();
+    };
+    window.addEventListener('resize', this._onResize);
+    this.initPhases();
+    this.runHeroIntro();
+    this.runCounters();
+    this._onScroll();
+  }
+  toTop = () => { window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  toggleMenu = () => this.setState((s) => ({ menuOpen: !s.menuOpen }));
+  closeMenu = () => this.setState({ menuOpen: false });
+
+  initKinetic() {
+    this._kinetics = [];
+    ['c-lab', 'c-hacemos', 'c-metodo'].forEach((id) => this.kineticFor(id));
+    this._paintKinetic = () => this._kinetics.forEach((fn) => fn());
+    this._paintKinetic();
+  }
+
+  kineticFor(id) {
+    const lab = document.getElementById(id);
+    if (!lab) return;
+    const h = lab.querySelector('h3');
+    const eyebrow = lab.querySelector('span');
+    if (!h || h.querySelector('[data-w]')) return;
+    let done = false;
+    const tokens = [];
+    Array.from(h.childNodes).forEach((node) => {
+      if (node.nodeName === 'BR') { tokens.push('\n'); return; }
+      const t = (node.textContent || '').trim();
+      if (t) t.split(/\s+/).forEach((w) => tokens.push(w));
+    });
+    const words = tokens;
+    h.textContent = '';
+    let line = document.createElement('span');
+    line.style.display = 'inline-block';
+    line.style.whiteSpace = 'nowrap';
+    h.appendChild(line);
+    words.forEach((w, i) => {
+      if (w === '\n') {
+        h.appendChild(document.createElement('br'));
+        line = document.createElement('span');
+        line.style.display = 'inline-block';
+        line.style.whiteSpace = 'nowrap';
+        h.appendChild(line);
+        return;
+      }
+      const clip = document.createElement('span');
+      clip.style.display = 'inline-block';
+      clip.style.overflow = 'hidden';
+      clip.style.verticalAlign = 'bottom';
+      if (window.innerWidth <= 900) line.style.whiteSpace = 'normal';
+      const inner = document.createElement('span');
+      inner.setAttribute('data-w', i);
+      inner.style.display = 'inline-block';
+      inner.style.transform = 'translateY(110%)';
+      inner.style.opacity = '0';
+      inner.style.transition = 'transform 900ms cubic-bezier(0.16,1,0.3,1) ' + (i * 70) + 'ms, opacity 700ms ease ' + (i * 70) + 'ms';
+      inner.textContent = w + (i < words.length - 1 && words[i + 1] !== '\n' ? '\u00A0' : '');
+      clip.appendChild(inner);
+      line.appendChild(clip);
+    });
+    if (eyebrow) {
+      eyebrow.style.transition = 'opacity 700ms ease 120ms, letter-spacing 900ms cubic-bezier(0.16,1,0.3,1) 120ms';
+      eyebrow.style.opacity = '0';
+      eyebrow.style.letterSpacing = '0.5em';
+    }
+    this._kinetics.push(() => {
+      if (done) return;
+      const r = h.getBoundingClientRect();
+      if (r.top > window.innerHeight * 0.85) return;
+      h.querySelectorAll('[data-w]').forEach((el) => {
+        el.style.transform = 'translateY(0)';
+        el.style.opacity = '1';
+      });
+      if (eyebrow) { eyebrow.style.opacity = '1'; eyebrow.style.letterSpacing = '0.16em'; }
+      done = true;
+    });
+  }
+
+  initDif() {
+    const sec = document.getElementById('c-dif');
+    if (!sec) return;
+    const card = sec.firstElementChild;
+    if (!card) return;
+    const h = card.querySelector('h3');
+    const p = card.querySelector('p');
+    const side = Array.from(card.children).filter((c) => c.querySelector('p') && c !== h && !c.contains(h));
+    const panels = side.length ? Array.from(side[side.length - 1].children) : [];
+    if (h) {
+      h.style.clipPath = 'inset(0 0 100% 0)';
+      h.style.transform = 'translateY(18px)';
+      h.style.transition = 'clip-path 1200ms cubic-bezier(0.16,1,0.3,1), transform 1200ms cubic-bezier(0.16,1,0.3,1)';
+    }
+    if (p) {
+      p.style.opacity = '0';
+      p.style.transition = 'opacity 900ms ease 320ms';
+    }
+    panels.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateX(46px)';
+      el.style.transition = 'opacity 900ms ease ' + (380 + i * 160) + 'ms, transform 1000ms cubic-bezier(0.16,1,0.3,1) ' + (380 + i * 160) + 'ms';
+    });
+    let done = false;
+    this._paintDif = () => {
+      const r = card.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const prog = Math.max(0, Math.min(1, (vh - r.top) / (vh + r.height)));
+      card.style.backgroundPosition = 'center calc(100% + ' + Math.round((0.5 - prog) * 90) + 'px)';
+      if (done || r.top > vh * 0.82) return;
+      if (h) { h.style.clipPath = 'inset(0 0 0% 0)'; h.style.transform = 'translateY(0)'; }
+      if (p) p.style.opacity = '1';
+      panels.forEach((el) => { el.style.opacity = '1'; el.style.transform = 'translateX(0)'; });
+      done = true;
+    };
+    this._paintDif();
+  }
+
+  initAliado() {
+    const sec = document.getElementById('c-aliado');
+    if (!sec) return;
+    const card = sec.firstElementChild;
+    if (!card) return;
+    const cols = Array.from(card.children);
+    const left = cols[0] ? Array.from(cols[0].children) : [];
+    const rows = cols[1] ? Array.from(cols[1].children) : [];
+    left.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(22px)';
+      el.style.transition = 'opacity 800ms ease ' + (i * 110) + 'ms, transform 900ms cubic-bezier(0.16,1,0.3,1) ' + (i * 110) + 'ms';
+    });
+    rows.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateX(-26px)';
+      el.style.transition = 'opacity 700ms ease ' + (180 + i * 80) + 'ms, transform 800ms cubic-bezier(0.16,1,0.3,1) ' + (180 + i * 80) + 'ms';
+      const path = el.querySelector('svg path');
+      if (path && path.getTotalLength) {
+        const len = path.getTotalLength();
+        path.style.strokeDasharray = len;
+        path.style.strokeDashoffset = len;
+        path.style.transition = 'stroke-dashoffset 700ms cubic-bezier(0.16,1,0.3,1) ' + (320 + i * 80) + 'ms';
+      }
+    });
+    let done = false;
+    this._paintAliado = () => {
+      if (done) return;
+      const r = card.getBoundingClientRect();
+      if (r.top > window.innerHeight * 0.8) return;
+      left.forEach((el) => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; });
+      rows.forEach((el) => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateX(0)';
+        const path = el.querySelector('svg path');
+        if (path) path.style.strokeDashoffset = '0';
+      });
+      done = true;
+    };
+    this._paintAliado();
+  }
+
+  initContacto() {
+    const sec = document.getElementById('c-contacto');
+    if (!sec) return;
+    const card = sec.firstElementChild;
+    if (!card) return;
+    const h = card.querySelector('h3');
+    const cta = card.querySelector('a[href="#c-contacto"]');
+    const footer = card.lastElementChild;
+    const glow = Array.from(card.children).find((c) => {
+      const s = getComputedStyle(c);
+      return s.position === 'absolute' && s.backgroundImage.includes('radial-gradient') && s.inset !== '0px';
+    });
+    if (h) {
+      h.style.opacity = '0';
+      h.style.transform = 'translateY(30px)';
+      h.style.transition = 'opacity 1000ms ease, transform 1100ms cubic-bezier(0.16,1,0.3,1)';
+    }
+    if (cta) {
+      cta.style.opacity = '0';
+      cta.style.transform = 'scale(0.9)';
+      cta.style.transition = 'opacity 700ms ease 320ms, transform 800ms cubic-bezier(0.34,1.56,0.64,1) 320ms';
+    }
+    if (footer && footer !== h) {
+      footer.style.opacity = '0';
+      footer.style.transform = 'translateY(18px)';
+      footer.style.transition = 'opacity 800ms ease 480ms, transform 900ms cubic-bezier(0.16,1,0.3,1) 480ms';
+    }
+    let done = false;
+    this._paintContacto = () => {
+      const r = card.getBoundingClientRect();
+      const vh = window.innerHeight;
+      if (glow) {
+        const prog = Math.max(0, Math.min(1, (vh - r.top) / (vh + r.height)));
+        glow.style.transform = 'translateX(-50%) translateY(' + Math.round((prog - 0.5) * 70) + 'px) scale(' + (0.9 + prog * 0.24).toFixed(3) + ')';
+      }
+      if (done || r.top > vh * 0.8) return;
+      if (h) { h.style.opacity = '1'; h.style.transform = 'translateY(0)'; }
+      if (cta) { cta.style.opacity = '1'; cta.style.transform = 'scale(1)'; }
+      if (footer && footer !== h) { footer.style.opacity = '1'; footer.style.transform = 'translateY(0)'; }
+      done = true;
+    };
+    this._paintContacto();
+  }
+
+  initReveal() {
+    const nodes = Array.from(document.querySelectorAll('[data-rv]'))
+      .filter((n) => !n.closest('#c-metodo'));
+    if (!nodes.length) return;
+    nodes.forEach((n, i) => {
+      n.style.transition = 'opacity 800ms cubic-bezier(0.16,1,0.3,1) ' + ((i % 4) * 90) + 'ms, transform 900ms cubic-bezier(0.16,1,0.3,1) ' + ((i % 4) * 90) + 'ms';
+      n.style.willChange = 'opacity, transform';
+    });
+    this._paintReveal = () => {
+      const vh = window.innerHeight;
+      nodes.forEach((n) => {
+        if (n._revealed) return;
+        const r = n.getBoundingClientRect();
+        const shown = r.top < vh * 0.88 && r.bottom > vh * 0.06;
+        n.style.opacity = shown ? '1' : '0';
+        n.style.transform = shown ? 'translateY(0) scale(1)' : 'translateY(34px) scale(0.985)';
+        if (shown) n._revealed = true;
+      });
+    };
+    this._paintReveal();
+  }
+
+  runHeroIntro() {
+    const nodes = Array.from(document.querySelectorAll('[data-hero]'))
+      .sort((a, b) => a.getAttribute('data-hero') - b.getAttribute('data-hero'));
+    if (!nodes.length) return;
+    nodes.forEach((el, i) => {
+      el.style.animation = 'none';
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(26px)';
+      el.style.filter = 'blur(6px)';
+      requestAnimationFrame(() => {
+        el.style.transition = 'opacity 900ms cubic-bezier(0.16,1,0.3,1) ' + (120 + i * 150) + 'ms, transform 1000ms cubic-bezier(0.16,1,0.3,1) ' + (120 + i * 150) + 'ms, filter 900ms ease ' + (120 + i * 150) + 'ms';
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+        el.style.filter = 'blur(0)';
+      });
+    });
+  }
+
+  runCounters() {
+    const nodes = Array.from(document.querySelectorAll('[data-count]'));
+    if (!nodes.length) return;
+    nodes.forEach((el, i) => {
+      const target = parseInt(el.getAttribute('data-count'), 10);
+      const pad = el.getAttribute('data-count').length;
+      const dur = 1100, delay = 160 + i * 130, t0 = performance.now() + delay;
+      el.textContent = String(0).padStart(pad, '0');
+      const step = (now) => {
+        const p = Math.max(0, Math.min(1, (now - t0) / dur));
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = String(Math.round(target * eased)).padStart(pad, '0');
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+  }
+
+  initPhases() {
+    const sec = document.getElementById('c-metodo');
+    if (!sec) return;
+    const cards = Array.from(sec.querySelectorAll(':scope > div:last-of-type > div'));
+    if (cards.length !== 4) return;
+    cards.forEach((c) => {
+      c.style.transition = 'transform 600ms cubic-bezier(0.16,1,0.3,1), opacity 500ms ease, box-shadow 500ms ease, background-color 450ms ease, color 450ms ease';
+      c.style.willChange = 'transform, opacity';
+      c._bg = getComputedStyle(c).backgroundColor;
+      c._fg = getComputedStyle(c).color;
+      c.querySelectorAll('h4, p, span').forEach((t) => { t.style.color = 'inherit'; });
+      const svg = c.querySelector('svg');
+      if (svg) svg.style.transition = 'transform 600ms cubic-bezier(0.16,1,0.3,1)';
+    });
+    const paint = () => {
+      const r = sec.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const p = (vh * 0.85 - r.top) / (r.height * 0.85);
+      const active = Math.max(-1, Math.min(3, Math.floor(p * 4.6) - 1));
+      cards.forEach((c, i) => {
+        const on = i <= active;
+        const isActive = i === active;
+        const wasLime = c._bg.replace(/\s/g, '') === 'rgb(220,232,74)';
+        c.style.opacity = on ? '1' : '0.82';
+        c.style.transform = isActive ? 'translateY(-16px)' : 'translateY(0)';
+        c.style.boxShadow = isActive ? '0 24px 48px rgba(22, 34, 27, 0.2)' : 'none';
+        c.style.backgroundColor = isActive ? (wasLime ? '#1E2A23' : '#DCE84A') : c._bg;
+        c.style.color = isActive ? (wasLime ? '#EDEFE9' : '#16221B') : c._fg;
+        const svg = c.querySelector('svg');
+        if (svg) svg.style.transform = isActive ? 'scale(1.14)' : 'scale(1)';
+      });
+    };
+    this._paintPhases = paint;
+    paint();
+  }
+  state = { showTop: false, menuOpen: false };
+  componentDidMount2() {}
+  componentDidUpdate() {
+    if (this._paintPhases) this._paintPhases();
+    else this.initPhases();
+    if (this._paintReveal) this._paintReveal();
+    else if (this.props.reveal !== false) this.initReveal();
+  }
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+  }
+  renderVals() {
+    return {
+      showTop: !!this.state.showTop,
+      toTop: this.toTop,
+      toggleMenu: this.toggleMenu,
+      closeMenu: this.closeMenu,
+      burgerStyle: {
+        display: 'none', width: '46px', height: '46px', flex: '0 0 auto',
+        border: '1px solid rgba(30, 42, 35, 0.2)', borderRadius: '999px',
+        background: this.state.menuOpen ? '#1E2A23' : 'transparent',
+        cursor: 'pointer', placeItems: 'center', placeContent: 'center', gap: '5px',
+        gridAutoRows: 'max-content', gridAutoColumns: '18px', padding: '0', lineHeight: 0,
+        transition: 'background 260ms ease'
+      },
+      burgerBar1: {
+        display: 'block', width: '18px', height: '1.6px', borderRadius: '2px',
+        background: this.state.menuOpen ? '#DCE84A' : '#1E2A23',
+        transform: this.state.menuOpen ? 'translateY(3px) rotate(45deg)' : 'none',
+        transition: 'transform 280ms cubic-bezier(0.16,1,0.3,1), background 260ms ease'
+      },
+      burgerBar2: {
+        display: 'block', width: '18px', height: '1.6px', borderRadius: '2px',
+        background: this.state.menuOpen ? '#DCE84A' : '#1E2A23',
+        transform: this.state.menuOpen ? 'translateY(-3.2px) rotate(-45deg)' : 'none',
+        transition: 'transform 280ms cubic-bezier(0.16,1,0.3,1), background 260ms ease'
+      },
+      menuPanelStyle: {
+        position: 'absolute', left: '16px', right: '16px', top: 'calc(100% - 6px)',
+        display: 'flex', flexDirection: 'column',
+        background: 'rgba(237, 239, 233, 0.97)', backdropFilter: 'blur(14px)',
+        border: '1px solid rgba(30, 42, 35, 0.14)', borderRadius: '26px',
+        padding: '14px 20px 20px', zIndex: 50,
+        opacity: this.state.menuOpen ? 1 : 0,
+        transform: this.state.menuOpen ? 'translateY(0)' : 'translateY(-12px)',
+        pointerEvents: this.state.menuOpen ? 'auto' : 'none',
+        boxShadow: '0 24px 48px rgba(22, 34, 27, 0.16)',
+        transition: 'opacity 260ms ease, transform 320ms cubic-bezier(0.16,1,0.3,1)'
+      },
+      topBtnStyle: {
+        position: 'fixed', right: '26px', bottom: '26px', zIndex: 60,
+        width: '56px', height: '56px', borderRadius: '999px', border: 'none', cursor: 'pointer',
+        background: '#1E2A23', color: '#DCE84A', fontSize: '20px', lineHeight: 1,
+        display: 'grid', placeItems: 'center',
+        boxShadow: '0 10px 30px rgba(22, 34, 27, 0.28)',
+        opacity: this.state.showTop ? 1 : 0,
+        transform: this.state.showTop ? 'translateY(0) scale(1)' : 'translateY(14px) scale(0.9)',
+        pointerEvents: this.state.showTop ? 'auto' : 'none',
+        transition: 'opacity 300ms ease, transform 300ms cubic-bezier(0.16,1,0.3,1)'
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

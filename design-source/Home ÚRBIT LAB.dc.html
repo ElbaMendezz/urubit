@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #E6E5DF; font-family: "Archivo", Helvetica, sans-serif; }
+  * { box-sizing: border-box; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #6E7A1F; }
+  @keyframes um-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes um-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
+  @keyframes um-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+</style>
+</helmet>
+
+<section style="display: flex; flex-direction: column; gap: 40px; padding: 56px 48px 120px; background: #E6E5DF;">
+
+  <div style="display: flex; align-items: flex-start; gap: 40px; max-width: 1400px;">
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 18px;">
+      <div style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.18em; color: #6B6B5E;">TURNO 01 · ÚRBIT LAB · HOME COMPLETO · 3 DIRECCIONES</div>
+      <h1 style="margin: 0; font-size: 46px; line-height: 1.02; letter-spacing: -0.03em; font-weight: 600; color: #1E1E19; max-width: 20ch;">Tres direcciones, tres heros.</h1>
+      <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #45453C; max-width: 62ch; text-wrap: pretty;">Cada dirección es un home completo con las secciones de tu PDF y un hero distinto — así eliges dirección y hero en la misma pasada. Referencia una opción en el chat con su código: <a href="#1a">1a</a>, <a href="#1b">1b</a>, <a href="#1c">1c</a>.</p>
+    </div>
+    <div style="width: 320px; border: 1px solid #C6C5BB; padding: 20px; display: flex; flex-direction: column; gap: 12px; font-family: 'Space Mono', monospace; font-size: 11px; line-height: 1.6; color: #45453C;">
+      <div style="letter-spacing: 0.16em; color: #1E1E19; font-weight: 700;">NOTAS TÉCNICAS · ASTRO</div>
+      <div>Layout en grid/flex con gap · sin dependencias JS salvo un IntersectionObserver (~1 kb) para scroll-reveal · tipografías vía @fontsource · imágenes listas para &lt;Image /&gt; de astro:assets · secciones como componentes .astro independientes · anchors del nav = ids de sección.</div>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start;">
+
+    <div id="1a" style="display: flex; flex-direction: column; gap: 14px;">
+      <div style="display: flex; align-items: baseline; gap: 14px;">
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; background: #1E1E19; color: #DCE84A; padding: 5px 10px;">1a</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; color: #1E1E19;">ATLAS TERRITORIAL</span>
+        <span style="font-size: 13px; color: #6B6B5E;">Editorial técnico · retícula de coordenadas · papel claro</span>
+      </div>
+
+      <div style="width: 1440px; background: #F4F3EE; color: #1E1E19; overflow: hidden; position: relative; border: 1px solid #C6C5BB;">
+
+        <div style="position: sticky; top: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; padding: 18px 44px; background: rgba(244, 243, 238, 0.86); backdrop-filter: blur(10px); border-bottom: 1px solid #1E1E19;">
+          <a href="#1a" style="display: flex; align-items: center; gap: 12px;">
+            <img src="assets/mark-dark.png" alt="Úrbit Lab" style="height: 26px; width: auto; display: block;" />
+            <span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #6B6B5E; border-left: 1px solid #C6C5BB; padding-left: 12px;">ARQUITECTURA<br />URBANISMO · INGENIERÍA</span>
+          </a>
+          <nav style="display: flex; gap: 30px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em;">
+            <a href="#a-hacemos" style="display: flex; gap: 7px;" style-hover="color: #6E7A1F;"><span style="color: #A9A89C;">01</span>QUÉ HACEMOS</a>
+            <a href="#a-dif" style="display: flex; gap: 7px;" style-hover="color: #6E7A1F;"><span style="color: #A9A89C;">02</span>DIFERENCIA</a>
+            <a href="#a-metodo" style="display: flex; gap: 7px;" style-hover="color: #6E7A1F;"><span style="color: #A9A89C;">03</span>METODOLOGÍA</a>
+            <a href="#a-aliado" style="display: flex; gap: 7px;" style-hover="color: #6E7A1F;"><span style="color: #A9A89C;">04</span>ALIADO</a>
+            <a href="#a-lab" style="display: flex; gap: 7px;" style-hover="color: #6E7A1F;"><span style="color: #A9A89C;">05</span>LAB</a>
+          </nav>
+          <a href="#a-contacto" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em; border: 1px solid #1E1E19; padding: 10px 18px;" style-hover="background: #DCE84A; border-color: #DCE84A;">AGENDAR REUNIÓN →</a>
+        </div>
+
+        <div style="position: relative; padding: 76px 44px 56px; border-bottom: 1px solid #1E1E19;">
+          <div style="position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(to right, rgba(30, 30, 25, 0.07) 1px, transparent 1px); background-size: 116px 100%;"></div>
+          <div style="position: relative; display: flex; flex-direction: column; gap: 40px;">
+            <div style="display: flex; justify-content: space-between; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6B6B5E;">
+              <span>4°42′N 74°04′W · COLOMBIA</span>
+              <span data-rv="1">ÚRBIT LAB (CLAP) · EST. 2025</span>
+              <span>ATLAS 01 / TERRITORIO EN TRANSFORMACIÓN</span>
+            </div>
+            <h2 style="margin: 0; font-size: 118px; line-height: 0.9; letter-spacing: -0.045em; font-weight: 600; max-width: 17ch; text-wrap: balance;">Diseñamos territorios que mejoran la vida de las <span style="font-style: italic; font-weight: 300;">personas.</span></h2>
+            <div style="display: flex; gap: 56px; align-items: flex-end;">
+              <p style="margin: 0; flex: 1; font-size: 19px; line-height: 1.5; color: #3B3B33; max-width: 52ch; text-wrap: pretty;">Transformamos ideas en proyectos que conectan arquitectura, urbanismo, ingeniería y sostenibilidad para construir ciudades y territorios más inteligentes, resilientes y humanos.</p>
+              <div style="display: flex; flex-direction: column; gap: 10px; width: 300px;">
+                <div style="height: 1px; background: #1E1E19;"></div>
+                <div style="display: flex; justify-content: space-between; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: #6B6B5E;"><span>DISCIPLINAS INTEGRADAS</span><span style="color: #1E1E19; font-weight: 700;">05</span></div>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.08em;">
+                  <span style="border: 1px solid #C6C5BB; padding: 5px 8px;">ARQUITECTURA</span>
+                  <span style="border: 1px solid #C6C5BB; padding: 5px 8px;">INGENIERÍA</span>
+                  <span style="border: 1px solid #C6C5BB; padding: 5px 8px;">URBANISMO</span>
+                  <span style="border: 1px solid #C6C5BB; padding: 5px 8px;">SOSTENIBILIDAD</span>
+                  <span style="border: 1px solid #1E1E19; background: #DCE84A; padding: 5px 8px;">INNOVACIÓN SOCIAL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.55fr 1fr; border-bottom: 1px solid #1E1E19;">
+          <div style="position: relative; aspect-ratio: 16 / 9; background: repeating-linear-gradient(135deg, #DDDCD4 0px, #DDDCD4 9px, #E9E8E1 9px, #E9E8E1 18px); border-right: 1px solid #1E1E19; display: flex; align-items: flex-end; padding: 24px;">
+            <div style="position: absolute; inset: 0; background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E&quot;); mix-blend-mode: multiply; opacity: 0.35; pointer-events: none;"></div>
+            <div style="position: relative; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #55554B; background: #F4F3EE; border: 1px solid #1E1E19; padding: 9px 12px;">FOTOGRAFÍA / RENDER PRINCIPAL · 16:9 · ESPACIO PÚBLICO EN USO</div>
+          </div>
+          <div style="padding: 34px; display: flex; flex-direction: column; justify-content: space-between; gap: 26px;">
+            <div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6B6B5E;">ÍNDICE DE IMPACTO <span style="color: #A9A89C;">(cifras de ejemplo)</span></div>
+            <div style="display: flex; flex-direction: column; gap: 0;">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; padding: 14px 0; border-top: 1px solid #C6C5BB;"><span style="font-size: 46px; font-weight: 600; letter-spacing: -0.03em;" data-count="42">42</span><span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #55554B;">MUNICIPIOS</span></div>
+              <div style="display: flex; align-items: baseline; justify-content: space-between; padding: 14px 0; border-top: 1px solid #C6C5BB;"><span style="font-size: 46px; font-weight: 600; letter-spacing: -0.03em;" data-count="128">128k</span><span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #55554B;">PERSONAS BENEFICIADAS</span></div>
+              <div style="display: flex; align-items: baseline; justify-content: space-between; padding: 14px 0; border-top: 1px solid #C6C5BB;"><span style="font-size: 46px; font-weight: 600; letter-spacing: -0.03em;">1.2M</span><span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #55554B;">M² PLANIFICADOS</span></div>
+              <div style="display: flex; align-items: baseline; justify-content: space-between; padding: 14px 0; border-top: 1px solid #C6C5BB; border-bottom: 1px solid #C6C5BB;"><span style="font-size: 46px; font-weight: 600; letter-spacing: -0.03em;">08</span><span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #55554B;">LÍNEAS DE SERVICIO</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="a-hacemos" style="padding: 84px 44px; border-bottom: 1px solid #1E1E19;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; padding-bottom: 30px; border-bottom: 1px solid #1E1E19;">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #6B6B5E;">01 · QUÉ HACEMOS</span>
+              <h3 style="margin: 0; font-size: 58px; line-height: 1; letter-spacing: -0.035em; font-weight: 500; max-width: 24ch;">Proyectos integrales, no servicios sueltos.</h3>
+            </div>
+            <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #3B3B33; max-width: 40ch; text-wrap: pretty;">Combinamos conocimiento técnico, innovación y visión territorial para responder a las necesidades de ciudades, municipios y comunidades.</p>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #C6C5BB; margin-top: 1px;">
+            <div style="background: #F4F3EE; padding: 26px 22px 30px; display: flex; flex-direction: column; gap: 40px; min-height: 214px;" style-hover="background: #DCE84A;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #6B6B5E;">A.01</span><div style="display: flex; flex-direction: column; gap: 10px; margin-top: auto;"><h4 style="margin: 0; font-size: 23px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.12;">Arquitectura y diseño urbano</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: #55554B;">Del edificio a la escala de barrio, con el espacio público como hilo conductor.</p></div></div>
+            <div style="background: #F4F3EE; padding: 26px 22px 30px; display: flex; flex-direction: column; gap: 40px; min-height: 214px;" style-hover="background: #DCE84A;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #6B6B5E;">A.02</span><div style="display: flex; flex-direction: column; gap: 10px; margin-top: auto;"><h4 style="margin: 0; font-size: 23px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.12;">Ingeniería e infraestructura</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: #55554B;">Viabilidad estructural, vial y de redes desde el primer trazo.</p></div></div>
+            <div style="background: #F4F3EE; padding: 26px 22px 30px; display: flex; flex-direction: column; gap: 40px; min-height: 214px;" style-hover="background: #DCE84A;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #6B6B5E;">A.03</span><div style="display: flex; flex-direction: column; gap: 10px; margin-top: auto;"><h4 style="margin: 0; font-size: 23px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.12;">Vivienda de interés social</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: #55554B;">Dignidad, densidad y habitabilidad con presupuestos reales.</p></div></div>
+            <div style="background: #F4F3EE; padding: 26px 22px 30px; display: flex; flex-direction: column; gap: 40px; min-height: 214px;" style-hover="background: #DCE84A;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #6B6B5E;">A.04</span><div style="display: flex; flex-direction: column; gap: 10px; margin-top: auto;"><h4 style="margin: 0; font-size: 23px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.12;">Ordenamiento y planificación territorial</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: #55554B;">Instrumentos, POT y escenarios de crecimiento a largo plazo.</p></div></div>
+            <div style="background: #F4F3EE; padding: 26px 22px 30px; display: flex; flex-direction: column; gap: 40px; min-height: 214px;" style-hover="background: #DCE84A;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #6B6B5E;">A.05</span><div style="display: flex; flex-direction: column; gap: 10px; margin-top: auto;"><h4 style="margin: 0; font-size: 23px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.12;">Gestión del riesgo de desastres</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: #55554B;">Territorios que se anticipan en lugar de reaccionar.</p></div></div>
+            <div style="background: #F4F3EE; padding: 26px 22px 30px; display: flex; flex-direction: column; gap: 40px; min-height: 214px;" style-hover="background: #DCE84A;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #6B6B5E;">A.06</span><div style="display: flex; flex-direction: column; gap: 10px; margin-top: auto;"><h4 style="margin: 0; font-size: 23px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.12;">Soluciones ambientales e infraestructura verde</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: #55554B;">Agua, arbolado y suelo como infraestructura, no como paisajismo.</p></div></div>
+            <div style="background: #F4F3EE; padding: 26px 22px 30px; display: flex; flex-direction: column; gap: 40px; min-height: 214px;" style-hover="background: #DCE84A;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #6B6B5E;">A.07</span><div style="display: flex; flex-direction: column; gap: 10px; margin-top: auto;"><h4 style="margin: 0; font-size: 23px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.12;">Supervisión e interventoría</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: #55554B;">Control técnico para que lo diseñado sea lo construido.</p></div></div>
+            <div style="background: #F4F3EE; padding: 26px 22px 30px; display: flex; flex-direction: column; gap: 40px; min-height: 214px;" style-hover="background: #DCE84A;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #6B6B5E;">A.08</span><div style="display: flex; flex-direction: column; gap: 10px; margin-top: auto;"><h4 style="margin: 0; font-size: 23px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.12;">Participación ciudadana y fortalecimiento comunitario</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: #55554B;">La comunidad como fuente de datos y de legitimidad.</p></div></div>
+          </div>
+        </div>
+
+        <div style="background: #DCE84A; padding: 92px 44px; border-bottom: 1px solid #1E1E19; position: relative; overflow: hidden;">
+          <div style="position: absolute; inset: 0; opacity: 0.2; background-image: linear-gradient(135deg, transparent 46%, rgba(30, 30, 25, 0.5) 46%, rgba(30, 30, 25, 0.5) 54%, transparent 54%); background-size: 240px 240px;"></div>
+          <div style="position: relative; display: flex; gap: 60px; align-items: flex-start;">
+            <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; padding-top: 16px; white-space: nowrap;">PREMISA</span>
+            <blockquote style="margin: 0; font-size: 52px; line-height: 1.08; letter-spacing: -0.035em; font-weight: 500; max-width: 34ch; text-wrap: pretty;">El desarrollo no se mide por las obras construidas, sino por el <span style="font-style: italic; font-weight: 300;">bienestar</span> que generan para las personas.</blockquote>
+          </div>
+        </div>
+
+        <div id="a-dif" style="display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #1E1E19;">
+          <div style="padding: 84px 44px; border-right: 1px solid #1E1E19; display: flex; flex-direction: column; gap: 26px;">
+            <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #6B6B5E;">02 · QUÉ NOS HACE DIFERENTES</span>
+            <h3 style="margin: 0; font-size: 52px; line-height: 1.02; letter-spacing: -0.035em; font-weight: 500; max-width: 22ch;">El territorio no se entiende desde una sola disciplina.</h3>
+            <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3B3B33; max-width: 46ch; text-wrap: pretty;">Por eso integramos arquitectura, ingeniería, urbanismo, sostenibilidad e innovación social para desarrollar soluciones completas, sostenibles y con impacto medible.</p>
+            <div style="margin-top: 14px; border-top: 1px solid #1E1E19; padding-top: 22px; display: flex; flex-direction: column; gap: 12px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6B6B5E;">LA PREGUNTA QUE GUÍA CADA DECISIÓN</span>
+              <p style="margin: 0; font-size: 26px; line-height: 1.25; letter-spacing: -0.02em; font-weight: 500; max-width: 32ch; text-wrap: pretty;">¿Cómo mejorar la calidad de vida mientras construimos territorios preparados para el futuro?</p>
+            </div>
+          </div>
+          <div style="position: relative; display: grid; place-items: center; background: #2E3A33; min-height: 520px; overflow: hidden;">
+            <div style="position: absolute; inset: 0; background-image: radial-gradient(circle at 50% 50%, rgba(133, 160, 147, 0.5) 0%, transparent 62%);"></div>
+            <div style="position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(244, 243, 238, 0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(244, 243, 238, 0.08) 1px, transparent 1px); background-size: 58px 58px;"></div>
+            <div style="position: relative; width: 340px; height: 340px;">
+              <div style="position: absolute; inset: 0; border: 1px solid rgba(213, 222, 214, 0.55); border-radius: 999px;"></div>
+              <div style="position: absolute; inset: 44px; border: 1px solid rgba(213, 222, 214, 0.45); border-radius: 999px;"></div>
+              <div style="position: absolute; inset: 88px; border: 1px solid rgba(220, 232, 74, 0.7); border-radius: 999px;"></div>
+              <div style="position: absolute; inset: 132px; background: #DCE84A; border-radius: 999px; animation: um-float 6s ease-in-out infinite;"></div>
+              <span style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #D5DED6; background: #2E3A33; padding: 0 8px;">URBANISMO</span>
+              <span style="position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #D5DED6; background: #2E3A33; padding: 0 8px;">INGENIERÍA</span>
+              <span style="position: absolute; left: -76px; top: 50%; transform: translateY(-50%); font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #D5DED6;">ARQUITECTURA</span>
+              <span style="position: absolute; right: -84px; top: 50%; transform: translateY(-50%); font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #D5DED6;">SOSTENIBILIDAD</span>
+              <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: #1E1E19; font-weight: 700; text-align: center; width: 90px; line-height: 1.3;">INNOVACIÓN SOCIAL</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="a-metodo" style="background: #1E1E19; color: #F4F3EE; padding: 92px 44px; border-bottom: 1px solid #1E1E19;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 52px;">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #DCE84A;">03 · METODOLOGÍA</span>
+              <h3 style="margin: 0; font-size: 58px; line-height: 1; letter-spacing: -0.035em; font-weight: 500; max-width: 22ch;">Cuatro fases, una sola trayectoria.</h3>
+            </div>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #B4B4A8; max-width: 38ch; text-wrap: pretty;">Podemos entrar en cualquier punto del proceso: desde una idea inicial hasta una obra en ejecución.</p>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;">
+            <div style="border-top: 2px solid #DCE84A; padding: 26px 26px 0 0; display: flex; flex-direction: column; gap: 18px;" data-rv="1"><div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-size: 74px; font-weight: 600; letter-spacing: -0.05em; line-height: 0.85; color: #DCE84A;">01</span><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #8A8A7C;">ENTENDER</span></div><h4 style="margin: 0; font-size: 27px; font-weight: 500; letter-spacing: -0.02em;">Diagnóstico</h4><p style="margin: 0; font-size: 14px; line-height: 1.55; color: #B4B4A8;">Lectura del territorio, datos, escucha comunitaria y estudios de factibilidad.</p></div>
+            <div style="border-top: 2px solid rgba(244, 243, 238, 0.25); padding: 26px 26px 0; display: flex; flex-direction: column; gap: 18px;" data-rv="1"><div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-size: 74px; font-weight: 600; letter-spacing: -0.05em; line-height: 0.85;">02</span><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #8A8A7C;">PROYECTAR</span></div><h4 style="margin: 0; font-size: 27px; font-weight: 500; letter-spacing: -0.02em;">Diseño</h4><p style="margin: 0; font-size: 14px; line-height: 1.55; color: #B4B4A8;">Arquitectura, urbanismo e ingeniería resueltos como un mismo proyecto.</p></div>
+            <div style="border-top: 2px solid rgba(244, 243, 238, 0.25); padding: 26px 26px 0; display: flex; flex-direction: column; gap: 18px;" data-rv="1"><div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-size: 74px; font-weight: 600; letter-spacing: -0.05em; line-height: 0.85;">03</span><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #8A8A7C;">HACER VIABLE</span></div><h4 style="margin: 0; font-size: 27px; font-weight: 500; letter-spacing: -0.02em;">Gestión</h4><p style="margin: 0; font-size: 14px; line-height: 1.55; color: #B4B4A8;">Recursos, predial, ambiental y social: lo que hace que un plan ocurra.</p></div>
+            <div style="border-top: 2px solid rgba(244, 243, 238, 0.25); padding: 26px 0 0 26px; display: flex; flex-direction: column; gap: 18px;" data-rv="1"><div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-size: 74px; font-weight: 600; letter-spacing: -0.05em; line-height: 0.85;">04</span><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #8A8A7C;">MEDIR</span></div><h4 style="margin: 0; font-size: 27px; font-weight: 500; letter-spacing: -0.02em;">Impacto</h4><p style="margin: 0; font-size: 14px; line-height: 1.55; color: #B4B4A8;">Supervisión, monitoreo y evaluación del bienestar que el proyecto genera.</p></div>
+          </div>
+        </div>
+
+        <div id="a-aliado" style="padding: 84px 44px; border-bottom: 1px solid #1E1E19; display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 64px;">
+          <div style="display: flex; flex-direction: column; gap: 22px;">
+            <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #6B6B5E;">04 · ACOMPAÑAMIENTO</span>
+            <h3 style="margin: 0; font-size: 50px; line-height: 1.02; letter-spacing: -0.035em; font-weight: 500;">Podemos ser su aliado en cualquier etapa del proyecto.</h3>
+            <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #3B3B33; max-width: 40ch; text-wrap: pretty;">Trabajamos junto a gobiernos, empresas, organizaciones y comunidades para convertir los retos del territorio en oportunidades de desarrollo sostenible.</p>
+            <div style="margin-top: auto; position: relative; aspect-ratio: 4 / 5; background: repeating-linear-gradient(135deg, #DDDCD4 0px, #DDDCD4 9px, #E9E8E1 9px, #E9E8E1 18px); border: 1px solid #1E1E19; display: flex; align-items: flex-end; padding: 18px;">
+              <div style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #55554B; background: #F4F3EE; border: 1px solid #1E1E19; padding: 8px 10px;">RETRATO DE TRABAJO DE CAMPO · 4:5</div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: baseline; gap: 18px; padding: 20px 0; border-bottom: 1px solid #C6C5BB;" style-hover="background: #EDECE4;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #A9A89C; width: 34px;">01</span><span style="font-size: 27px; font-weight: 400; letter-spacing: -0.02em; flex: 1;">Diagnóstico y formulación de proyectos</span><span style="font-family: 'Space Mono', monospace; font-size: 15px; color: #6E7A1F;">↗</span></div>
+            <div style="display: flex; align-items: baseline; gap: 18px; padding: 20px 0; border-bottom: 1px solid #C6C5BB;" style-hover="background: #EDECE4;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #A9A89C; width: 34px;">02</span><span style="font-size: 27px; font-weight: 400; letter-spacing: -0.02em; flex: 1;">Estudios técnicos y de factibilidad</span><span style="font-family: 'Space Mono', monospace; font-size: 15px; color: #6E7A1F;">↗</span></div>
+            <div style="display: flex; align-items: baseline; gap: 18px; padding: 20px 0; border-bottom: 1px solid #C6C5BB;" style-hover="background: #EDECE4;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #A9A89C; width: 34px;">03</span><span style="font-size: 27px; font-weight: 400; letter-spacing: -0.02em; flex: 1;">Diseño arquitectónico, urbano e ingenieril</span><span style="font-family: 'Space Mono', monospace; font-size: 15px; color: #6E7A1F;">↗</span></div>
+            <div style="display: flex; align-items: baseline; gap: 18px; padding: 20px 0; border-bottom: 1px solid #C6C5BB;" style-hover="background: #EDECE4;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #A9A89C; width: 34px;">04</span><span style="font-size: 27px; font-weight: 400; letter-spacing: -0.02em; flex: 1;">Gestión predial, ambiental y social</span><span style="font-family: 'Space Mono', monospace; font-size: 15px; color: #6E7A1F;">↗</span></div>
+            <div style="display: flex; align-items: baseline; gap: 18px; padding: 20px 0; border-bottom: 1px solid #C6C5BB;" style-hover="background: #EDECE4;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #A9A89C; width: 34px;">05</span><span style="font-size: 27px; font-weight: 400; letter-spacing: -0.02em; flex: 1;">Planeación territorial e instrumentos de ordenamiento</span><span style="font-family: 'Space Mono', monospace; font-size: 15px; color: #6E7A1F;">↗</span></div>
+            <div style="display: flex; align-items: baseline; gap: 18px; padding: 20px 0; border-bottom: 1px solid #C6C5BB;" style-hover="background: #EDECE4;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #A9A89C; width: 34px;">06</span><span style="font-size: 27px; font-weight: 400; letter-spacing: -0.02em; flex: 1;">Gestión de recursos y estructuración de proyectos</span><span style="font-family: 'Space Mono', monospace; font-size: 15px; color: #6E7A1F;">↗</span></div>
+            <div style="display: flex; align-items: baseline; gap: 18px; padding: 20px 0; border-bottom: 1px solid #C6C5BB;" style-hover="background: #EDECE4;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #A9A89C; width: 34px;">07</span><span style="font-size: 27px; font-weight: 400; letter-spacing: -0.02em; flex: 1;">Ejecución, supervisión e interventoría</span><span style="font-family: 'Space Mono', monospace; font-size: 15px; color: #6E7A1F;">↗</span></div>
+            <div style="display: flex; align-items: baseline; gap: 18px; padding: 20px 0; border-bottom: 1px solid #1E1E19;" style-hover="background: #EDECE4;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #A9A89C; width: 34px;">08</span><span style="font-size: 27px; font-weight: 400; letter-spacing: -0.02em; flex: 1;">Monitoreo, evaluación e impacto</span><span style="font-family: 'Space Mono', monospace; font-size: 15px; color: #6E7A1F;">↗</span></div>
+          </div>
+        </div>
+
+        <div id="a-lab" style="background: #85A093; padding: 84px 44px; border-bottom: 1px solid #1E1E19;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 34px;">
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #22322A;">05 · LAB · EN MOVIMIENTO</span>
+              <h3 style="margin: 0; font-size: 50px; line-height: 1.02; letter-spacing: -0.035em; font-weight: 500; color: #14201A;">Lo que estamos pensando, en video.</h3>
+            </div>
+            <a href="https://www.instagram.com/urbitlab/" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em; border: 1px solid #14201A; color: #14201A; padding: 12px 18px;" style-hover="background: #14201A; color: #DCE84A;">@URBITLAB EN INSTAGRAM ↗</a>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;">
+            <a href="https://www.instagram.com/urbitlab/" style="position: relative; aspect-ratio: 9 / 16; background: #6E8A7D; border: 1px solid #14201A; display: flex; flex-direction: column; justify-content: space-between; padding: 16px; overflow: hidden;" style-hover="background: #5F776C;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #E7EDE8;">REEL 01 · 0:42</span><div style="width: 46px; height: 46px; border: 1px solid #E7EDE8; border-radius: 999px; display: grid; place-items: center; color: #E7EDE8; font-size: 12px; margin: auto;">▶</div><span style="font-size: 15px; line-height: 1.3; color: #F4F3EE;">¿Qué hacemos en Úrbit Lab?</span></a>
+            <a href="https://www.instagram.com/urbitlab/" style="position: relative; aspect-ratio: 9 / 16; background: #6E8A7D; border: 1px solid #14201A; display: flex; flex-direction: column; justify-content: space-between; padding: 16px; overflow: hidden;" style-hover="background: #5F776C;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #E7EDE8;">REEL 02 · 0:58</span><div style="width: 46px; height: 46px; border: 1px solid #E7EDE8; border-radius: 999px; display: grid; place-items: center; color: #E7EDE8; font-size: 12px; margin: auto;">▶</div><span style="font-size: 15px; line-height: 1.3; color: #F4F3EE;">¿Quién diseña el futuro del territorio?</span></a>
+            <a href="https://www.instagram.com/urbitlab/" style="position: relative; aspect-ratio: 9 / 16; background: #6E8A7D; border: 1px solid #14201A; display: flex; flex-direction: column; justify-content: space-between; padding: 16px; overflow: hidden;" style-hover="background: #5F776C;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #E7EDE8;">REEL 03 · 1:12</span><div style="width: 46px; height: 46px; border: 1px solid #E7EDE8; border-radius: 999px; display: grid; place-items: center; color: #E7EDE8; font-size: 12px; margin: auto;">▶</div><span style="font-size: 15px; line-height: 1.3; color: #F4F3EE;">Entender el territorio es el primer paso</span></a>
+            <a href="https://www.instagram.com/urbitlab/" style="position: relative; aspect-ratio: 9 / 16; background: #DCE84A; border: 1px solid #14201A; display: flex; flex-direction: column; justify-content: space-between; padding: 16px;" style-hover="background: #E9F27A;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #14201A;">NUESTRO PROPÓSITO</span><p style="margin: auto 0; font-size: 20px; line-height: 1.2; letter-spacing: -0.02em; color: #14201A;">Ayudar a construir territorios donde el desarrollo, las personas y el medio ambiente avancen en la misma dirección.</p><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #14201A;">VER TODOS ↗</span></a>
+          </div>
+        </div>
+
+        <div id="a-contacto" style="padding: 92px 44px 40px; display: flex; flex-direction: column; gap: 56px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px;">
+            <h3 style="margin: 0; font-size: 76px; line-height: 0.98; letter-spacing: -0.04em; font-weight: 600; max-width: 20ch;">¿Tiene un territorio por transformar?</h3>
+            <a href="#a-contacto" style="display: flex; align-items: center; gap: 14px; background: #1E1E19; color: #DCE84A; padding: 24px 32px; font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.12em; white-space: nowrap;" style-hover="background: #DCE84A; color: #1E1E19;">AGENDAR UNA REUNIÓN <span style="font-size: 17px;">→</span></a>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; padding-top: 30px; border-top: 1px solid #1E1E19;">
+            <img src="assets/logo-dark.png" alt="Úrbit Lab (CLAP)" style="height: 46px; width: auto;" />
+            <div style="display: flex; gap: 56px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #55554B;">
+              <div style="display: flex; flex-direction: column; gap: 7px;"><span style="color: #A9A89C;">CONTACTO</span><a href="#a-contacto">hola@urbitlab.co</a><a href="#a-contacto">+57 000 000 0000</a></div>
+              <div style="display: flex; flex-direction: column; gap: 7px;"><span style="color: #A9A89C;">REDES</span><a href="https://www.instagram.com/urbitlab/">INSTAGRAM ↗</a><a href="#a-contacto">LINKEDIN ↗</a></div>
+              <div style="display: flex; flex-direction: column; gap: 7px;"><span style="color: #A9A89C;">SEDE</span><span>COLOMBIA</span><span>2026</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="1b" style="display: flex; flex-direction: column; gap: 14px;">
+      <div style="display: flex; align-items: baseline; gap: 14px;">
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; background: #1E1E19; color: #DCE84A; padding: 5px 10px;">1b</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; color: #1E1E19;">MANIFIESTO</span>
+        <span style="font-size: 13px; color: #6B6B5E;">Placa oscura · tipografía cinética · brutalismo suave</span>
+      </div>
+
+      <div style="width: 1440px; background: #17170F; color: #F4F3EE; overflow: hidden; position: relative; border: 1px solid #17170F;">
+
+        <div style="position: sticky; top: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; background: rgba(23, 23, 15, 0.82); backdrop-filter: blur(12px);">
+          <a href="#1b" style="display: flex; align-items: center; gap: 12px;">
+            <img src="assets/mark-light.png" alt="Úrbit Lab" style="height: 24px; width: auto; display: block;" />
+            <span style="font-size: 19px; font-weight: 600; letter-spacing: -0.02em;">Úrbit Lab</span>
+          </a>
+          <nav style="display: flex; gap: 4px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em;">
+            <a href="#b-hacemos" style="padding: 9px 14px; border-radius: 999px;" style-hover="background: rgba(244,243,238,0.1); color: #DCE84A;">QUÉ HACEMOS</a>
+            <a href="#b-dif" style="padding: 9px 14px; border-radius: 999px;" style-hover="background: rgba(244,243,238,0.1); color: #DCE84A;">DIFERENCIA</a>
+            <a href="#b-metodo" style="padding: 9px 14px; border-radius: 999px;" style-hover="background: rgba(244,243,238,0.1); color: #DCE84A;">METODOLOGÍA</a>
+            <a href="#b-aliado" style="padding: 9px 14px; border-radius: 999px;" style-hover="background: rgba(244,243,238,0.1); color: #DCE84A;">ALIADO</a>
+            <a href="#b-lab" style="padding: 9px 14px; border-radius: 999px;" style-hover="background: rgba(244,243,238,0.1); color: #DCE84A;">LAB</a>
+          </nav>
+          <a href="#b-contacto" style="background: #DCE84A; color: #17170F; font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; padding: 12px 20px; border-radius: 999px;" style-hover="background: #F4F3EE;">HABLEMOS</a>
+        </div>
+
+        <div style="position: relative; padding: 60px 40px 0; overflow: hidden;">
+          <div style="position: absolute; top: -60px; right: -80px; width: 620px; height: 620px; border-radius: 999px; background: radial-gradient(circle, rgba(133, 160, 147, 0.42) 0%, transparent 68%);"></div>
+          <div style="position: relative; display: flex; flex-direction: column; gap: 30px;">
+            <div style="display: flex; align-items: center; gap: 12px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #9C9C8E;">
+              <span style="width: 7px; height: 7px; background: #DCE84A; border-radius: 999px; animation: um-blink 2.2s ease-in-out infinite;"></span>
+              LABORATORIO DE ARQUITECTURA, URBANISMO E INGENIERÍA · COLOMBIA
+            </div>
+            <h2 style="margin: 0; font-size: 152px; line-height: 0.86; letter-spacing: -0.055em; font-weight: 700; max-width: 15ch;">Diseñamos <span style="color: #DCE84A;">territorios</span> que mejoran la vida.</h2>
+            <div style="display: flex; gap: 40px; align-items: flex-end; padding-bottom: 44px;">
+              <p style="margin: 0; font-size: 20px; line-height: 1.45; color: #C8C8BA; max-width: 44ch; text-wrap: pretty;">Convertimos ideas en proyectos que conectan arquitectura, urbanismo, ingeniería y sostenibilidad para construir ciudades más inteligentes, resilientes y humanas.</p>
+              <div style="display: flex; gap: 12px; margin-left: auto;">
+                <a href="#b-contacto" style="background: #F4F3EE; color: #17170F; font-size: 15px; font-weight: 500; padding: 17px 28px; border-radius: 999px;" style-hover="background: #DCE84A;">Agendar una reunión →</a>
+                <a href="#b-lab" style="border: 1px solid rgba(244,243,238,0.35); font-size: 15px; padding: 17px 28px; border-radius: 999px;" style-hover="border-color: #DCE84A; color: #DCE84A;">Ver el lab</a>
+              </div>
+            </div>
+          </div>
+          <div style="position: relative; display: grid; grid-template-columns: 1.4fr 1fr; gap: 12px;">
+            <div style="position: relative; aspect-ratio: 16 / 10; border-radius: 20px 20px 0 0; overflow: hidden; background: repeating-linear-gradient(135deg, #2B2B22 0px, #2B2B22 10px, #35352A 10px, #35352A 20px); display: flex; align-items: flex-end; padding: 22px;">
+              <div style="position: absolute; inset: 0; background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E&quot;); opacity: 0.3; pointer-events: none;"></div>
+              <div style="position: relative; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #C8C8BA; border: 1px solid rgba(244,243,238,0.3); padding: 9px 12px; border-radius: 6px;">COLLAGE B/N + GRANO · ESCENA DE CIUDAD · 16:10</div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="background: #85A093; color: #14201A; border-radius: 20px 20px 0 0; padding: 24px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                <span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em;">IMPACTO (EJEMPLO)</span>
+                <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 62px; font-weight: 700; letter-spacing: -0.05em; line-height: 0.85;">42</span><span style="font-size: 14px; line-height: 1.2;">municipios<br />intervenidos</span></div>
+              </div>
+              <div style="background: #DCE84A; color: #17170F; padding: 24px; display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 62px; font-weight: 700; letter-spacing: -0.05em; line-height: 0.85;">128k</span><span style="font-size: 14px; line-height: 1.2;">personas<br />beneficiadas</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="border-top: 1px solid rgba(244,243,238,0.18); border-bottom: 1px solid rgba(244,243,238,0.18); overflow: hidden; padding: 16px 0; background: #17170F;">
+          <div style="display: flex; width: max-content; animation: um-marquee 34s linear infinite; font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.2em; color: #9C9C8E;">
+            <span style="padding-right: 26px;">ARQUITECTURA</span><span style="padding-right: 26px; color: #DCE84A;">◆</span><span style="padding-right: 26px;">URBANISMO</span><span style="padding-right: 26px; color: #DCE84A;">◆</span><span style="padding-right: 26px;">INGENIERÍA</span><span style="padding-right: 26px; color: #DCE84A;">◆</span><span style="padding-right: 26px;">SOSTENIBILIDAD</span><span style="padding-right: 26px; color: #DCE84A;">◆</span><span style="padding-right: 26px;">INNOVACIÓN SOCIAL</span><span style="padding-right: 26px; color: #DCE84A;">◆</span><span style="padding-right: 26px;">GESTIÓN DEL RIESGO</span><span style="padding-right: 26px; color: #DCE84A;">◆</span>
+            <span style="padding-right: 26px;">ARQUITECTURA</span><span style="padding-right: 26px; color: #DCE84A;">◆</span><span style="padding-right: 26px;">URBANISMO</span><span style="padding-right: 26px; color: #DCE84A;">◆</span><span style="padding-right: 26px;">INGENIERÍA</span><span style="padding-right: 26px; color: #DCE84A;">◆</span><span style="padding-right: 26px;">SOSTENIBILIDAD</span><span style="padding-right: 26px; color: #DCE84A;">◆</span><span style="padding-right: 26px;">INNOVACIÓN SOCIAL</span><span style="padding-right: 26px; color: #DCE84A;">◆</span><span style="padding-right: 26px;">GESTIÓN DEL RIESGO</span><span style="padding-right: 26px; color: #DCE84A;">◆</span>
+          </div>
+        </div>
+
+        <div id="b-hacemos" style="padding: 90px 40px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 44px;">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #DCE84A;">01 — QUÉ HACEMOS</span>
+              <h3 style="margin: 0; font-size: 68px; line-height: 0.96; letter-spacing: -0.04em; font-weight: 600; max-width: 22ch;">Ocho capacidades, un mismo proyecto.</h3>
+            </div>
+            <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #A9A99B; max-width: 36ch; text-wrap: pretty;">Desarrollamos proyectos integrales que responden a las necesidades de ciudades, municipios y comunidades.</p>
+          </div>
+          <div style="display: flex; gap: 16px; overflow-x: auto; padding-bottom: 14px;">
+            <div style="flex: 0 0 300px; background: #21211A; border-radius: 22px; padding: 26px; min-height: 300px; display: flex; flex-direction: column; justify-content: space-between; gap: 30px;" style-hover="background: #DCE84A; color: #17170F;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 11px; opacity: 0.6;">01</span><div style="display: flex; flex-direction: column; gap: 10px;"><h4 style="margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1;">Arquitectura y diseño urbano</h4><p style="margin: 0; font-size: 14px; line-height: 1.5; opacity: 0.72;">Del edificio a la escala de barrio, con el espacio público como hilo conductor.</p></div></div>
+            <div style="flex: 0 0 300px; background: #21211A; border-radius: 22px; padding: 26px; min-height: 300px; display: flex; flex-direction: column; justify-content: space-between; gap: 30px;" style-hover="background: #DCE84A; color: #17170F;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 11px; opacity: 0.6;">02</span><div style="display: flex; flex-direction: column; gap: 10px;"><h4 style="margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1;">Ingeniería e infraestructura</h4><p style="margin: 0; font-size: 14px; line-height: 1.5; opacity: 0.72;">Viabilidad estructural, vial y de redes desde el primer trazo.</p></div></div>
+            <div style="flex: 0 0 300px; background: #21211A; border-radius: 22px; padding: 26px; min-height: 300px; display: flex; flex-direction: column; justify-content: space-between; gap: 30px;" style-hover="background: #DCE84A; color: #17170F;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 11px; opacity: 0.6;">03</span><div style="display: flex; flex-direction: column; gap: 10px;"><h4 style="margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1;">Vivienda de interés social</h4><p style="margin: 0; font-size: 14px; line-height: 1.5; opacity: 0.72;">Dignidad, densidad y habitabilidad con presupuestos reales.</p></div></div>
+            <div style="flex: 0 0 300px; background: #21211A; border-radius: 22px; padding: 26px; min-height: 300px; display: flex; flex-direction: column; justify-content: space-between; gap: 30px;" style-hover="background: #DCE84A; color: #17170F;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 11px; opacity: 0.6;">04</span><div style="display: flex; flex-direction: column; gap: 10px;"><h4 style="margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1;">Ordenamiento territorial</h4><p style="margin: 0; font-size: 14px; line-height: 1.5; opacity: 0.72;">Instrumentos, POT y escenarios de crecimiento a largo plazo.</p></div></div>
+            <div style="flex: 0 0 300px; background: #21211A; border-radius: 22px; padding: 26px; min-height: 300px; display: flex; flex-direction: column; justify-content: space-between; gap: 30px;" style-hover="background: #DCE84A; color: #17170F;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 11px; opacity: 0.6;">05</span><div style="display: flex; flex-direction: column; gap: 10px;"><h4 style="margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1;">Gestión del riesgo de desastres</h4><p style="margin: 0; font-size: 14px; line-height: 1.5; opacity: 0.72;">Territorios que se anticipan en lugar de reaccionar.</p></div></div>
+            <div style="flex: 0 0 300px; background: #21211A; border-radius: 22px; padding: 26px; min-height: 300px; display: flex; flex-direction: column; justify-content: space-between; gap: 30px;" style-hover="background: #DCE84A; color: #17170F;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 11px; opacity: 0.6;">06</span><div style="display: flex; flex-direction: column; gap: 10px;"><h4 style="margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1;">Infraestructura verde</h4><p style="margin: 0; font-size: 14px; line-height: 1.5; opacity: 0.72;">Agua, arbolado y suelo como infraestructura, no como paisajismo.</p></div></div>
+            <div style="flex: 0 0 300px; background: #21211A; border-radius: 22px; padding: 26px; min-height: 300px; display: flex; flex-direction: column; justify-content: space-between; gap: 30px;" style-hover="background: #DCE84A; color: #17170F;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 11px; opacity: 0.6;">07</span><div style="display: flex; flex-direction: column; gap: 10px;"><h4 style="margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1;">Supervisión e interventoría</h4><p style="margin: 0; font-size: 14px; line-height: 1.5; opacity: 0.72;">Control técnico para que lo diseñado sea lo construido.</p></div></div>
+            <div style="flex: 0 0 300px; background: #21211A; border-radius: 22px; padding: 26px; min-height: 300px; display: flex; flex-direction: column; justify-content: space-between; gap: 30px;" style-hover="background: #DCE84A; color: #17170F;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 11px; opacity: 0.6;">08</span><div style="display: flex; flex-direction: column; gap: 10px;"><h4 style="margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1;">Participación ciudadana</h4><p style="margin: 0; font-size: 14px; line-height: 1.5; opacity: 0.72;">La comunidad como fuente de datos y de legitimidad.</p></div></div>
+          </div>
+          <div style="margin-top: 12px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #6E6E62;">← DESPLAZAR HORIZONTALMENTE</div>
+        </div>
+
+        <div id="b-dif" style="background: #DCE84A; color: #17170F; padding: 96px 40px; position: relative; overflow: hidden;">
+          <div style="position: absolute; inset: 0; opacity: 0.16; background-image: linear-gradient(135deg, transparent 44%, rgba(23,23,15,0.6) 44%, rgba(23,23,15,0.6) 56%, transparent 56%); background-size: 200px 200px;"></div>
+          <div style="position: relative; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 64px; align-items: start;">
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em;">02 — QUÉ NOS HACE DIFERENTES</span>
+              <h3 style="margin: 0; font-size: 82px; line-height: 0.92; letter-spacing: -0.045em; font-weight: 700; max-width: 18ch;">El territorio no cabe en una sola disciplina.</h3>
+              <p style="margin: 0; font-size: 19px; line-height: 1.5; max-width: 48ch; text-wrap: pretty;">Por eso integramos arquitectura, ingeniería, urbanismo, sostenibilidad e innovación social para desarrollar soluciones completas, sostenibles y con impacto medible.</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 20px; background: #17170F; color: #F4F3EE; border-radius: 24px; padding: 34px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #DCE84A;">LA PREGUNTA QUE GUÍA TODO</span>
+              <p style="margin: 0; font-size: 30px; line-height: 1.2; letter-spacing: -0.025em; font-weight: 500; text-wrap: pretty;">¿Cómo mejorar la calidad de vida de las personas mientras construimos territorios preparados para el futuro?</p>
+              <div style="height: 1px; background: rgba(244,243,238,0.2);"></div>
+              <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #A9A99B;">El desarrollo no se mide por las obras construidas, sino por el bienestar que generan para las personas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="b-metodo" style="padding: 96px 40px; display: flex; flex-direction: column; gap: 46px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px;">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #DCE84A;">03 — METODOLOGÍA</span>
+              <h3 style="margin: 0; font-size: 68px; line-height: 0.96; letter-spacing: -0.04em; font-weight: 600;">Diagnóstico → Diseño → Gestión → Impacto</h3>
+            </div>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #A9A99B; max-width: 34ch;">Entramos en cualquier punto del proceso: desde una idea inicial hasta una obra en ejecución.</p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0;">
+            <div style="display: grid; grid-template-columns: 130px 1fr 1.2fr 130px; gap: 28px; align-items: center; padding: 30px 0; border-top: 1px solid rgba(244,243,238,0.2);" style-hover="background: #21211A;" data-rv="1"><span style="font-size: 68px; font-weight: 700; letter-spacing: -0.05em; color: #DCE84A; line-height: 0.8;">01</span><h4 style="margin: 0; font-size: 34px; font-weight: 500; letter-spacing: -0.03em;">Diagnóstico</h4><p style="margin: 0; font-size: 15px; line-height: 1.55; color: #A9A99B;">Lectura del territorio, datos abiertos, escucha comunitaria y estudios de factibilidad.</p><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #6E6E62; text-align: right;">ENTENDER</span></div>
+            <div style="display: grid; grid-template-columns: 130px 1fr 1.2fr 130px; gap: 28px; align-items: center; padding: 30px 0; border-top: 1px solid rgba(244,243,238,0.2);" style-hover="background: #21211A;" data-rv="1"><span style="font-size: 68px; font-weight: 700; letter-spacing: -0.05em; color: #85A093; line-height: 0.8;">02</span><h4 style="margin: 0; font-size: 34px; font-weight: 500; letter-spacing: -0.03em;">Diseño</h4><p style="margin: 0; font-size: 15px; line-height: 1.55; color: #A9A99B;">Arquitectura, urbanismo e ingeniería resueltos como una sola pieza coherente.</p><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #6E6E62; text-align: right;">PROYECTAR</span></div>
+            <div style="display: grid; grid-template-columns: 130px 1fr 1.2fr 130px; gap: 28px; align-items: center; padding: 30px 0; border-top: 1px solid rgba(244,243,238,0.2);" style-hover="background: #21211A;" data-rv="1"><span style="font-size: 68px; font-weight: 700; letter-spacing: -0.05em; color: #85A093; line-height: 0.8;">03</span><h4 style="margin: 0; font-size: 34px; font-weight: 500; letter-spacing: -0.03em;">Gestión</h4><p style="margin: 0; font-size: 15px; line-height: 1.55; color: #A9A99B;">Recursos, predial, ambiental y social: lo que hace que un plan realmente ocurra.</p><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #6E6E62; text-align: right;">HACER VIABLE</span></div>
+            <div style="display: grid; grid-template-columns: 130px 1fr 1.2fr 130px; gap: 28px; align-items: center; padding: 30px 0; border-top: 1px solid rgba(244,243,238,0.2); border-bottom: 1px solid rgba(244,243,238,0.2);" style-hover="background: #21211A;" data-rv="1"><span style="font-size: 68px; font-weight: 700; letter-spacing: -0.05em; color: #85A093; line-height: 0.8;">04</span><h4 style="margin: 0; font-size: 34px; font-weight: 500; letter-spacing: -0.03em;">Impacto</h4><p style="margin: 0; font-size: 15px; line-height: 1.55; color: #A9A99B;">Supervisión, monitoreo y evaluación del bienestar que el proyecto genera.</p><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #6E6E62; text-align: right;">MEDIR</span></div>
+          </div>
+        </div>
+
+        <div id="b-aliado" style="background: #21211A; padding: 90px 40px; display: flex; flex-direction: column; gap: 44px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px;">
+            <h3 style="margin: 0; font-size: 62px; line-height: 0.98; letter-spacing: -0.04em; font-weight: 600; max-width: 26ch;">Podemos ser su aliado en cualquier etapa del proyecto.</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #A9A99B; max-width: 34ch;">Trabajamos junto a gobiernos, empresas, organizaciones y comunidades para convertir retos en oportunidades.</p>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+            <div style="border: 1px solid rgba(244,243,238,0.2); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 26px; min-height: 150px;" style-hover="border-color: #DCE84A;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; color: #DCE84A;">01</span><span style="font-size: 19px; line-height: 1.25; letter-spacing: -0.02em; margin-top: auto;">Diagnóstico y formulación</span></div>
+            <div style="border: 1px solid rgba(244,243,238,0.2); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 26px; min-height: 150px;" style-hover="border-color: #DCE84A;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; color: #DCE84A;">02</span><span style="font-size: 19px; line-height: 1.25; letter-spacing: -0.02em; margin-top: auto;">Estudios técnicos y factibilidad</span></div>
+            <div style="border: 1px solid rgba(244,243,238,0.2); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 26px; min-height: 150px;" style-hover="border-color: #DCE84A;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; color: #DCE84A;">03</span><span style="font-size: 19px; line-height: 1.25; letter-spacing: -0.02em; margin-top: auto;">Diseño arquitectónico, urbano e ingenieril</span></div>
+            <div style="border: 1px solid rgba(244,243,238,0.2); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 26px; min-height: 150px;" style-hover="border-color: #DCE84A;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; color: #DCE84A;">04</span><span style="font-size: 19px; line-height: 1.25; letter-spacing: -0.02em; margin-top: auto;">Gestión predial, ambiental y social</span></div>
+            <div style="border: 1px solid rgba(244,243,238,0.2); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 26px; min-height: 150px;" style-hover="border-color: #DCE84A;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; color: #DCE84A;">05</span><span style="font-size: 19px; line-height: 1.25; letter-spacing: -0.02em; margin-top: auto;">Planeación territorial e instrumentos</span></div>
+            <div style="border: 1px solid rgba(244,243,238,0.2); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 26px; min-height: 150px;" style-hover="border-color: #DCE84A;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; color: #DCE84A;">06</span><span style="font-size: 19px; line-height: 1.25; letter-spacing: -0.02em; margin-top: auto;">Gestión de recursos y estructuración</span></div>
+            <div style="border: 1px solid rgba(244,243,238,0.2); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 26px; min-height: 150px;" style-hover="border-color: #DCE84A;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; color: #DCE84A;">07</span><span style="font-size: 19px; line-height: 1.25; letter-spacing: -0.02em; margin-top: auto;">Ejecución, supervisión e interventoría</span></div>
+            <div style="border: 1px solid rgba(244,243,238,0.2); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 26px; min-height: 150px;" style-hover="border-color: #DCE84A;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; color: #DCE84A;">08</span><span style="font-size: 19px; line-height: 1.25; letter-spacing: -0.02em; margin-top: auto;">Monitoreo, evaluación e impacto</span></div>
+          </div>
+        </div>
+
+        <div id="b-lab" style="padding: 90px 40px; display: flex; flex-direction: column; gap: 34px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #DCE84A;">04 — LAB EN MOVIMIENTO</span>
+              <h3 style="margin: 0; font-size: 58px; line-height: 0.98; letter-spacing: -0.04em; font-weight: 600;">Lo que pensamos, en video.</h3>
+            </div>
+            <a href="https://www.instagram.com/urbitlab/" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em; border: 1px solid rgba(244,243,238,0.35); padding: 13px 20px; border-radius: 999px;" style-hover="background: #DCE84A; color: #17170F; border-color: #DCE84A;">@URBITLAB ↗</a>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <a href="https://www.instagram.com/urbitlab/" style="position: relative; aspect-ratio: 9 / 16; background: #2B2B22; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 18px;" style-hover="background: #35352A;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #9C9C8E;">REEL 01 · 0:42</span><div style="width: 52px; height: 52px; background: #DCE84A; color: #17170F; border-radius: 999px; display: grid; place-items: center; font-size: 13px; margin: auto;">▶</div><span style="font-size: 16px; line-height: 1.3;">¿Qué hacemos en Úrbit Lab?</span></a>
+            <a href="https://www.instagram.com/urbitlab/" style="position: relative; aspect-ratio: 9 / 16; background: #2B2B22; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 18px;" style-hover="background: #35352A;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #9C9C8E;">REEL 02 · 0:58</span><div style="width: 52px; height: 52px; background: #DCE84A; color: #17170F; border-radius: 999px; display: grid; place-items: center; font-size: 13px; margin: auto;">▶</div><span style="font-size: 16px; line-height: 1.3;">¿Quién diseña el futuro del territorio?</span></a>
+            <a href="https://www.instagram.com/urbitlab/" style="position: relative; aspect-ratio: 9 / 16; background: #2B2B22; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 18px;" style-hover="background: #35352A;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #9C9C8E;">REEL 03 · 1:12</span><div style="width: 52px; height: 52px; background: #DCE84A; color: #17170F; border-radius: 999px; display: grid; place-items: center; font-size: 13px; margin: auto;">▶</div><span style="font-size: 16px; line-height: 1.3;">Entender el territorio es el primer paso</span></a>
+            <div style="aspect-ratio: 9 / 16; background: #85A093; color: #14201A; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em;">NUESTRO PROPÓSITO</span><p style="margin: 0; font-size: 21px; line-height: 1.2; letter-spacing: -0.02em;">Ayudar a construir territorios donde el desarrollo, las personas y el medio ambiente avancen en la misma dirección.</p><img src="assets/mark-dark.png" alt="" style="height: 24px; width: auto;" /></div>
+          </div>
+        </div>
+
+        <div id="b-contacto" style="background: #DCE84A; color: #17170F; padding: 96px 40px 34px; display: flex; flex-direction: column; gap: 54px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px;">
+            <h3 style="margin: 0; font-size: 92px; line-height: 0.9; letter-spacing: -0.05em; font-weight: 700; max-width: 18ch;">¿Tiene un territorio por transformar?</h3>
+            <a href="#b-contacto" style="background: #17170F; color: #DCE84A; font-size: 17px; font-weight: 500; padding: 24px 36px; border-radius: 999px; white-space: nowrap;" style-hover="background: #F4F3EE; color: #17170F;">Agendar una reunión →</a>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; padding-top: 28px; border-top: 1px solid rgba(23,23,15,0.3);">
+            <img src="assets/logo-dark.png" alt="Úrbit Lab (CLAP)" style="height: 44px; width: auto;" />
+            <div style="display: flex; gap: 52px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em;">
+              <div style="display: flex; flex-direction: column; gap: 7px;"><span style="opacity: 0.55;">CONTACTO</span><a href="#b-contacto">hola@urbitlab.co</a><a href="#b-contacto">+57 000 000 0000</a></div>
+              <div style="display: flex; flex-direction: column; gap: 7px;"><span style="opacity: 0.55;">REDES</span><a href="https://www.instagram.com/urbitlab/">INSTAGRAM ↗</a><a href="#b-contacto">LINKEDIN ↗</a></div>
+              <div style="display: flex; flex-direction: column; gap: 7px;"><span style="opacity: 0.55;">SEDE</span><span>COLOMBIA</span><span>2026</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="1c" style="display: flex; flex-direction: column; gap: 14px;">
+      <div style="display: flex; align-items: baseline; gap: 14px;">
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; background: #1E1E19; color: #DCE84A; padding: 5px 10px;">1c</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; color: #1E1E19;">TOPOGRAFÍA</span>
+        <span style="font-size: 13px; color: #6B6B5E;">Orgánico · arcos y curvas de nivel · salvia protagonista</span>
+      </div>
+
+      <div style="width: 1440px; background: #EDEFE9; color: #1E2A23; overflow: hidden; position: relative; border: 1px solid #C6C5BB;">
+
+        <div style="position: sticky; top: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; background: transparent;">
+          <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; background: rgba(237, 239, 233, 0.86); backdrop-filter: blur(12px); border: 1px solid rgba(30, 42, 35, 0.14); border-radius: 999px; padding: 12px 14px 12px 22px;">
+            <a href="#1c" style="display: flex; align-items: center; gap: 10px;">
+              <img src="assets/mark-dark.png" alt="Úrbit Lab" style="height: 22px; width: auto; display: block;" />
+              <span style="font-size: 18px; font-weight: 600; letter-spacing: -0.02em;">Úrbit Lab</span>
+            </a>
+            <nav style="display: flex; gap: 26px; font-size: 14px;">
+              <a href="#c-hacemos" style-hover="color: #5F776C;">Qué hacemos</a>
+              <a href="#c-dif" style-hover="color: #5F776C;">Diferencia</a>
+              <a href="#c-metodo" style-hover="color: #5F776C;">Metodología</a>
+              <a href="#c-aliado" style-hover="color: #5F776C;">Aliado</a>
+              <a href="#c-lab" style-hover="color: #5F776C;">Lab</a>
+            </nav>
+            <a href="#c-contacto" style="background: #1E2A23; color: #EDEFE9; font-size: 14px; padding: 11px 22px; border-radius: 999px;" style-hover="background: #DCE84A; color: #1E2A23;">Agendar reunión</a>
+          </div>
+        </div>
+
+        <div style="position: relative; padding: 44px 22px 0;">
+          <div style="position: relative; border-radius: 320px 320px 34px 34px; overflow: hidden; background: #85A093; min-height: 690px; display: grid; grid-template-columns: 1.32fr 0.68fr; align-items: end; gap: 48px; padding: 56px 60px;">
+            <div style="position: absolute; inset: 0; background-image: repeating-radial-gradient(circle at 50% 118%, rgba(237, 239, 233, 0.34) 0px, rgba(237, 239, 233, 0.34) 1px, transparent 1px, transparent 58px);"></div>
+            <div style="position: relative; grid-column: 2; grid-row: 1; justify-self: end; width: 100%; max-width: 330px; aspect-ratio: 3 / 4; border-radius: 220px 220px 12px 12px; overflow: hidden; background: repeating-linear-gradient(135deg, #6E8A7D 0px, #6E8A7D 10px, #7B9689 10px, #7B9689 20px); display: grid; place-items: end center; padding: 16px;">
+              <div style="position: absolute; inset: 0; background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E&quot;); opacity: 0.3;"></div>
+              <span style="position: relative; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #EDEFE9; text-align: center; line-height: 1.5;">COLLAGE B/N EN ARCO<br />PERSONAS EN EL ESPACIO PÚBLICO</span>
+            </div>
+            <div style="position: relative; grid-column: 1; grid-row: 1; display: flex; flex-direction: column; gap: 26px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #EDEFE9;">ARQUITECTURA · URBANISMO · INGENIERÍA · COLOMBIA</span>
+              <h2 style="margin: 0; font-size: 92px; line-height: 0.92; letter-spacing: -0.045em; font-weight: 500; color: #16221B; max-width: 15ch;">Diseñamos territorios que mejoran la vida de las <span style="font-style: italic; font-weight: 300;">personas.</span></h2>
+              <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 28px;">
+                <p style="margin: 0; font-size: 19px; line-height: 1.5; color: #1E2A23; max-width: 42ch; text-wrap: pretty;">Transformamos ideas en proyectos que conectan arquitectura, urbanismo, ingeniería y sostenibilidad para construir ciudades y territorios más inteligentes, resilientes y humanos.</p>
+                <a href="#c-contacto" style="display: flex; align-items: center; gap: 12px; background: #DCE84A; color: #16221B; font-size: 16px; font-weight: 500; padding: 19px 30px; border-radius: 999px; white-space: nowrap;" style-hover="background: #16221B; color: #DCE84A;">Hablemos de su proyecto →</a>
+              </div>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 14px 0;">
+            <div style="background: #DCE84A; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 8px;"><span style="font-size: 52px; font-weight: 600; letter-spacing: -0.04em; line-height: 0.9;">42</span><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em;">MUNICIPIOS</span></div>
+            <div style="background: #D5DED6; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 8px;"><span style="font-size: 52px; font-weight: 600; letter-spacing: -0.04em; line-height: 0.9;">128k</span><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em;">PERSONAS BENEFICIADAS</span></div>
+            <div style="background: #D5DED6; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 8px;"><span style="font-size: 52px; font-weight: 600; letter-spacing: -0.04em; line-height: 0.9;">1.2M</span><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em;">M² PLANIFICADOS</span></div>
+            <div style="background: #1E2A23; color: #EDEFE9; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 8px;"><span style="font-size: 52px; font-weight: 600; letter-spacing: -0.04em; line-height: 0.9;">08</span><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em;">LÍNEAS DE SERVICIO <span style="opacity: 0.6;">(EJEMPLO)</span></span></div>
+          </div>
+        </div>
+
+        <div id="c-hacemos" style="padding: 86px 60px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 40px;">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #5F776C;">01 · QUÉ HACEMOS</span>
+              <h3 style="margin: 0; font-size: 62px; line-height: 0.98; letter-spacing: -0.04em; font-weight: 500; max-width: 22ch;">Proyectos integrales, no servicios sueltos.</h3>
+            </div>
+            <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #46564C; max-width: 36ch; text-wrap: pretty;">Combinamos conocimiento técnico, innovación y visión territorial para responder a ciudades, municipios y comunidades.</p>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+            <div style="background: #FFFFFF; border-radius: 20px 20px 20px 20px; padding: 24px; display: flex; flex-direction: column; gap: 34px; min-height: 226px;" style-hover="background: #DCE84A;" data-rv="1"><span style="width: 34px; height: 34px; border-radius: 999px; background: #EDEFE9; display: grid; place-items: center; font-family: 'Space Mono', monospace; font-size: 11px;">01</span><div style="display: flex; flex-direction: column; gap: 9px; margin-top: auto;"><h4 style="margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15;">Arquitectura y diseño urbano</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: #46564C;">Del edificio a la escala de barrio, con el espacio público como hilo conductor.</p></div></div>
+            <div style="background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 34px; min-height: 226px;" style-hover="background: #DCE84A;" data-rv="1"><span style="width: 34px; height: 34px; border-radius: 999px; background: #EDEFE9; display: grid; place-items: center; font-family: 'Space Mono', monospace; font-size: 11px;">02</span><div style="display: flex; flex-direction: column; gap: 9px; margin-top: auto;"><h4 style="margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15;">Ingeniería e infraestructura</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: #46564C;">Viabilidad estructural, vial y de redes desde el primer trazo.</p></div></div>
+            <div style="background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 34px; min-height: 226px;" style-hover="background: #DCE84A;" data-rv="1"><span style="width: 34px; height: 34px; border-radius: 999px; background: #EDEFE9; display: grid; place-items: center; font-family: 'Space Mono', monospace; font-size: 11px;">03</span><div style="display: flex; flex-direction: column; gap: 9px; margin-top: auto;"><h4 style="margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15;">Vivienda de interés social</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: #46564C;">Dignidad, densidad y habitabilidad con presupuestos reales.</p></div></div>
+            <div style="background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 34px; min-height: 226px;" style-hover="background: #DCE84A;" data-rv="1"><span style="width: 34px; height: 34px; border-radius: 999px; background: #EDEFE9; display: grid; place-items: center; font-family: 'Space Mono', monospace; font-size: 11px;">04</span><div style="display: flex; flex-direction: column; gap: 9px; margin-top: auto;"><h4 style="margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15;">Ordenamiento y planificación territorial</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: #46564C;">Instrumentos, POT y escenarios de crecimiento a largo plazo.</p></div></div>
+            <div style="background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 34px; min-height: 226px;" style-hover="background: #DCE84A;" data-rv="1"><span style="width: 34px; height: 34px; border-radius: 999px; background: #EDEFE9; display: grid; place-items: center; font-family: 'Space Mono', monospace; font-size: 11px;">05</span><div style="display: flex; flex-direction: column; gap: 9px; margin-top: auto;"><h4 style="margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15;">Gestión del riesgo de desastres</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: #46564C;">Territorios que se anticipan en lugar de reaccionar.</p></div></div>
+            <div style="background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 34px; min-height: 226px;" style-hover="background: #DCE84A;" data-rv="1"><span style="width: 34px; height: 34px; border-radius: 999px; background: #EDEFE9; display: grid; place-items: center; font-family: 'Space Mono', monospace; font-size: 11px;">06</span><div style="display: flex; flex-direction: column; gap: 9px; margin-top: auto;"><h4 style="margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15;">Soluciones ambientales e infraestructura verde</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: #46564C;">Agua, arbolado y suelo como infraestructura.</p></div></div>
+            <div style="background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 34px; min-height: 226px;" style-hover="background: #DCE84A;" data-rv="1"><span style="width: 34px; height: 34px; border-radius: 999px; background: #EDEFE9; display: grid; place-items: center; font-family: 'Space Mono', monospace; font-size: 11px;">07</span><div style="display: flex; flex-direction: column; gap: 9px; margin-top: auto;"><h4 style="margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15;">Supervisión e interventoría</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: #46564C;">Control técnico para que lo diseñado sea lo construido.</p></div></div>
+            <div style="background: #1E2A23; color: #EDEFE9; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 34px; min-height: 226px;" data-rv="1"><span style="width: 34px; height: 34px; border-radius: 999px; background: rgba(237,239,233,0.14); display: grid; place-items: center; font-family: 'Space Mono', monospace; font-size: 11px;">08</span><div style="display: flex; flex-direction: column; gap: 9px; margin-top: auto;"><h4 style="margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15;">Participación ciudadana y fortalecimiento comunitario</h4><p style="margin: 0; font-size: 13px; line-height: 1.5; color: #A9B7AC;">La comunidad como fuente de datos y de legitimidad.</p></div></div>
+          </div>
+        </div>
+
+        <div id="c-dif" style="padding: 0 22px;">
+          <div style="background: #1E2A23; color: #EDEFE9; border-radius: 34px; padding: 80px 60px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; position: relative; overflow: hidden;">
+            <div style="position: absolute; right: -140px; bottom: -180px; width: 520px; height: 520px; border-radius: 999px; border: 1px solid rgba(237,239,233,0.16);"></div>
+            <div style="position: absolute; right: -60px; bottom: -120px; width: 380px; height: 380px; border-radius: 999px; border: 1px solid rgba(220,232,74,0.4);"></div>
+            <div style="position: relative; display: flex; flex-direction: column; gap: 24px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #DCE84A;">02 · QUÉ NOS HACE DIFERENTES</span>
+              <h3 style="margin: 0; font-size: 62px; line-height: 0.98; letter-spacing: -0.04em; font-weight: 500; max-width: 20ch;">El territorio no se entiende desde una sola disciplina.</h3>
+              <p style="margin: 0; font-size: 18px; line-height: 1.55; color: #B7C4BA; max-width: 46ch; text-wrap: pretty;">Por eso integramos arquitectura, ingeniería, urbanismo, sostenibilidad e innovación social para desarrollar soluciones completas, sostenibles y con impacto medible.</p>
+            </div>
+            <div style="position: relative; display: flex; flex-direction: column; gap: 18px; justify-content: center;">
+              <div style="background: rgba(237,239,233,0.07); border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 12px;">
+                <span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #DCE84A;">LA PREGUNTA QUE GUÍA CADA DECISIÓN</span>
+                <p style="margin: 0; font-size: 26px; line-height: 1.22; letter-spacing: -0.02em; text-wrap: pretty;">¿Cómo mejorar la calidad de vida mientras construimos territorios preparados para el futuro?</p>
+              </div>
+              <div style="background: #DCE84A; color: #16221B; border-radius: 22px; padding: 28px;">
+                <p style="margin: 0; font-size: 17px; line-height: 1.4;">El desarrollo no se mide por las obras construidas, sino por el bienestar que generan para las personas.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="c-metodo" style="padding: 86px 60px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 44px;">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #5F776C;">03 · METODOLOGÍA</span>
+              <h3 style="margin: 0; font-size: 62px; line-height: 0.98; letter-spacing: -0.04em; font-weight: 500; max-width: 20ch;">Cuatro fases, una sola trayectoria.</h3>
+            </div>
+            <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #46564C; max-width: 34ch;">Podemos entrar en cualquier punto: desde una idea inicial hasta una obra en ejecución.</p>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+            <div style="background: #85A093; color: #16221B; border-radius: 200px 200px 20px 20px; padding: 40px 26px 28px; min-height: 340px; display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em;">ENTENDER</span><span style="font-size: 64px; font-weight: 600; letter-spacing: -0.05em; line-height: 0.9;">01</span><h4 style="margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -0.02em;">Diagnóstico</h4><p style="margin: 0; font-size: 14px; line-height: 1.5; color: #223028;">Lectura del territorio, datos, escucha comunitaria y factibilidad.</p></div>
+            <div style="background: #D5DED6; border-radius: 200px 200px 20px 20px; padding: 40px 26px 28px; min-height: 340px; display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #5F776C;">PROYECTAR</span><span style="font-size: 64px; font-weight: 600; letter-spacing: -0.05em; line-height: 0.9;">02</span><h4 style="margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -0.02em;">Diseño</h4><p style="margin: 0; font-size: 14px; line-height: 1.5; color: #46564C;">Arquitectura, urbanismo e ingeniería como una sola pieza.</p></div>
+            <div style="background: #D5DED6; border-radius: 200px 200px 20px 20px; padding: 40px 26px 28px; min-height: 340px; display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #5F776C;">HACER VIABLE</span><span style="font-size: 64px; font-weight: 600; letter-spacing: -0.05em; line-height: 0.9;">03</span><h4 style="margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -0.02em;">Gestión</h4><p style="margin: 0; font-size: 14px; line-height: 1.5; color: #46564C;">Recursos, predial, ambiental y social: que el plan ocurra.</p></div>
+            <div style="background: #DCE84A; border-radius: 200px 200px 20px 20px; padding: 40px 26px 28px; min-height: 340px; display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center;" data-rv="1"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em;">MEDIR</span><span style="font-size: 64px; font-weight: 600; letter-spacing: -0.05em; line-height: 0.9;">04</span><h4 style="margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -0.02em;">Impacto</h4><p style="margin: 0; font-size: 14px; line-height: 1.5; color: #3A4A3E;">Supervisión, monitoreo y evaluación del bienestar generado.</p></div>
+          </div>
+        </div>
+
+        <div id="c-aliado" style="padding: 0 22px 86px;">
+          <div style="background: #FFFFFF; border-radius: 34px; padding: 66px 60px; display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 60px;">
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #5F776C;">04 · ACOMPAÑAMIENTO</span>
+              <h3 style="margin: 0; font-size: 48px; line-height: 1; letter-spacing: -0.035em; font-weight: 500;">Podemos ser su aliado en cualquier etapa.</h3>
+              <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #46564C; max-width: 38ch; text-wrap: pretty;">Trabajamos junto a gobiernos, empresas, organizaciones y comunidades para convertir los retos del territorio en oportunidades de desarrollo sostenible.</p>
+              <a href="#c-contacto" style="align-self: flex-start; margin-top: 8px; background: #1E2A23; color: #EDEFE9; font-size: 15px; padding: 15px 26px; border-radius: 999px;" style-hover="background: #DCE84A; color: #16221B;">Contar mi caso →</a>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+              <div style="display: flex; align-items: center; gap: 18px; padding: 17px 0; border-bottom: 1px solid #DEE3DC;" style-hover="padding-left: 8px;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #8C9A90; width: 30px;">01</span><span style="font-size: 22px; font-weight: 400; letter-spacing: -0.02em; flex: 1;">Diagnóstico y formulación de proyectos</span><span style="color: #5F776C;">→</span></div>
+              <div style="display: flex; align-items: center; gap: 18px; padding: 17px 0; border-bottom: 1px solid #DEE3DC;" style-hover="padding-left: 8px;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #8C9A90; width: 30px;">02</span><span style="font-size: 22px; font-weight: 400; letter-spacing: -0.02em; flex: 1;">Estudios técnicos y de factibilidad</span><span style="color: #5F776C;">→</span></div>
+              <div style="display: flex; align-items: center; gap: 18px; padding: 17px 0; border-bottom: 1px solid #DEE3DC;" style-hover="padding-left: 8px;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #8C9A90; width: 30px;">03</span><span style="font-size: 22px; font-weight: 400; letter-spacing: -0.02em; flex: 1;">Diseño arquitectónico, urbano e ingenieril</span><span style="color: #5F776C;">→</span></div>
+              <div style="display: flex; align-items: center; gap: 18px; padding: 17px 0; border-bottom: 1px solid #DEE3DC;" style-hover="padding-left: 8px;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #8C9A90; width: 30px;">04</span><span style="font-size: 22px; font-weight: 400; letter-spacing: -0.02em; flex: 1;">Gestión predial, ambiental y social</span><span style="color: #5F776C;">→</span></div>
+              <div style="display: flex; align-items: center; gap: 18px; padding: 17px 0; border-bottom: 1px solid #DEE3DC;" style-hover="padding-left: 8px;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #8C9A90; width: 30px;">05</span><span style="font-size: 22px; font-weight: 400; letter-spacing: -0.02em; flex: 1;">Planeación territorial e instrumentos de ordenamiento</span><span style="color: #5F776C;">→</span></div>
+              <div style="display: flex; align-items: center; gap: 18px; padding: 17px 0; border-bottom: 1px solid #DEE3DC;" style-hover="padding-left: 8px;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #8C9A90; width: 30px;">06</span><span style="font-size: 22px; font-weight: 400; letter-spacing: -0.02em; flex: 1;">Gestión de recursos y estructuración de proyectos</span><span style="color: #5F776C;">→</span></div>
+              <div style="display: flex; align-items: center; gap: 18px; padding: 17px 0; border-bottom: 1px solid #DEE3DC;" style-hover="padding-left: 8px;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #8C9A90; width: 30px;">07</span><span style="font-size: 22px; font-weight: 400; letter-spacing: -0.02em; flex: 1;">Ejecución, supervisión e interventoría</span><span style="color: #5F776C;">→</span></div>
+              <div style="display: flex; align-items: center; gap: 18px; padding: 17px 0;" style-hover="padding-left: 8px;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: #8C9A90; width: 30px;">08</span><span style="font-size: 22px; font-weight: 400; letter-spacing: -0.02em; flex: 1;">Monitoreo, evaluación e impacto</span><span style="color: #5F776C;">→</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="c-lab" style="padding: 0 22px 86px;">
+          <div style="background: #85A093; border-radius: 34px; padding: 66px 60px; display: flex; flex-direction: column; gap: 34px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+              <div style="display: flex; flex-direction: column; gap: 14px;">
+                <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #22322A;">05 · LAB EN MOVIMIENTO</span>
+                <h3 style="margin: 0; font-size: 50px; line-height: 1; letter-spacing: -0.035em; font-weight: 500; color: #16221B;">Lo que estamos pensando, en video.</h3>
+              </div>
+              <a href="https://www.instagram.com/urbitlab/" style="background: #16221B; color: #DCE84A; font-size: 14px; padding: 14px 24px; border-radius: 999px;" style-hover="background: #DCE84A; color: #16221B;">@urbitlab en Instagram ↗</a>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+              <a href="https://www.instagram.com/urbitlab/" style="position: relative; aspect-ratio: 9 / 16; background: #6E8A7D; border-radius: 200px 200px 18px 18px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 26px 18px 18px; text-align: center;" style-hover="background: #5F776C;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #E7EDE8;">REEL 01 · 0:42</span><div style="width: 50px; height: 50px; background: #DCE84A; color: #16221B; border-radius: 999px; display: grid; place-items: center; font-size: 13px;">▶</div><span style="font-size: 15px; line-height: 1.3; color: #F4F3EE;">¿Qué hacemos en Úrbit Lab?</span></a>
+              <a href="https://www.instagram.com/urbitlab/" style="position: relative; aspect-ratio: 9 / 16; background: #6E8A7D; border-radius: 200px 200px 18px 18px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 26px 18px 18px; text-align: center;" style-hover="background: #5F776C;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #E7EDE8;">REEL 02 · 0:58</span><div style="width: 50px; height: 50px; background: #DCE84A; color: #16221B; border-radius: 999px; display: grid; place-items: center; font-size: 13px;">▶</div><span style="font-size: 15px; line-height: 1.3; color: #F4F3EE;">¿Quién diseña el futuro del territorio?</span></a>
+              <a href="https://www.instagram.com/urbitlab/" style="position: relative; aspect-ratio: 9 / 16; background: #6E8A7D; border-radius: 200px 200px 18px 18px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 26px 18px 18px; text-align: center;" style-hover="background: #5F776C;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #E7EDE8;">REEL 03 · 1:12</span><div style="width: 50px; height: 50px; background: #DCE84A; color: #16221B; border-radius: 999px; display: grid; place-items: center; font-size: 13px;">▶</div><span style="font-size: 15px; line-height: 1.3; color: #F4F3EE;">Entender el territorio es el primer paso</span></a>
+              <div style="aspect-ratio: 9 / 16; background: #EDEFE9; border-radius: 200px 200px 18px 18px; padding: 30px 22px 22px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center;"><span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #5F776C;">NUESTRO PROPÓSITO</span><p style="margin: 0; font-size: 19px; line-height: 1.25; letter-spacing: -0.02em;">Ayudar a construir territorios donde el desarrollo, las personas y el medio ambiente avancen en la misma dirección.</p><img src="assets/mark-dark.png" alt="" style="height: 22px; width: auto;" /></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="c-contacto" style="padding: 0 22px 22px;">
+          <div style="background: #1E2A23; color: #EDEFE9; border-radius: 34px; padding: 80px 60px 34px; display: flex; flex-direction: column; gap: 50px; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -160px; left: 50%; transform: translateX(-50%); width: 620px; height: 620px; border-radius: 999px; background: radial-gradient(circle, rgba(133,160,147,0.32) 0%, transparent 66%);"></div>
+            <div style="position: relative; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px;">
+              <h3 style="margin: 0; font-size: 76px; line-height: 0.94; letter-spacing: -0.045em; font-weight: 500; max-width: 20ch;">¿Tiene un territorio por transformar?</h3>
+              <a href="#c-contacto" style="background: #DCE84A; color: #16221B; font-size: 17px; font-weight: 500; padding: 22px 34px; border-radius: 999px; white-space: nowrap;" style-hover="background: #EDEFE9;">Agendar una reunión →</a>
+            </div>
+            <div style="position: relative; display: flex; justify-content: space-between; align-items: flex-end; padding-top: 28px; border-top: 1px solid rgba(237,239,233,0.2);">
+              <img src="assets/logo-light.png" alt="Úrbit Lab (CLAP)" style="height: 44px; width: auto;" />
+              <div style="display: flex; gap: 52px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #B7C4BA;">
+                <div style="display: flex; flex-direction: column; gap: 7px;"><span style="color: #7E8E83;">CONTACTO</span><a href="#c-contacto">hola@urbitlab.co</a><a href="#c-contacto">+57 000 000 0000</a></div>
+                <div style="display: flex; flex-direction: column; gap: 7px;"><span style="color: #7E8E83;">REDES</span><a href="https://www.instagram.com/urbitlab/">INSTAGRAM ↗</a><a href="#c-contacto">LINKEDIN ↗</a></div>
+                <div style="display: flex; flex-direction: column; gap: 7px;"><span style="color: #7E8E83;">SEDE</span><span>COLOMBIA</span><span>2026</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;reveal&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Movimiento&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    if (this.props.reveal === false) return;
+    const root = this.el || document;
+    const nodes = Array.from(root.querySelectorAll('[data-rv]'));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'none';
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.14 });
+    nodes.forEach((n, i) => {
+      const r = n.getBoundingClientRect();
+      if (r.top < window.innerHeight * 1.1) return;
+      n.style.transition = 'opacity 700ms cubic-bezier(0.16,1,0.3,1) ' + ((i % 4) * 70) + 'ms, transform 700ms cubic-bezier(0.16,1,0.3,1) ' + ((i % 4) * 70) + 'ms';
+      n.style.opacity = '0';
+      n.style.transform = 'translateY(26px)';
+      io.observe(n);
+    });
+    this._io = io;
+  }
+  componentWillUnmount() { if (this._io) this._io.disconnect(); }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
