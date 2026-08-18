@@ -1,0 +1,55 @@
+---
+import IconCheck from '../icons/IconCheck.astro';
+
+interface Props {
+  number: string;
+  label: string;
+  bordered?: boolean;
+}
+
+const { number, label, bordered = true } = Astro.props;
+---
+
+<div class:list={['tap', { 'tap--bordered': bordered }]}>
+  <span class="tap-number">{number}</span>
+  <span class="tap-label">{label}</span>
+  <IconCheck />
+</div>
+
+<style>
+  .tap {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 17px 0;
+  }
+
+  .tap--bordered {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .tap:hover {
+    padding-left: 8px;
+  }
+
+  .tap-number {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-numeral-muted);
+    width: 30px;
+  }
+
+  .tap-label {
+    font-size: clamp(17px, 1.7vw, 22px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    flex: 1;
+  }
+
+  @media (max-width: 1024px) {
+    .tap {
+      min-height: 48px;
+      align-items: center;
+    }
+  }
+</style>

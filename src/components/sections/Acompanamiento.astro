@@ -1,0 +1,164 @@
+---
+import Cta from '../ui/Cta.astro';
+import TapRow from '../ui/TapRow.astro';
+import { CONTACT } from '../../data/site';
+
+const items = [
+  { number: '01', label: 'Diagnóstico y formulación de proyectos' },
+  { number: '02', label: 'Estudios técnicos y de factibilidad' },
+  { number: '03', label: 'Diseño arquitectónico, urbano e ingenieril' },
+  { number: '04', label: 'Gestión predial, ambiental y social' },
+  { number: '05', label: 'Planeación territorial e instrumentos de ordenamiento' },
+  { number: '06', label: 'Gestión de recursos y estructuración de proyectos' },
+  { number: '07', label: 'Ejecución, supervisión e interventoría' },
+  { number: '08', label: 'Monitoreo, evaluación e impacto' },
+];
+---
+
+<section id="c-aliado" class="aliado-wrap">
+  <div class="aliado-card">
+    <div class="aliado-main">
+      <span class="eyebrow">05 · ACOMPAÑAMIENTO</span>
+      <h2 class="aliado-title">Podemos ser su aliado en cualquier etapa.</h2>
+      <p class="aliado-copy">
+        Trabajamos junto a gobiernos, empresas, organizaciones y comunidades para convertir los retos del
+        territorio en oportunidades de desarrollo sostenible.
+      </p>
+      <Cta
+        href={CONTACT.whatsappUrl}
+        target="_blank"
+        rel="noopener"
+        background="var(--color-ink-800)"
+        color="var(--color-bg)"
+        hoverBackground="var(--color-accent)"
+        hoverColor="var(--color-ink-900)"
+        fontSize="15px"
+        padding="15px 26px"
+        class="aliado-cta"
+      >
+        Quiero el acompañamiento →
+      </Cta>
+    </div>
+
+    <div class="aliado-list">
+      {items.map((item, i) => (
+        <TapRow number={item.number} label={item.label} bordered={i < items.length - 1} />
+      ))}
+
+      <Cta
+        href={CONTACT.whatsappUrl}
+        target="_blank"
+        rel="noopener"
+        background="var(--color-ink-800)"
+        color="var(--color-bg)"
+        hoverBackground="var(--color-accent)"
+        hoverColor="var(--color-ink-900)"
+        fontSize="16px"
+        padding="17px 26px"
+        fullWidth
+        class="cta-mobile"
+      >
+        Quiero el acompañamiento <span class="cta-arrow">→</span>
+      </Cta>
+    </div>
+  </div>
+</section>
+
+<style>
+  .aliado-wrap {
+    padding: 0 22px 86px;
+  }
+
+  .aliado-card {
+    background: var(--color-white);
+    border-radius: 34px;
+    padding: 66px 60px;
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 60px;
+  }
+
+  .aliado-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--color-eyebrow);
+  }
+
+  .aliado-title {
+    margin: 0;
+    font-size: clamp(28px, 3.6vw, 48px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+  }
+
+  .aliado-copy {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-muted);
+    max-width: 38ch;
+    text-wrap: pretty;
+  }
+
+  :global(.aliado-cta) {
+    align-self: flex-start;
+    margin-top: 8px;
+  }
+
+  .aliado-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cta-arrow {
+    font-size: 17px;
+  }
+
+  :global(.cta-mobile) {
+    /* !important: le gana a .cta[data-astro-cid] (display:inline-flex
+       en su base), más específica al venir de otro componente. */
+    display: none !important;
+    margin-top: 22px;
+    min-height: 48px;
+  }
+
+  @media (max-width: 1024px) {
+    .aliado-wrap {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .aliado-card {
+      grid-template-columns: 1fr;
+      padding: 44px 30px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .aliado-wrap {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    .aliado-card {
+      padding: 32px 20px;
+      border-radius: 24px;
+    }
+
+    :global(.aliado-cta) {
+      display: none !important;
+    }
+
+    :global(.cta-mobile) {
+      display: flex !important;
+    }
+  }
+</style>
