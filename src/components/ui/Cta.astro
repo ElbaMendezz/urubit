@@ -3,8 +3,12 @@ interface Props {
   href: string;
   target?: '_blank';
   rel?: string;
-  hoverColor?: string;
-  size?: 'sm' | 'md';
+  background: string;
+  color: string;
+  hoverBackground: string;
+  hoverColor: string;
+  fontSize: string;
+  padding: string;
   fullWidth?: boolean;
   class?: string;
 }
@@ -13,8 +17,12 @@ const {
   href,
   target,
   rel,
-  hoverColor = 'var(--color-ink-800)',
-  size = 'md',
+  background,
+  color,
+  hoverBackground,
+  hoverColor,
+  fontSize,
+  padding,
   fullWidth = false,
   class: className,
 } = Astro.props;
@@ -24,31 +32,32 @@ const {
   href={href}
   target={target}
   rel={rel}
-  class:list={['cta', `cta--${size}`, { 'cta--full': fullWidth }, className]}
+  class:list={['cta', { 'cta--full': fullWidth }, className]}
 >
   <slot />
 </a>
 
-<style define:vars={{ ctaHoverColor: hoverColor }}>
+<style
+  define:vars={{
+    ctaBg: background,
+    ctaColor: color,
+    ctaHoverBg: hoverBackground,
+    ctaHoverColor: hoverColor,
+    ctaFontSize: fontSize,
+    ctaPadding: padding,
+  }}
+>
   .cta {
-    background: var(--color-ink-800);
-    color: var(--color-bg);
+    background: var(--ctaBg);
+    color: var(--ctaColor);
     border-radius: var(--radius-full);
+    font-size: var(--ctaFontSize);
+    padding: var(--ctaPadding);
   }
 
   .cta:hover {
-    background: var(--color-accent);
+    background: var(--ctaHoverBg);
     color: var(--ctaHoverColor);
-  }
-
-  .cta--sm {
-    font-size: 14px;
-    padding: 11px 22px;
-  }
-
-  .cta--md {
-    font-size: 16px;
-    padding: 16px 22px;
   }
 
   .cta--full {

@@ -1,0 +1,268 @@
+---
+import { Image } from 'astro:assets';
+import heroRender from '../../assets/hero-render.png';
+import Cta from '../ui/Cta.astro';
+import StatCard from '../ui/StatCard.astro';
+import IconGrid from '../icons/IconGrid.astro';
+import IconDisciplinas from '../icons/IconDisciplinas.astro';
+import IconSectores from '../icons/IconSectores.astro';
+import IconEscalas from '../icons/IconEscalas.astro';
+import { CONTACT, HERO_METRICS } from '../../data/site';
+
+const disciplines = ['ARQUITECTURA', 'INGENIERÍA', 'URBANISMO', 'SOSTENIBILIDAD'];
+
+const stats = [
+  { ...HERO_METRICS[0], background: 'var(--color-accent)', Icon: IconGrid },
+  { ...HERO_METRICS[1], background: 'var(--color-stat-mint)', Icon: IconDisciplinas },
+  { ...HERO_METRICS[2], background: 'var(--color-stat-grey)', Icon: IconSectores },
+  {
+    ...HERO_METRICS[3],
+    background: 'var(--color-ink-800)',
+    color: 'var(--color-bg)',
+    Icon: IconEscalas,
+  },
+];
+---
+
+<section class="hero">
+  <Image
+    src={heroRender}
+    alt=""
+    width={2206}
+    height={713}
+    loading="eager"
+    class="hero-bg"
+  />
+  <div class="hero-veil"></div>
+
+  <div class="hero-coords">
+    <span>4°42′N 74°04′W · COLOMBIA</span>
+    <span>ÚRBIT LAB (CLAP) · EST. 2026</span>
+  </div>
+
+  <h1 class="hero-title">
+    Diseñamos territorios que mejoran la vida de las <span class="hero-title-italic">personas.</span>
+  </h1>
+
+  <p class="hero-copy">
+    Transformamos ideas en proyectos que conectan arquitectura, urbanismo, ingeniería y<br class="hero-copy-break" />sostenibilidad
+    para construir ciudades y territorios más inteligentes, resilientes y humanos.
+  </p>
+
+  <div class="hero-foot">
+    <Cta
+      href={CONTACT.whatsappUrl}
+      target="_blank"
+      rel="noopener"
+      background="var(--color-accent)"
+      color="var(--color-ink-900)"
+      hoverBackground="var(--color-ink-900)"
+      hoverColor="var(--color-accent)"
+      fontSize="16px"
+      padding="19px 30px"
+    >
+      Conversemos de tu proyecto →
+    </Cta>
+
+    <div class="hero-tags">
+      <div class="hero-tags-rule"></div>
+      <div class="hero-tags-label"><span>DISCIPLINAS INTEGRADAS</span></div>
+      <div class="hero-tags-list">
+        {disciplines.map((tag) => <span class="hero-tag">{tag}</span>)}
+        <span class="hero-tag hero-tag--accent">INNOVACIÓN SOCIAL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  {stats.map(({ value, label, background, color, Icon }) => (
+    <StatCard value={value} label={label} background={background} color={color}>
+      <Icon slot="icon" />
+    </StatCard>
+  ))}
+</div>
+
+<style>
+  .hero {
+    position: relative;
+    border-radius: 160px 160px 34px 34px;
+    overflow: hidden;
+    background-color: var(--color-hero-fallback);
+    padding: 76px 68px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 52px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right bottom;
+  }
+
+  .hero-veil {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(
+      100deg,
+      rgba(232, 238, 226, 0.94) 0%,
+      rgba(232, 238, 226, 0.78) 42%,
+      rgba(232, 238, 226, 0.18) 68%,
+      rgba(232, 238, 226, 0) 100%
+    );
+  }
+
+  .hero-coords {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px 30px;
+    margin: 0 clamp(0px, 3vw, 40px);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--color-muted);
+  }
+
+  .hero-title {
+    position: relative;
+    margin: 0;
+    font-size: clamp(34px, 8.4vw, 124px);
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    font-weight: 500;
+    color: var(--color-ink-900);
+    max-width: 24ch;
+    text-wrap: balance;
+  }
+
+  .hero-title-italic {
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .hero-copy {
+    position: relative;
+    margin: 0;
+    font-size: clamp(14px, 1.35vw, 19px);
+    line-height: 1.45;
+    color: var(--color-ink-hero-body);
+    max-width: 104ch;
+    text-wrap: pretty;
+  }
+
+  .hero-foot {
+    position: relative;
+    margin-top: -46px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 56px;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 360px;
+    background: rgba(22, 34, 27, 0.3);
+    backdrop-filter: blur(3px);
+    border-radius: 22px;
+    padding: 18px 20px;
+  }
+
+  .hero-tags-rule {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.55);
+  }
+
+  .hero-tags-label {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--color-white);
+  }
+
+  .hero-tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--color-white);
+  }
+
+  .hero-tag {
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: var(--radius-full);
+    padding: 6px 11px;
+  }
+
+  .hero-tag--accent {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-ink-900);
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    padding: 14px 0;
+  }
+
+  @media (max-width: 1024px) {
+    .hero {
+      padding: 52px 30px 42px;
+      border-radius: 110px 110px 26px 26px;
+    }
+
+    .hero-bg {
+      object-position: center bottom;
+    }
+
+    .hero-veil {
+      background-image: linear-gradient(
+        170deg,
+        rgba(232, 238, 226, 0.95) 0%,
+        rgba(232, 238, 226, 0.86) 46%,
+        rgba(232, 238, 226, 0.42) 78%,
+        rgba(232, 238, 226, 0.16) 100%
+      );
+    }
+
+    .hero-foot {
+      flex-direction: column;
+      align-items: stretch;
+      margin-top: 0;
+      gap: 26px;
+    }
+
+    .hero-tags {
+      width: 100%;
+    }
+
+    .stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding: 40px 20px 34px;
+      border-radius: 70px 70px 22px 22px;
+    }
+
+    .hero-copy-break {
+      display: none;
+    }
+  }
+</style>

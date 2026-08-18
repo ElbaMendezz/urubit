@@ -1,11 +1,35 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/sections/Nav.astro';
+import Hero from '../components/sections/Hero.astro';
 ---
 
 <BaseLayout title="Úrbit Lab">
   <Nav />
-
-  <!-- Secciones (Hero, Lab, Servicios, Diferencia, Metodología,
-       Acompañamiento, Contacto): Fase 4 en adelante — ver /CLAUDE.md -->
+  <div class="hero-wrap">
+    <Hero />
+    <!-- Lab (#c-lab) se añade aquí mismo en la próxima fase: en el
+         original comparte este mismo wrapper de padding con Hero -->
+  </div>
+  <!-- Secciones (Servicios, Diferencia, Metodología, Acompañamiento,
+       Contacto): fases siguientes — ver /CLAUDE.md -->
 </BaseLayout>
+
+<style>
+  .hero-wrap {
+    position: relative;
+    padding: 44px 22px 0;
+  }
+
+  @media (max-width: 1024px) {
+    .hero-wrap {
+      padding: 30px 16px 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-wrap {
+      padding: 22px 12px 0;
+    }
+  }
+</style>
