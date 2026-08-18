@@ -1,0 +1,196 @@
+---
+import { Image } from 'astro:assets';
+import difCollage from '../../assets/dif-collage.png';
+---
+
+<section id="c-dif" class="dif-wrap">
+  <div class="dif-card">
+    <Image src={difCollage} alt="" width={1782} height={883} loading="lazy" class="dif-bg" />
+    <div class="dif-veil"></div>
+    <div class="dif-ring dif-ring--outer"></div>
+    <div class="dif-ring dif-ring--inner"></div>
+
+    <div class="dif-main">
+      <span class="eyebrow">03 · QUÉ NOS HACE DIFERENTES</span>
+      <h2 class="dif-title">El territorio no se entiende desde una sola disciplina.</h2>
+      <p class="dif-copy">
+        Por eso integramos arquitectura, ingeniería, urbanismo, sostenibilidad e innovación social para
+        desarrollar soluciones completas, sostenibles y con impacto medible.
+      </p>
+    </div>
+
+    <div class="dif-aside">
+      <div class="dif-question">
+        <span class="dif-question-label">LA PREGUNTA QUE GUÍA CADA DECISIÓN</span>
+        <p class="dif-question-text">
+          ¿Cómo mejorar la calidad de vida mientras construimos territorios preparados para el futuro?
+        </p>
+      </div>
+      <div class="dif-answer">
+        <p class="dif-answer-text">
+          El desarrollo no se mide por las obras construidas, sino por el bienestar que generan para las
+          personas.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .dif-wrap {
+    padding: 0 22px;
+  }
+
+  .dif-card {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-ink-800);
+    color: var(--color-bg);
+    border-radius: 34px;
+    padding: 80px 60px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 60px;
+  }
+
+  .dif-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
+  }
+
+  .dif-veil {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(
+      95deg,
+      rgba(22, 34, 27, 0.93) 0%,
+      rgba(22, 34, 27, 0.82) 46%,
+      rgba(22, 34, 27, 0.52) 72%,
+      rgba(22, 34, 27, 0.35) 100%
+    );
+  }
+
+  .dif-ring {
+    position: absolute;
+    border-radius: var(--radius-full);
+  }
+
+  .dif-ring--outer {
+    right: -140px;
+    bottom: -180px;
+    width: 520px;
+    height: 520px;
+    border: 1px solid rgba(237, 239, 233, 0.16);
+  }
+
+  .dif-ring--inner {
+    right: -60px;
+    bottom: -120px;
+    width: 380px;
+    height: 380px;
+    border: 1px solid rgba(220, 232, 74, 0.4);
+  }
+
+  .dif-main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--color-accent);
+  }
+
+  .dif-title {
+    margin: 0;
+    font-size: clamp(30px, 4.6vw, 62px);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    font-weight: 500;
+    max-width: 20ch;
+  }
+
+  .dif-copy {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--color-ondark-muted);
+    max-width: 46ch;
+    text-wrap: pretty;
+  }
+
+  .dif-aside {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    justify-content: center;
+  }
+
+  .dif-question {
+    background: rgba(237, 239, 233, 0.07);
+    border-radius: 22px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .dif-question-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--color-accent);
+  }
+
+  .dif-question-text {
+    margin: 0;
+    font-size: clamp(20px, 2vw, 26px);
+    line-height: 1.22;
+    letter-spacing: -0.02em;
+    text-wrap: pretty;
+  }
+
+  .dif-answer {
+    background: var(--color-accent);
+    color: var(--color-ink-900);
+    border-radius: 22px;
+    padding: 28px;
+  }
+
+  .dif-answer-text {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 1024px) {
+    .dif-wrap {
+      padding: 0 16px;
+    }
+
+    .dif-card {
+      grid-template-columns: 1fr;
+      padding: 44px 30px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .dif-wrap {
+      padding: 0 12px;
+    }
+
+    .dif-card {
+      padding: 32px 20px;
+      border-radius: 24px;
+    }
+  }
+</style>
