@@ -1,0 +1,96 @@
+---
+interface Props {
+  number: string;
+  label: string;
+  title: string;
+  description: string;
+  background: string;
+  /**
+   * En el original, solo la tarjeta 1 fija `color` en el contenedor.
+   * Las tarjetas 2-4 no lo hacen, así que su número/título heredan el
+   * negro por defecto del navegador (no un token de la paleta) — se
+   * replica literal dejando el prop en 'inherit' en vez de forzar un
+   * color de marca que el diseño no tiene ahí.
+   */
+  color?: string;
+  labelColor?: string;
+  descriptionColor: string;
+}
+
+const {
+  number,
+  label,
+  title,
+  description,
+  background,
+  color = 'inherit',
+  labelColor = 'inherit',
+  descriptionColor,
+} = Astro.props;
+---
+
+<div class="phase">
+  <span class="phase-label">{label}</span>
+  <slot name="icon" />
+  <span class="phase-number">{number}</span>
+  <h3 class="phase-title">{title}</h3>
+  <p class="phase-description">{description}</p>
+</div>
+
+<style
+  define:vars={{
+    phaseBg: background,
+    phaseColor: color,
+    phaseLabelColor: labelColor,
+    phaseDescColor: descriptionColor,
+  }}
+>
+  .phase {
+    background: var(--phaseBg);
+    color: var(--phaseColor);
+    border-radius: 200px 200px 20px 20px;
+    padding: 40px 26px 28px;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .phase-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--phaseLabelColor);
+  }
+
+  .phase-number {
+    font-size: 64px;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+  }
+
+  .phase-title {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  .phase-description {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--phaseDescColor);
+  }
+
+  @media (max-width: 640px) {
+    .phase {
+      border-radius: 120px 120px 18px 18px;
+      min-height: 0;
+      padding: 30px 20px 24px;
+    }
+  }
+</style>

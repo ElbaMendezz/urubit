@@ -1,0 +1,157 @@
+---
+import PhaseCard from '../ui/PhaseCard.astro';
+import IconDiagnostico from '../icons/IconDiagnostico.astro';
+import IconDiseno from '../icons/IconDiseno.astro';
+import IconGestion from '../icons/IconGestion.astro';
+import IconImpacto from '../icons/IconImpacto.astro';
+
+const phases = [
+  {
+    number: '01',
+    label: 'ENTENDER',
+    title: 'Diagnóstico',
+    description: 'Lectura del territorio, datos, escucha comunitaria y factibilidad.',
+    background: 'var(--color-phase-sage)',
+    color: 'var(--color-ink-900)',
+    descriptionColor: 'var(--color-ink-700)',
+    Icon: IconDiagnostico,
+  },
+  {
+    number: '02',
+    label: 'PROYECTAR',
+    title: 'Diseño',
+    description: 'Arquitectura, urbanismo e ingeniería como una sola pieza.',
+    background: 'var(--color-stat-grey)',
+    labelColor: 'var(--color-eyebrow)',
+    descriptionColor: 'var(--color-muted)',
+    Icon: IconDiseno,
+  },
+  {
+    number: '03',
+    label: 'HACER VIABLE',
+    title: 'Gestión',
+    description: 'Recursos, predial, ambiental y social: que el plan ocurra.',
+    background: 'var(--color-phase-olive)',
+    labelColor: 'var(--color-eyebrow)',
+    descriptionColor: 'var(--color-muted)',
+    Icon: IconGestion,
+  },
+  {
+    number: '04',
+    label: 'MEDIR',
+    title: 'Impacto',
+    description: 'Supervisión, monitoreo y evaluación del bienestar generado.',
+    background: 'var(--color-accent)',
+    descriptionColor: 'var(--color-ink-600)',
+    Icon: IconImpacto,
+  },
+];
+---
+
+<section id="c-metodo" class="metodologia">
+  <div class="head">
+    <div class="head-title">
+      <span class="eyebrow">04 · METODOLOGÍA</span>
+      <h2 class="head-heading">Cuatro fases, una sola trayectoria.</h2>
+    </div>
+    <p class="head-copy">Podemos entrar en cualquier punto: desde una idea inicial hasta una obra en ejecución.</p>
+  </div>
+
+  <div class="grid">
+    {phases.map((phase) => (
+      <PhaseCard
+        number={phase.number}
+        label={phase.label}
+        title={phase.title}
+        description={phase.description}
+        background={phase.background}
+        color={phase.color}
+        labelColor={phase.labelColor}
+        descriptionColor={phase.descriptionColor}
+      >
+        <phase.Icon slot="icon" />
+      </PhaseCard>
+    ))}
+  </div>
+</section>
+
+<style>
+  .metodologia {
+    padding: 86px 60px;
+  }
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    margin-bottom: 44px;
+  }
+
+  .head-title {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--color-eyebrow);
+  }
+
+  .head-heading {
+    margin: 0;
+    font-size: clamp(30px, 4.6vw, 62px);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    font-weight: 500;
+    max-width: 20ch;
+  }
+
+  .head-copy {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-muted);
+    max-width: 34ch;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  @media (max-width: 1024px) {
+    .metodologia {
+      padding: 60px 26px;
+    }
+
+    .head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .head-copy {
+      align-self: flex-start;
+      text-align: left;
+    }
+
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .metodologia {
+      padding: 46px 16px;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
