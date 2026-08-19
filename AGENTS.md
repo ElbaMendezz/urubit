@@ -207,17 +207,21 @@ Los `id` de sección (`#top`, `#c-lab`, `#c-hacemos`, `#c-dif`, `#c-metodo`,
   `src/data/site.ts` como constantes tipadas, no hardcodeados en el markup —
   ver también el WhatsApp/Instagram URL, centralizados ahí por repetirse
   idénticos en 6+ puntos del diseño.
-- **SEO (post-cierre, contenido PROVISIONAL — ver PENDIENTES.md):**
-  `BaseLayout.astro` recibe `title`/`description` como props (mismo patrón,
-  `description` con default). El default sale literal del copy del Hero (H1 +
-  inicio del párrafo del Hero, cortado a 158 caracteres en un límite de
-  palabra limpio, sin copy inventado). `public/og-image.png` (1200×630) se
-  generó con Pillow: fondo `#1E2A23` (`--color-ink-800`) + `logo-light.png`
-  centrado al 50% del ancho del canvas — script no versionado, reproducible
-  con esos mismos parámetros si hay que regenerarlo. El JSON-LD `Organization`
-  solo usa hechos ya existentes en `CONTACT` (`site.ts`): nombre, teléfono,
-  correo, Instagram — nada inventado. `og:url`/`canonical` y URLs absolutas de
-  imagen se omiten a propósito: no hay dominio de producción todavía.
+- **SEO (post-cierre):** `BaseLayout.astro` recibe `title`/`description`/
+  `keywords` como props, con default. **Title, description y keywords son
+  copy definitivo entregado por el cliente** (ya no son placeholder — ver
+  historial; el placeholder original salía del copy del Hero). `index.astro`
+  no pasa overrides, usa los defaults directo (single source of truth).
+  `og:site_name` y el `name` del JSON-LD usan "ÚRBIT LAB" en mayúsculas para
+  igualar el title del cliente — solo en metadatos, el brand visible del sitio
+  (nav/footer) sigue "Úrbit Lab" tal como el diseño. **`public/og-image.png`
+  (1200×630) sigue PROVISIONAL** — ver PENDIENTES.md: se generó con Pillow,
+  fondo `#1E2A23` (`--color-ink-800`) + `logo-light.png` centrado al 50% del
+  ancho del canvas (script no versionado, reproducible con esos mismos
+  parámetros). El JSON-LD `Organization` solo usa hechos ya existentes en
+  `CONTACT` (`site.ts`): nombre, teléfono, correo, Instagram — nada inventado.
+  `og:url`/`canonical` y URLs absolutas de imagen se omiten a propósito: no
+  hay dominio de producción todavía.
 
 ## Verificación por fase
 

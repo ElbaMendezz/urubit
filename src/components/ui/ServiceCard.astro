@@ -16,7 +16,16 @@ const { number, title, description, variant, image, width, height } = Astro.prop
 ---
 
 <div class:list={['svc', `svc--${variant}`]} data-rv="1">
-  <Image src={image} alt="" width={width} height={height} loading="lazy" class="svc-bg" />
+  <Image
+    src={image}
+    alt={title}
+    width={width}
+    height={height}
+    widths={[400, 465]}
+    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+    loading="lazy"
+    class="svc-bg"
+  />
   <div class="svc-veil"></div>
   <span class="svc-number">{number}</span>
   <div class="svc-copy">

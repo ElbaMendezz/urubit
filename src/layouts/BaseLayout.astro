@@ -5,18 +5,26 @@ import { CONTACT } from '../data/site';
 interface Props {
   title?: string;
   description?: string;
+  keywords?: string;
 }
 
-/**
- * Descripción por defecto compuesta literal del copy real del Hero (H1 +
- * inicio del párrafo, cortada en un límite de palabra limpio a ~158
- * caracteres) — no es copy inventado, pero es PROVISIONAL: reemplazar cuando
- * el cliente confirme el texto SEO definitivo. Ver PENDIENTES.md.
- */
+// Title, description y keywords: copy SEO definitivo entregado por el
+// cliente (ya no es provisional). Ver PENDIENTES.md — el og-image.png sigue
+// siendo un placeholder, eso sí sigue pendiente de la pieza real.
+// El title original del cliente medía 83 caracteres (máximo pedido: 65) —
+// se acortó a 63 quitando "innovación social" del final, con las mismas
+// palabras/orden que envió, sin agregar nada nuevo.
+const DEFAULT_TITLE = 'ÚRBIT LAB | Arquitectura, urbanismo, ingeniería, sostenibilidad';
 const DEFAULT_DESCRIPTION =
-  'Diseñamos territorios que mejoran la vida de las personas. Transformamos ideas en proyectos que conectan arquitectura, urbanismo, ingeniería y sostenibilidad…';
+  'Diseñamos territorios y proyectos integrales desde la arquitectura, urbanismo, ingeniería y sostenibilidad para crear espacios más humanos y resilientes.';
+const DEFAULT_KEYWORDS =
+  'ÚRBIT LAB, arquitectura, urbanismo, ingeniería, diseño urbano, desarrollo territorial, planificación territorial, ordenamiento territorial, infraestructura, sostenibilidad, innovación social, arquitectura sostenible, urbanismo sostenible, vivienda de interés social, proyectos de infraestructura, gestión de proyectos, interventoría, innovación social, territorios resilientes';
 
-const { title = 'Úrbit Lab', description = DEFAULT_DESCRIPTION } = Astro.props;
+const {
+  title = DEFAULT_TITLE,
+  description = DEFAULT_DESCRIPTION,
+  keywords = DEFAULT_KEYWORDS,
+} = Astro.props;
 
 // Solo usa hechos ya establecidos en site.ts — sin inventar dirección,
 // fecha de fundación ni logo (no hay URL estable de logo fuera de
@@ -24,7 +32,7 @@ const { title = 'Úrbit Lab', description = DEFAULT_DESCRIPTION } = Astro.props;
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Úrbit Lab',
+  name: 'ÚRBIT LAB',
   email: CONTACT.email,
   telephone: CONTACT.phoneHref.replace(/^tel:/, ''),
   sameAs: [CONTACT.instagramUrl],
@@ -48,11 +56,12 @@ const organizationJsonLd = {
     <title>{title}</title>
 
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Úrbit Lab" />
+    <meta property="og:site_name" content="ÚRBIT LAB" />
     <meta property="og:locale" content="es_CO" />
     <meta property="og:image" content="/og-image.png" />
     <meta property="og:image:width" content="1200" />

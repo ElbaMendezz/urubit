@@ -73,16 +73,22 @@ capturas de referencia del original (recordar: `support.js` depende de
   igual a `dist/` en cada build (URL pública muerta `/urubit-favico.jpeg`).
   Pendiente: decidir si se borra o se reemplaza por un export correcto antes
   de publicar.
-- **Meta description, Open Graph, Twitter Card y JSON-LD: implementados, con
-  contenido PROVISIONAL** (`BaseLayout.astro`):
-  - La descripción sale literal del copy del Hero (H1 completo + inicio del
-    párrafo, cortada a 158 caracteres en un límite de palabra limpio) — no es
-    copy inventado, pero tampoco es necesariamente el texto definitivo que el
-    cliente querría para buscadores/redes.
-  - `og:image`/`twitter:image` apuntan a `public/og-image.png`, generado
-    (fondo `#1E2A23` + `logo-light.png` centrado, 1200×630) — **no es la
-    imagen definitiva**, reemplazar cuando el cliente entregue una pieza real
-    para compartir en redes.
+- **Title, meta description, keywords, Open Graph, Twitter Card: RESUELTO** —
+  copy SEO definitivo entregado por el cliente, implementado tal cual en
+  `BaseLayout.astro` (ya no es el placeholder derivado del copy del Hero de
+  las Fases 11-12).
+  - **Title acortado:** el que envió el cliente medía 83 caracteres; el
+    límite pedido es 65. Se recortó a 63 quitando "innovación social" del
+    final, manteniendo el resto exacto (mismas palabras y orden, nada
+    agregado): `"ÚRBIT LAB | Arquitectura, urbanismo, ingeniería, sostenibilidad"`.
+    Confirmar con el cliente que este recorte es aceptable.
+  - El keyword "innovación social" viene duplicado en la lista que envió el
+    cliente (aparece dos veces) — se implementó literal, sin corregirlo por
+    cuenta propia; avisar al cliente por si fue un error de tipeo de su parte.
+  - `og:site_name` y el `name` del JSON-LD usan "ÚRBIT LAB" en mayúsculas,
+    igual que el título entregado por el cliente — esto es solo para
+    metadatos/SEO, **no** cambia cómo se muestra la marca en el sitio visible
+    (nav/footer siguen con "Úrbit Lab", que es el diseño aprobado).
   - `og:url` y `<link rel="canonical">` se omiten a propósito: el sitio no
     tiene dominio de producción real todavía. Por la misma razón, `og:image`/
     `twitter:image` usan ruta relativa (`/og-image.png`) en vez de absoluta;
@@ -92,6 +98,7 @@ capturas de referencia del original (recordar: `support.js` depende de
     (`src/data/site.ts`): nombre, teléfono, correo, Instagram. Sin dirección,
     fecha de fundación ni logo (no hay URL estable de logo fuera de
     `astro:assets`).
-  - **Ambos bloques (descripción y `og-image.png`) deben revisarse y
-    reemplazarse cuando el cliente confirme copy SEO y una imagen de
-    compartir definitivos.**
+- **`og:image`/`twitter:image`: sigue PROVISIONAL.** Apuntan a
+  `public/og-image.png`, generado (fondo `#1E2A23` + `logo-light.png`
+  centrado, 1200×630) — el cliente no envió una pieza definitiva junto con el
+  copy SEO. Reemplazar cuando la entregue.
