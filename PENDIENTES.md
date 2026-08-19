@@ -64,15 +64,26 @@ capturas de referencia del original (recordar: `support.js` depende de
 
 ## Head / metadatos
 
-- **Favicon: sin cambios** — se mantiene el generado en la Fase 11 a partir de
-  `mark-dark.png`. Se añadió después `public/urubit-favico.jpeg`, pero es un
-  export incorrecto: es el mark *claro* (`mark-light`, pensado para fondo
-  oscuro) aplanado sobre un JPEG blanco → prácticamente invisible en la
-  pestaña del navegador (confirmado por muestreo de píxeles). **No está
-  referenciado en ningún lado**, pero al vivir en `public/` Astro lo copia
-  igual a `dist/` en cada build (URL pública muerta `/urubit-favico.jpeg`).
-  Pendiente: decidir si se borra o se reemplaza por un export correcto antes
-  de publicar.
+- **Favicon: reemplazado por instrucción directa del cliente.** El favicon de
+  la Fase 11 (generado a partir de `mark-dark.png`, el mark oscuro) fue
+  sustituido por uno generado a partir del asset que el cliente marcó como
+  "definitivo" (`public/urbit-favico.png`, subido por el usuario — confirmado
+  por muestreo de píxeles que es idéntico a `design-source/assets/mark-light.png`,
+  el mark *claro*, pensado originalmente para fondo oscuro). `favicon.ico`,
+  `favicon.png` y `apple-touch-icon.png` se regeneraron con el mismo
+  tratamiento de la Fase 11 (recorte al bbox de contenido, centrado sobre lienzo
+  transparente) pero a partir de este mark claro en vez del oscuro. El archivo
+  fuente (`public/urbit-favico.png`) se borró después de generarlos —su
+  contenido ya vive permanentemente en `design-source/assets/mark-light.png`,
+  y dejarlo en `public/` habría quedado como URL pública muerta sin referenciar
+  (el mismo problema que tuvo el jpeg anterior).
+  **Riesgo visual confirmado y aceptado explícitamente por el cliente:** al ser
+  un mark blanco sobre fondo transparente, se ve prácticamente invisible en
+  pestañas de navegador con tema claro (el caso más común) y de muy bajo
+  contraste sobre gris claro — solo se ve con nitidez sobre fondos oscuros.
+  Verificado con composites sobre blanco/gris/oscuro antes de implementar. Se
+  preguntó explícitamente si usar el mark oscuro en su lugar o generar un
+  fondo de marca detrás del claro; el cliente eligió implementarlo tal cual.
 - **Title, meta description, keywords, Open Graph, Twitter Card: RESUELTO** —
   copy SEO definitivo entregado por el cliente, implementado tal cual en
   `BaseLayout.astro` (ya no es el placeholder derivado del copy del Hero de
