@@ -87,16 +87,17 @@ ningún punto. Mismo resultado visual, sin el hack.
 ```
 src/
   layouts/
-    BaseLayout.astro        <- <head> mínimo, meta viewport, Google Fonts (link
-                                preconnect + stylesheet), title, y el wrapper
-                                de página (#top, antes `<div id="top">` en el
-                                original — el resto de divs sin estilo que lo
-                                rodeaban eran ruido del canvas, se colapsaron).
-                                El botón "volver arriba" NO vive aquí: es 100%
-                                comportamiento de scroll, se construye completo
-                                en la fase de JS junto con scroll-effects.ts.
-                                <head> completo (favicon, OG, Twitter, JSON-LD)
-                                es una fase propia al final.
+    BaseLayout.astro        <- <head>, meta viewport, Google Fonts (link
+                                preconnect + stylesheet), title + description
+                                (prop, con default provisional — ver "SEO"
+                                abajo), favicon, Open Graph, Twitter Card y
+                                JSON-LD (Organization), y el wrapper de página
+                                (#top, antes `<div id="top">` en el original —
+                                el resto de divs sin estilo que lo rodeaban
+                                eran ruido del canvas, se colapsaron). El botón
+                                "volver arriba" vive aquí pero es 100%
+                                comportamiento de scroll, construido en la fase
+                                de JS junto con scroll-effects.ts.
   components/
     sections/
       Nav.astro              <- líneas 92-118 del original (nav sticky + menú móvil)
@@ -131,8 +132,9 @@ src/
                                   incluye logo-dark.png ni mark-light.png (sin
                                   uso en v2 — quedan solo en design-source/).
 public/                        <- favicon.ico/.png, apple-touch-icon.png
-                                  (derivados de mark-dark.png, Fase 11). Sin
-                                  og:image/Twitter Card/JSON-LD — ver PENDIENTES.md
+                                  (derivados de mark-dark.png, Fase 11);
+                                  og-image.png (placeholder de OG/Twitter,
+                                  1200×630, provisional — ver PENDIENTES.md)
 design-source/                 <- copia de trabajo del diseño, sin uploads/
 ```
 
@@ -205,6 +207,17 @@ Los `id` de sección (`#top`, `#c-lab`, `#c-hacemos`, `#c-dif`, `#c-metodo`,
   `src/data/site.ts` como constantes tipadas, no hardcodeados en el markup —
   ver también el WhatsApp/Instagram URL, centralizados ahí por repetirse
   idénticos en 6+ puntos del diseño.
+- **SEO (post-cierre, contenido PROVISIONAL — ver PENDIENTES.md):**
+  `BaseLayout.astro` recibe `title`/`description` como props (mismo patrón,
+  `description` con default). El default sale literal del copy del Hero (H1 +
+  inicio del párrafo del Hero, cortado a 158 caracteres en un límite de
+  palabra limpio, sin copy inventado). `public/og-image.png` (1200×630) se
+  generó con Pillow: fondo `#1E2A23` (`--color-ink-800`) + `logo-light.png`
+  centrado al 50% del ancho del canvas — script no versionado, reproducible
+  con esos mismos parámetros si hay que regenerarlo. El JSON-LD `Organization`
+  solo usa hechos ya existentes en `CONTACT` (`site.ts`): nombre, teléfono,
+  correo, Instagram — nada inventado. `og:url`/`canonical` y URLs absolutas de
+  imagen se omiten a propósito: no hay dominio de producción todavía.
 
 ## Verificación por fase
 

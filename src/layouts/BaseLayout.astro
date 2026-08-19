@@ -1,11 +1,34 @@
 ---
 import '../styles/global.css';
+import { CONTACT } from '../data/site';
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title = 'Úrbit Lab' } = Astro.props;
+/**
+ * Descripción por defecto compuesta literal del copy real del Hero (H1 +
+ * inicio del párrafo, cortada en un límite de palabra limpio a ~158
+ * caracteres) — no es copy inventado, pero es PROVISIONAL: reemplazar cuando
+ * el cliente confirme el texto SEO definitivo. Ver PENDIENTES.md.
+ */
+const DEFAULT_DESCRIPTION =
+  'Diseñamos territorios que mejoran la vida de las personas. Transformamos ideas en proyectos que conectan arquitectura, urbanismo, ingeniería y sostenibilidad…';
+
+const { title = 'Úrbit Lab', description = DEFAULT_DESCRIPTION } = Astro.props;
+
+// Solo usa hechos ya establecidos en site.ts — sin inventar dirección,
+// fecha de fundación ni logo (no hay URL estable de logo fuera de
+// astro:assets). Ver PENDIENTES.md.
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Úrbit Lab',
+  email: CONTACT.email,
+  telephone: CONTACT.phoneHref.replace(/^tel:/, ''),
+  sameAs: [CONTACT.instagramUrl],
+};
 ---
 
 <!doctype html>
@@ -23,6 +46,24 @@ const { title = 'Úrbit Lab' } = Astro.props;
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>{title}</title>
+
+    <meta name="description" content={description} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Úrbit Lab" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} is:inline />
   </head>
   <body>
     <div id="top" class="page-shell">

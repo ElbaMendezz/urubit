@@ -64,9 +64,34 @@ capturas de referencia del original (recordar: `support.js` depende de
 
 ## Head / metadatos
 
-- **Favicon: resuelto** (Fase 11) — generado a partir de `mark-dark.png`,
-  referenciado en `BaseLayout.astro`.
-- **Pendiente:** `og:image`, Twitter Card y JSON-LD. El diseño original no trae
-  ninguno de estos en su `<head>`, así que no se inventaron. Si el cliente los
-  quiere para compartir en redes/buscadores, es una fase nueva a definir con
-  contenido real (imagen de OG, descripción, etc.), no derivable del diseño.
+- **Favicon: sin cambios** — se mantiene el generado en la Fase 11 a partir de
+  `mark-dark.png`. Se añadió después `public/urubit-favico.jpeg`, pero es un
+  export incorrecto: es el mark *claro* (`mark-light`, pensado para fondo
+  oscuro) aplanado sobre un JPEG blanco → prácticamente invisible en la
+  pestaña del navegador (confirmado por muestreo de píxeles). **No está
+  referenciado en ningún lado**, pero al vivir en `public/` Astro lo copia
+  igual a `dist/` en cada build (URL pública muerta `/urubit-favico.jpeg`).
+  Pendiente: decidir si se borra o se reemplaza por un export correcto antes
+  de publicar.
+- **Meta description, Open Graph, Twitter Card y JSON-LD: implementados, con
+  contenido PROVISIONAL** (`BaseLayout.astro`):
+  - La descripción sale literal del copy del Hero (H1 completo + inicio del
+    párrafo, cortada a 158 caracteres en un límite de palabra limpio) — no es
+    copy inventado, pero tampoco es necesariamente el texto definitivo que el
+    cliente querría para buscadores/redes.
+  - `og:image`/`twitter:image` apuntan a `public/og-image.png`, generado
+    (fondo `#1E2A23` + `logo-light.png` centrado, 1200×630) — **no es la
+    imagen definitiva**, reemplazar cuando el cliente entregue una pieza real
+    para compartir en redes.
+  - `og:url` y `<link rel="canonical">` se omiten a propósito: el sitio no
+    tiene dominio de producción real todavía. Por la misma razón, `og:image`/
+    `twitter:image` usan ruta relativa (`/og-image.png`) en vez de absoluta;
+    revisar cuando haya dominio real (algunos scrapers, notablemente Facebook,
+    prefieren URLs absolutas de imagen).
+  - El JSON-LD (`Organization`) solo usa datos ya existentes en `CONTACT`
+    (`src/data/site.ts`): nombre, teléfono, correo, Instagram. Sin dirección,
+    fecha de fundación ni logo (no hay URL estable de logo fuera de
+    `astro:assets`).
+  - **Ambos bloques (descripción y `og-image.png`) deben revisarse y
+    reemplazarse cuando el cliente confirme copy SEO y una imagen de
+    compartir definitivos.**
